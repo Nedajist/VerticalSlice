@@ -21,4 +21,56 @@ public class Enemy : MonoBehaviour
             }
         }
     }
+
+    protected void TargetFarthestPlayer()
+    {
+        GameController.instance.RefreshAllyList();
+        float farthest_distance = Vector3.Distance(transform.position, GameController.instance.ally_list[0].transform.position);
+        _target_player = GameController.instance.ally_list[0];
+        for (int i = 0; i < GameController.instance.ally_list.Count; i++)
+        {
+            Ally new_player = GameController.instance.ally_list[i];
+            float new_distance = Vector3.Distance(new_player.transform.position, transform.position);
+            if (new_distance > farthest_distance)
+            {
+                farthest_distance = new_distance;
+                _target_player = new_player;
+            }
+        }
+
+    }
+
+    protected void TargetStrongestPlayer()
+    {
+        GameController.instance.RefreshAllyList();
+        float highest_health = GameController.instance.ally_list[0].GetHealth();
+        _target_player = GameController.instance.ally_list[0];
+        for (int i = 0; i < GameController.instance.ally_list.Count; i++)
+        {
+            Ally new_player = GameController.instance.ally_list[i];
+            float new_health = new_player.GetHealth();
+            if (new_health > highest_health)
+            {
+                highest_health = new_health;
+                _target_player = new_player;
+            }
+        }
+    }
+
+    protected void TargetWeakestPlayer()
+    {
+        GameController.instance.RefreshAllyList();
+        float lowest_health = GameController.instance.ally_list[0].GetHealth();
+        _target_player = GameController.instance.ally_list[0];
+        for (int i = 0; i < GameController.instance.ally_list.Count; i++)
+        {
+            Ally new_player = GameController.instance.ally_list[i];
+            float new_health = new_player.GetHealth();
+            if (new_health < lowest_health)
+            {
+                lowest_health = new_health;
+                _target_player = new_player;
+            }
+        }
+    }
 }

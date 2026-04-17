@@ -13,4 +13,8 @@ public class Mage : MonoBehaviour
         GameObject instantiated_mage_bolt = Instantiate(_mage_projectile, transform.position + line_to_mouse, Quaternion.identity);
         instantiated_mage_bolt.GetComponent<Projectile>().starting_mouseclick_position = mouse_position;
     }
+    public void MageAbility2(Vector3 mouse_position)
+    {
+        Debug.Log("Mage ability 2!");
+    }
 }

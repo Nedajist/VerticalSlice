@@ -157,13 +157,29 @@ public class Ally : MonoBehaviour // the clone
             case PlayerClass.Mage:
                 transform.GetComponent<Mage>().MageAbility1(mouse_position);
                 break;
-
+            case PlayerClass.Healer:
+                transform.GetComponent<Healer>().HealerAbility1(mouse_position);
+                break;
+            case PlayerClass.Tank:
+                transform.GetComponent<Tank>().TankAbility1(mouse_position);
+                break;
         }
     }
 
     protected virtual void ActivateAbility2(Vector3 mouse_position)
     {
-        return;
+        switch (_class)
+        {
+            case PlayerClass.Mage:
+                transform.GetComponent<Mage>().MageAbility2(mouse_position);
+                break;
+            case PlayerClass.Healer:
+                transform.GetComponent<Healer>().HealerAbility2(mouse_position);
+                break;
+            case PlayerClass.Tank:
+                transform.GetComponent<Tank>().TankAbility2(mouse_position);
+                break;
+        }
     }
 
     protected void FreezeVelocity()
@@ -234,5 +250,9 @@ public class Ally : MonoBehaviour // the clone
 
     }
 
+    public float GetHealth()
+    {
+        return (_health);
+    }
 
 }

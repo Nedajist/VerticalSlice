@@ -48,11 +48,11 @@ public class Boss : Enemy
 
     private void FixedUpdate()
     {
-        TargetNearestPlayer();
-        MoveTowardsNearestPlayer();
+        TargetStrongestPlayer();
+        MoveTowardsTargetPlayer();
     }
 
-    private void MoveTowardsNearestPlayer()
+    private void MoveTowardsTargetPlayer()
     {
         _target_x = _target_player.transform.position.x;
         _target_y = _target_player.transform.position.y;
