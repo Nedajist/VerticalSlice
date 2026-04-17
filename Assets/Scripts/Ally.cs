@@ -66,8 +66,8 @@ public class Ally : MonoBehaviour // the clone
 
         for (int i = 0; i < _list_of_inputs.Count; i++) // while there are still inputs happening THIS FRAME to execute
         {
+            //Debug.Log("INDEX 0 INPUT FRAME: "+ _list_of_inputs[0].inputFrame);
             InputData current_input = _list_of_inputs[i]; // gets current input scriptable object
-
 
             if (current_input.inputFrame != _physics_frames && current_input.startedExecution == false) // if the selected input does not happen this frame / is not a previous input which stretches on to this frame, ends the loop
             {
@@ -75,10 +75,12 @@ public class Ally : MonoBehaviour // the clone
                 {
                     FreezeVelocity(); // resets velocity if not executing movement input this turn to preserve determinism
                 }
+                //Debug.Log("RETURNED. CURRENT FRAME: " + _physics_frames + ". INPUT FRAME: " + current_input.inputFrame + "STARTED EXECUTION: " + current_input.startedExecution);
                 return;
             }
 
             current_input.startedExecution = true; // tells the scriptableobject that it has started execution
+            //Debug.Log("STARTED EXECUTION. CURRENT FRAME: " + _physics_frames + "INPUT FRAME:" + current_input.inputFrame);
 
             switch (current_input.inputType) // element i of input list matches current frame, input will be executed
             {
@@ -100,8 +102,11 @@ public class Ally : MonoBehaviour // the clone
             current_input.heldFrames -= 1; // subtracts 1 from its lifespan 
             if (current_input.heldFrames <= 0)
             {
-                _list_of_inputs.RemoveAt(0); // removes executed input if its lifespan has reached 0 
+                _list_of_inputs.RemoveAt(i); // removes executed input if its lifespan has reached 
+                i--;
             }
+            // Debug.Log(_list_of_inputs.Count + "inputs remaining!");
+            // Debug.Log("current input: "+ current_input.inputType + current_input.heldFrames);
         }
 
         if (_list_of_inputs.Count == 0)
@@ -111,7 +116,6 @@ public class Ally : MonoBehaviour // the clone
             Debug.Log("FINISHED EXECUTING ON FRAME " + _physics_frames);
             Destroy(gameObject); // die doesn't seem to be working
         }
-
 
     }
 
@@ -179,7 +183,6 @@ public class Ally : MonoBehaviour // the clone
 
     public void StartExecuting()
     {
-        //Debug.Log("STARTED ExEcution with " + _list_of_inputs.Count + " inputs!");
         _executing = true;
         transform.position = _starting_position;
     }
