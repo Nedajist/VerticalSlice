@@ -2,10 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Mage : MonoBehaviour
+public class Mage : ClassAbility
 {
     [SerializeField] private GameObject _mage_projectile;
-    public void MageAbility1(Vector3 mouse_position)
+    public override void Ability1(Vector3 mouse_position)
     {
         Vector3 line_to_mouse = Vector3.Normalize(mouse_position - transform.position);
         line_to_mouse *= 1.5f;
@@ -13,7 +13,7 @@ public class Mage : MonoBehaviour
         GameObject instantiated_mage_bolt = Instantiate(_mage_projectile, transform.position + line_to_mouse, Quaternion.identity);
         instantiated_mage_bolt.GetComponent<Projectile>().starting_mouseclick_position = mouse_position;
     }
-    public void MageAbility2(Vector3 mouse_position)
+    public override void Ability2(Vector3 mouse_position)
     {
         Debug.Log("Mage ability 2!");
     }

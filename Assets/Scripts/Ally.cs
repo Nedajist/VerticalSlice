@@ -152,34 +152,12 @@ public class Ally : MonoBehaviour // the clone
 
     protected virtual void ActivateAbility1(Vector3 mouse_position)
     {
-        switch (_class)
-        {
-            case PlayerClass.Mage:
-                transform.GetComponent<Mage>().MageAbility1(mouse_position);
-                break;
-            case PlayerClass.Healer:
-                transform.GetComponent<Healer>().HealerAbility1(mouse_position);
-                break;
-            case PlayerClass.Tank:
-                transform.GetComponent<Tank>().TankAbility1(mouse_position);
-                break;
-        }
+        transform.GetComponent<ClassAbility>().Ability1(mouse_position);
     }
 
     protected virtual void ActivateAbility2(Vector3 mouse_position)
     {
-        switch (_class)
-        {
-            case PlayerClass.Mage:
-                transform.GetComponent<Mage>().MageAbility2(mouse_position);
-                break;
-            case PlayerClass.Healer:
-                transform.GetComponent<Healer>().HealerAbility2(mouse_position);
-                break;
-            case PlayerClass.Tank:
-                transform.GetComponent<Tank>().TankAbility2(mouse_position);
-                break;
-        }
+        transform.GetComponent<ClassAbility>().Ability2(mouse_position);
     }
 
     protected void FreezeVelocity()
