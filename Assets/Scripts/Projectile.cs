@@ -1,0 +1,108 @@
+using UnityEngine;
+
+
+public class Projectile: Enemy
+{
+    [SerializeField] float _lifespan = 6;
+    [SerializeField] float _movement_speed = 4;
+    [SerializeField] float _min_movement_speed = 2;
+    [SerializeField] float _seconds_of_homing_time;
+    [SerializeField] bool _homing;
+    [SerializeField] bool _rotating;
+    [SerializeField] public bool clockwise = true;
+    [SerializeField] float _angles_per_second = 5;
+    [SerializeField] bool _initial_lock_on = true; // if true, locks on to player at start
+    [SerializeField] public float damage;
+    [SerializeField] public Vector2 velocity_additive;
+
+    private float _angle;
+    public Vector3 starting_mouseclick_position;
+    public float starting_angle;
+
+    [SerializeField] Rigidbody2D _rigidbody;
+
+    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    void Start()
+    {
+        _angle = starting_angle;
+
+        if (_homing == true || _initial_lock_on == true) // only used by enemies/boss
+        {
+            TargetNearestPlayer();
+            transform.right = _target_player.transform.position - transform.position;
+        }
+
+        if (_rotating == true && _initial_lock_on == false)
+        {
+            transform.right = new Vector3(Mathf.Cos(_angle * Mathf.Deg2Rad), Mathf.Sin(_angle * Mathf.Deg2Rad), 0);
+        }
+
+        if (starting_mouseclick_position != Vector3.zero) // only used by player
+        {
+            starting_mouseclick_position.z = 0;
+            transform.right = starting_mouseclick_position - transform.position;
+        }
+        
+        
+
+
+    }
+
+
+
+    private void FixedUpdate()
+    {
+        _lifespan -= Time.deltaTime;
+        if (_rotating)
+        {
+            if (clockwise)
+            {
+                _angle += _angles_per_second * Time.deltaTime;
+
+            }
+            else
+            {
+                _angle -= _angles_per_second * Time.deltaTime;
+            }
+
+            _angle %= 360;
+        }
+
+        if (_lifespan <= 0)
+        {
+            Destroy(gameObject);
+        }
+
+        
+        if (_rigidbody.velocity.magnitude < _min_movement_speed)
+        {
+            _rigidbody.velocity = _rigidbody.velocity.normalized * _min_movement_speed + velocity_additive;
+        }
+        
+        if (_homing == true && _seconds_of_homing_time > 0 && _target_player != null)
+        {
+            _seconds_of_homing_time -= Time.deltaTime;
+            transform.right = transform.right + ((_target_player.transform.position - transform.position) - transform.right) * (Time.deltaTime * _angles_per_second / 360f);
+            _rigidbody.velocity = (transform.right * _movement_speed) + new Vector3(velocity_additive.x, velocity_additive.y, 0); // this is where projectiles move forward if homing;
+        }
+        else
+        {
+            _rigidbody.AddForce(transform.right * _movement_speed + new Vector3(velocity_additive.x, velocity_additive.y, 0)); // this is where projectiles move forward if not homing;
+        }
+
+
+
+        if (_rotating == true)
+        {
+            transform.eulerAngles = new Vector3(0, 0, _angle);
+        }
+
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        Destroy(gameObject);
+
+    }
+
+}
