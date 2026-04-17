@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 2586117590706655252}
   - component: {fileID: 3996401278963506867}
   - component: {fileID: -1721025112847566637}
+  - component: {fileID: 2014933933321023234}
   - component: {fileID: 7557587598728034004}
   - component: {fileID: 8116578420945769105}
   m_Layer: 3
@@ -96,7 +97,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 3726226174166467842}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b76a12d145492be4c975fcc546c3f835, type: 3}
+  m_Script: {fileID: 11500000, guid: 805d5ab43f4abb04b9c07b5ea8b4bef6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _rb: {fileID: 7557587598728034004}
@@ -109,9 +110,21 @@ MonoBehaviour:
   _ability_2_cooldown: 0
   _starting_position: {x: 0, y: 0, z: 0}
   _iframe_duration: 0.25
-  _mage_projectile: {fileID: 2145519010166405205, guid: f5875cdbca445fc4980c7535ea9cc0ec, type: 3}
   _velocity_additive: {x: 0, y: 0}
   is_clone: 1
+--- !u!114 &2014933933321023234
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3726226174166467842}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0392506ab86448c4787ce780a8fa814a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _mage_projectile: {fileID: 2145519010166405205, guid: f5875cdbca445fc4980c7535ea9cc0ec, type: 3}
 --- !u!50 &7557587598728034004
 Rigidbody2D:
   serializedVersion: 4

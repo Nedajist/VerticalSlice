@@ -20,8 +20,6 @@ public class Ally : MonoBehaviour // the clone
     [SerializeField] protected Vector3 _starting_position = Vector3.zero;
     [SerializeField] protected float _iframe_duration = 0.25f;
 
-    [SerializeField] private GameObject _mage_projectile;
-
     public Vector2 _velocity_additive;
     public bool is_clone = true;
     protected List<InputData> _list_of_inputs = new List<InputData>();
@@ -157,23 +155,15 @@ public class Ally : MonoBehaviour // the clone
         switch (_class)
         {
             case PlayerClass.Mage:
-                MageAbility1(mouse_position);
+                transform.GetComponent<Mage>().MageAbility1(mouse_position);
                 break;
+
         }
     }
 
     protected virtual void ActivateAbility2(Vector3 mouse_position)
     {
         return;
-    }
-
-    protected void MageAbility1(Vector3 mouse_position)
-    {
-        Vector3 line_to_mouse = Vector3.Normalize(mouse_position - transform.position);
-        line_to_mouse *= 1.5f;
-        line_to_mouse.z = 0;
-        GameObject instantiated_mage_bolt = Instantiate(_mage_projectile, transform.position + line_to_mouse, Quaternion.identity);
-        instantiated_mage_bolt.GetComponent<Projectile>().starting_mouseclick_position = mouse_position;
     }
 
     protected void FreezeVelocity()
