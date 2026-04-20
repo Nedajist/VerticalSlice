@@ -631,8 +631,6 @@ MonoBehaviour:
   _health_bar: {fileID: 6820396623864054108}
   _lazy_bar: {fileID: 1818245110103055180}
   _rate_of_change: 25
-  _current_health: 0
-  _max_health: 0
 --- !u!50 &3498961432721847859
 Rigidbody2D:
   serializedVersion: 4
@@ -659,7 +657,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!60 &6569033911795560677
 PolygonCollider2D:
   m_ObjectHideFlags: 0

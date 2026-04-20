@@ -12,6 +12,8 @@ public class Boss : Enemy
     [SerializeField] GameObject _spiral_projectile_bundle;
     [SerializeField] GameObject _gatling_projectile_bundle;
     [SerializeField] GameObject _homing_projectile_bundle;
+    [SerializeField] float _degrees_per_second; // as pertaining to movement rotation
+    [SerializeField] float _upper_degree_bound; // also determines lower bound
 
     [SerializeField] Vector3 starting_position;
 
@@ -23,6 +25,9 @@ public class Boss : Enemy
     private float _horizontal_movement_additive;
 
     private float _projectile_timer = 0;
+
+
+    private float degree_change = 0; // how much the rat changes degrees every fixedupdate 
 
     // Start is called before the first frame update
     void Start()
@@ -49,40 +54,35 @@ public class Boss : Enemy
         MoveTowardsTargetPlayer();
     }
 
-    private void MoveTowardsTargetPlayer()
+
+    private void MoveTowardsTargetPlayer() // beelines player. Best for melee.
     {
         _target_x = _target_player.transform.position.x;
         _target_y = _target_player.transform.position.y;
         Move();
     }
 
-    private void Move()
+    private void SlitherTowardsTargetPlayer() // Kinda rotates around player but also zigzaggy. Best for ranged. 
+    {
+        _target_x = _target_player.transform.position.x;
+        _target_y = _target_player.transform.position.y;
+        Move();
+        degree_change += _degrees_per_second * Time.deltaTime;
+
+        if (degree_change > _upper_degree_bound || degree_change < -_upper_degree_bound)
+        {
+            _degrees_per_second = -_degrees_per_second;
+        }
+
+        _rb.velocity = RotateVector2(_rb.velocity, degree_change);
+        Debug.Log(degree_change);
+    }
+
+    private void Move() // sets rigidbody velocity DIRECTLY towards target x and y 
     {
 
-        _distance_to_target_x = Mathf.Abs(_target_x - transform.position.x);
-        _distance_to_target_y = Mathf.Abs(_target_y - transform.position.y);
-
-        if (_target_y > transform.position.y) // movement multiplier is +/- if _target_y is above/below the current position 
-        {
-            _vertical_movement_additive = _distance_to_target_y / (_distance_to_target_x + _distance_to_target_y) * _speed;
-        }
-        else
-        {
-            _vertical_movement_additive = -1f * _distance_to_target_y / (_distance_to_target_x + _distance_to_target_y) * _speed;
-        }
-
-        if (_target_x > transform.position.x) // movement multiplier is +/- if _target_x is to the right/left of the current position 
-        {
-            _horizontal_movement_additive = _distance_to_target_x / (_distance_to_target_x + _distance_to_target_y) * _speed;
-        }
-        else
-        {
-            _horizontal_movement_additive = -1f * _distance_to_target_x / (_distance_to_target_x + _distance_to_target_y) * _speed;
-        }
-
-        _rb.velocity = (new Vector2(_horizontal_movement_additive, _vertical_movement_additive) + _velocity_additive);
-
-
+        Vector2 _line_to_target = new Vector2(_target_x, _target_y) - (Vector2)transform.position;
+        _rb.velocity = (_line_to_target + _velocity_additive);
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -102,5 +102,13 @@ public class Boss : Enemy
 
 
     }
+    private Vector2 RotateVector2(Vector2 inputVector2, float degrees)
+    {
+        float rotationRadians = degrees * Mathf.Deg2Rad;
+        Vector2 newVector2 = Vector2.zero;
+        newVector2.x = inputVector2.x * Mathf.Cos(rotationRadians) + inputVector2.y * Mathf.Sin(rotationRadians);
+        newVector2.y = -inputVector2.x * Mathf.Sin(rotationRadians) + inputVector2.y * Mathf.Cos(rotationRadians);
 
+        return (newVector2);
+    }
 }
