@@ -8,11 +8,12 @@ public class Boss : Enemy
 
     [SerializeField] Rigidbody2D _rb;
     [SerializeField] public Vector2 _velocity_additive;
+    [SerializeField] public float _velocity_multiplicative = 1;
     [SerializeField] public Vector2 _dash_additive;
     [SerializeField] GameObject _spiral_projectile_bundle;
     [SerializeField] GameObject _gatling_projectile_bundle;
     [SerializeField] GameObject _homing_projectile_bundle;
-    [SerializeField] float _degrees_per_second; // as pertaining to movement rotation
+    [SerializeField] float _degrees_per_second; // as pertaining to movement rotation. Might change during later phases. 
     [SerializeField] float _upper_degree_bound; // also determines lower bound
 
     [SerializeField] Vector3 starting_position;
@@ -25,7 +26,7 @@ public class Boss : Enemy
     private float _horizontal_movement_additive;
 
     private float _projectile_timer = 0;
-
+    private float _charge_timer = 0;
 
     private float degree_change = 0; // how much the rat changes degrees every fixedupdate 
 
@@ -38,20 +39,29 @@ public class Boss : Enemy
     // Update is called once per frame
     void Update()
     {
-        
+        _charge_timer -= Time.deltaTime;
         _projectile_timer -= Time.deltaTime;
         if (_projectile_timer < 0)
         {
             GameObject instantiated_spiral_bundle = Instantiate(_homing_projectile_bundle, transform.position, Quaternion.identity);
             instantiated_spiral_bundle.transform.SetParent(transform);
-            _projectile_timer = 3;
+            _projectile_timer = 3; // temp value
+            
         }
+
+        if (_charge_timer < 0)
+        {
+            StartCoroutine(ChargeToTarget(4));
+            _charge_timer = 8; // temp value
+        }
+
     }
 
     private void FixedUpdate()
     {
         TargetNearestPlayer();
-        MoveTowardsTargetPlayer();
+        SlitherTowardsTargetPlayer();
+        Debug.Log(_velocity_multiplicative);
     }
 
 
@@ -82,7 +92,7 @@ public class Boss : Enemy
     {
 
         Vector2 _line_to_target = new Vector2(_target_x, _target_y) - (Vector2)transform.position;
-        _rb.velocity = (_line_to_target + _velocity_additive);
+        _rb.velocity = (_line_to_target + _velocity_additive) * _velocity_multiplicative;
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -99,8 +109,6 @@ public class Boss : Enemy
         transform.rotation = Quaternion.identity;
         _projectile_timer = 0f;
         _health = _max_health;
-
-
     }
     private Vector2 RotateVector2(Vector2 inputVector2, float degrees)
     {
@@ -111,4 +119,28 @@ public class Boss : Enemy
 
         return (newVector2);
     }
+
+    IEnumerator ChargeToTarget(float duration) // longer the charge, the more the boss accelerates
+    {
+        float _time = 0;
+        while (_time < duration)
+        {
+            _time += Time.deltaTime;
+            _velocity_multiplicative = 0.5f * Mathf.Pow(6, _time / 3.3f) ;
+            yield return null;
+        }
+
+        _time = 0;
+        while (_time < 0.5f) // 0.5 is the deceleration period 
+        {
+            
+            _time += Time.deltaTime;
+            _velocity_multiplicative = Mathf.Lerp(_velocity_multiplicative, 1, 2f * Time.deltaTime);
+            yield return null;
+        }
+        _velocity_multiplicative = 1;
+        yield return null;
+    }
+
+
 }
