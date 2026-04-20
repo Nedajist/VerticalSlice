@@ -219,9 +219,6 @@ public class Ally : LivingEntity // the clone
 
     }
 
-    public float GetHealth()
-    {
-        return (_health);
-    }
+
 
 }

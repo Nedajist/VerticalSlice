@@ -13,4 +13,15 @@ public class LivingEntity : MonoBehaviour
         _health = Mathf.Clamp(_health, 0, _max_health);
         Debug.Log("HEALED FOR " + amount);
     }
+
+    public float GetHealth()
+    {
+        return (_health);
+    }
+
+    public float GetMaxHealth()
+    {
+        return (_max_health);
+    }
+
 }
