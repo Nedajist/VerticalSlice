@@ -14,6 +14,13 @@ public class LivingEntity : MonoBehaviour
         Debug.Log("HEALED FOR " + amount);
     }
 
+    public virtual void ReceiveDamage(float amount)
+    {
+        _health -= amount;
+
+
+    }
+
     public float GetHealth()
     {
         return (_health);

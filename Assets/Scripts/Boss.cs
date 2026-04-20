@@ -61,7 +61,6 @@ public class Boss : Enemy
     {
         TargetNearestPlayer();
         SlitherTowardsTargetPlayer();
-        Debug.Log(_velocity_multiplicative);
     }
 
 
@@ -85,7 +84,6 @@ public class Boss : Enemy
         }
 
         _rb.velocity = RotateVector2(_rb.velocity, degree_change);
-        Debug.Log(degree_change);
     }
 
     private void Move() // sets rigidbody velocity DIRECTLY towards target x and y 
@@ -99,7 +97,7 @@ public class Boss : Enemy
     {
         if (collision.transform.CompareTag("Projectile"))
         {
-            _health -= (collision.transform.GetComponent<Projectile>().damage);
+            ReceiveDamage(collision.transform.GetComponent<Projectile>().damage);
         }
     }
 

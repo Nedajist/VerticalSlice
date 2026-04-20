@@ -278,8 +278,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _speed: 5
-  _health: 100
-  _max_health: 100
+  _health: 200
+  _max_health: 200
   _rb: {fileID: 619263289229688581}
   _class: 1
   _selected_ability: 1
@@ -301,7 +301,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c287642b0bf67e48b8f09354bc8966d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _tank_sword: {fileID: 0}
+  _tank_sword: {fileID: 7567351776729981318, guid: af03065f3b0b97c48a43fc438cc8231a, type: 3}
 --- !u!114 &4976357967044220775
 MonoBehaviour:
   m_ObjectHideFlags: 0

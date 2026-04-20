@@ -180,7 +180,7 @@ public class Ally : LivingEntity // the clone
         }
     }
 
-    public virtual void ReceiveDamage(float amount)
+    public override void ReceiveDamage(float amount)
     {
         if (_i_frames > 0)
         {
@@ -194,8 +194,7 @@ public class Ally : LivingEntity // the clone
             {
                 if (GameController.instance.ally_list[i].GetInstanceID() == transform.GetInstanceID())
                 {
-                    Debug.Log("REMOVED SELF FROM ALLY LIST");
-                    GameController.instance.ally_list.RemoveAt(i);
+                    GameController.instance.ally_list.RemoveAt(i); // removes self from ally list upon death
                     break;
                 }
             }
