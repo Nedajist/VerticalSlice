@@ -26,6 +26,12 @@ public class TankSword : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
+        if (center == null)
+        {
+            Destroy(gameObject);
+            return;
+        }
+
         if (_angles_traveled < target_angles_traveled)
         {
             _angles_traveled += Time.deltaTime * _angles_per_second;
@@ -48,9 +54,18 @@ public class TankSword : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         LivingEntity target_entity = collision.GetComponent<LivingEntity>();
-        if (target_entity != null && target_entity.GetInstanceID() != center.GetComponent<LivingEntity>().GetInstanceID())
+
+        if (collision.GetComponent<Projectile>() != null)
+        {
+            Destroy(collision.gameObject);
+            return;
+        }
+
+        else if (target_entity != null && target_entity.GetInstanceID() != center.GetComponent<LivingEntity>().GetInstanceID())
         {
             collision.GetComponent<LivingEntity>().ReceiveDamage(_damage);
         }
+
+
     }
 }
