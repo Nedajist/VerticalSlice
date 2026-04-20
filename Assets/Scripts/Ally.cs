@@ -6,12 +6,9 @@ public enum PlayerClass
     Tank,
     Healer
 }
-public class Ally : MonoBehaviour // the clone
+public class Ally : LivingEntity // the clone
 {
     [SerializeField] protected Rigidbody2D _rb;
-    [SerializeField] protected float _speed;
-    [SerializeField] protected float _health = 100;
-    [SerializeField] protected float _max_health = 100;
     [SerializeField] protected PlayerClass _class;
     [SerializeField] protected int _selected_ability = 1; // 1 or 2 
     [SerializeField] protected float _ability_1_cooldown;
@@ -205,12 +202,6 @@ public class Ally : MonoBehaviour // the clone
             Destroy(gameObject);
         }
     }
-
-    public virtual void ReceiveHealing(float amount)
-    {
-        _health += amount;
-    }
-
 
 
     public void GiveLife(Vector3 starting_position, List<InputData> list_of_inputs)

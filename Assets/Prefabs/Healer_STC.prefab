@@ -100,10 +100,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 805d5ab43f4abb04b9c07b5ea8b4bef6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _rb: {fileID: 3498961432721847859}
   _speed: 5
   _health: 100
   _max_health: 100
+  _rb: {fileID: 3498961432721847859}
   _class: 2
   _selected_ability: 1
   _ability_1_cooldown: 1
@@ -124,7 +124,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a4cc8473ff24612439394669df475161, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _healer_stuff: {fileID: 0}
+  _healer_circle: {fileID: 2824291148003576153, guid: 2898a17da255f8047bcbfb6677cc4a6b, type: 3}
 --- !u!50 &3498961432721847859
 Rigidbody2D:
   serializedVersion: 4

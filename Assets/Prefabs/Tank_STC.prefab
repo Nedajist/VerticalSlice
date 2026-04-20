@@ -100,11 +100,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 805d5ab43f4abb04b9c07b5ea8b4bef6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _rb: {fileID: 619263289229688581}
   _speed: 5
   _health: 100
   _max_health: 100
-  _class: 2
+  _rb: {fileID: 619263289229688581}
+  _class: 1
   _selected_ability: 1
   _ability_1_cooldown: 1
   _ability_2_cooldown: 1

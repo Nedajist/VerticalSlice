@@ -46,19 +46,10 @@ public class Player : Ally
             ResetSelf();
         }
 
-    }
-
-
-    protected override void FixedUpdate()
-    {
-
-        _physics_frames += 1;
         _move_input = _movement_inputs.action.ReadValue<Vector2>(); // vector 2 made by WASD
         _mouse_input = _mouse_inputs.action.ReadValue<float>(); // 0 or 1 made by no click and mouse click  
         _ability_input = _ability_inputs.action.ReadValue<float>(); // -1 or 1 made by 1 and 2
         _mouse_position = _camera.ScreenToWorldPoint(_mouse_movements.action.ReadValue<Vector2>()); // constantly set, Vector3
-        
-
 
         if (_move_input != Vector2.zero && _executing == false) // checks if moved while not executing
         {
@@ -118,6 +109,15 @@ public class Player : Ally
         _previous_mouse_input = _mouse_input;
         _previous_ability_input = _ability_input;
         _previous_mouse_input = _mouse_input;
+
+    }
+
+
+    protected override void FixedUpdate()
+    {
+
+        _physics_frames += 1;
+
     }
 
     protected override void OnCollisionEnter2D(Collision2D collision)

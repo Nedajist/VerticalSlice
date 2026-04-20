@@ -7,9 +7,6 @@ public class Boss : Enemy
 {
 
     [SerializeField] Rigidbody2D _rb;
-    [SerializeField] float _speed;
-    [SerializeField] float _max_health = 5000;
-    [SerializeField] float _health = 5000;
     [SerializeField] public Vector2 _velocity_additive;
     [SerializeField] public Vector2 _dash_additive;
     [SerializeField] GameObject _spiral_projectile_bundle;
@@ -48,7 +45,7 @@ public class Boss : Enemy
 
     private void FixedUpdate()
     {
-        TargetStrongestPlayer();
+        TargetNearestPlayer();
         MoveTowardsTargetPlayer();
     }
 

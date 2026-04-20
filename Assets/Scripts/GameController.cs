@@ -147,6 +147,7 @@ public class GameController : MonoBehaviour
         }
         ResetEnemies();
         ResetProjectiles();
+        ResetAOEs();
 
     }
 
@@ -170,6 +171,16 @@ public class GameController : MonoBehaviour
             Destroy(projectiles[i]);
         }
     }
+
+    void ResetAOEs()
+    {
+        GameObject[] AOEs = GameObject.FindGameObjectsWithTag("AOE"); // TEMPORARY
+        for (int i = 0; i < AOEs.Count(); i++)
+        {
+            Destroy(AOEs[i]);
+        }
+    }
+
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
