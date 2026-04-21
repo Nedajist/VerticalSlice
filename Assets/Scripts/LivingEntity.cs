@@ -8,7 +8,6 @@ public class LivingEntity : MonoBehaviour
     [SerializeField] protected float _health = 100;
     [SerializeField] protected float _max_health = 100;
 
-    public bool infected = false;
     public virtual void ReceiveHealing(float amount)
     {
         _health += amount;

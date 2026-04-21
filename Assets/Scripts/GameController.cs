@@ -13,6 +13,11 @@ public class GameController : MonoBehaviour
     [SerializeField] GameObject _healer_stc;
     [SerializeField] GameObject _tank_stc;
 
+    [SerializeField] GameObject _mage_add;
+    [SerializeField] GameObject _healer_add;
+    [SerializeField] GameObject _tank_add;
+
+    [SerializeField] GameObject _infectious_projectile_bundle;
 
 
     public static GameController instance;
@@ -183,6 +188,38 @@ public class GameController : MonoBehaviour
         {
             Destroy(AOEs[i]);
         }
+    }
+
+
+    public void SummonRisen(Vector3 location, PlayerClass risenclass)
+    {
+        switch (risenclass)
+        {
+            case PlayerClass.Tank:
+                GameObject _instantiated_tank = Instantiate(_tank_add, location, Quaternion.identity);
+                break;
+            case PlayerClass.Healer:
+                GameObject _instantiated_healer = Instantiate(_healer_add, location, Quaternion.identity);
+                break;
+            case PlayerClass.Mage:
+                GameObject _instantiated_mage = Instantiate(_mage_add, location, Quaternion.identity);
+                break;
+        }
+    }
+
+    public void SummonInfectiousProjectileBundle(Vector3 location)
+    {
+        GameObject _instantiated_infectious_projectile_bundle = Instantiate(_infectious_projectile_bundle, location, Quaternion.identity);
+    }
+
+    public Vector2 RotateVector2(Vector2 inputVector2, float degrees)
+    {
+        float rotationRadians = degrees * Mathf.Deg2Rad;
+        Vector2 newVector2 = Vector2.zero;
+        newVector2.x = inputVector2.x * Mathf.Cos(rotationRadians) + inputVector2.y * Mathf.Sin(rotationRadians);
+        newVector2.y = -inputVector2.x * Mathf.Sin(rotationRadians) + inputVector2.y * Mathf.Cos(rotationRadians);
+
+        return (newVector2);
     }
 
 

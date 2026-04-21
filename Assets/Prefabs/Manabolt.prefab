@@ -75,7 +75,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: e90f77a088a485a49897be9b0ef08a18, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -103,6 +103,9 @@ MonoBehaviour:
   _health: 100
   _max_health: 100
   _target_player: {fileID: 0}
+  contact_damage: 0
+  _velocity_additive: {x: 0, y: 0}
+  _velocity_multiplicative: 1
   _lifespan: 6
   _movement_speed: 4
   _min_movement_speed: 2
@@ -114,6 +117,9 @@ MonoBehaviour:
   _initial_lock_on: 0
   damage: 25
   velocity_additive: {x: 0, y: 0}
+  infectious: 0
+  infectious_target_index: 0
+  seconds_of_DOT: 0
   starting_mouseclick_position: {x: 0, y: 0, z: 0}
   starting_angle: 0
   _rigidbody: {fileID: 4870699771348560771}

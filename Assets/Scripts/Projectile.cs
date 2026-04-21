@@ -4,7 +4,7 @@ using UnityEngine;
 public class Projectile: Enemy
 {
     [SerializeField] float _lifespan = 6;
-    [SerializeField] float _movement_speed = 4;
+    [SerializeField] float _movement_speed = 4; // right now Speed is redundant and not used by projectile 
     [SerializeField] float _min_movement_speed = 2;
     [SerializeField] float _seconds_of_homing_time;
     [SerializeField] bool _homing;
@@ -14,6 +14,9 @@ public class Projectile: Enemy
     [SerializeField] bool _initial_lock_on = true; // if true, locks on to player at start
     [SerializeField] public float damage;
     [SerializeField] public Vector2 velocity_additive;
+    [SerializeField] public bool infectious;
+    [SerializeField] public int infectious_target_index;
+    [SerializeField] public float seconds_of_DOT;
 
     private float _angle;
     public Vector3 starting_mouseclick_position;
@@ -26,11 +29,32 @@ public class Projectile: Enemy
     {
         _angle = starting_angle;
 
-        if (_homing == true || _initial_lock_on == true) // only used by enemies/boss
+        if (_homing == true || _initial_lock_on == true && infectious == false) // only used by enemies/boss
         {
             TargetNearestPlayer();
             transform.right = _target_player.transform.position - transform.position;
         }
+
+        if (infectious == true)
+        {
+            switch (infectious_target_index)
+            {
+                case 0:
+                    TargetNearestPlayer();
+                    break;
+                case 1:
+                    TargetWeakestPlayer();
+                    break;
+                case 2:
+                    TargetStrongestPlayer();
+                    break;
+                default:
+                    TargetFarthestPlayer();
+                    break;
+            }
+            transform.right = _target_player.transform.position - transform.position;
+        }
+
 
         if (_rotating == true && _initial_lock_on == false)
         {
@@ -43,9 +67,6 @@ public class Projectile: Enemy
             transform.right = starting_mouseclick_position - transform.position;
         }
         
-        
-
-
     }
 
 

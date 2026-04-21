@@ -17,6 +17,9 @@ public class Boss : Enemy
 
     [SerializeField] Vector3 starting_position;
 
+
+
+
     private float _target_x;
     private float _target_y;
     private float _distance_to_target_x;
@@ -42,8 +45,11 @@ public class Boss : Enemy
         _projectile_timer -= Time.deltaTime;
         if (_projectile_timer < 0)
         {
-            GameObject instantiated_spiral_bundle = Instantiate(_spiral_projectile_bundle, transform.position, Quaternion.identity);
-            instantiated_spiral_bundle.transform.SetParent(transform);
+            //GameObject instantiated_spiral_bundle = Instantiate(_spiral_projectile_bundle, transform.position, Quaternion.identity);
+            //instantiated_spiral_bundle.transform.SetParent(transform);
+
+            GameController.instance.SummonInfectiousProjectileBundle(transform.position);
+
             _projectile_timer = 3; // temp value
             
         }
@@ -75,14 +81,14 @@ public class Boss : Enemy
         _target_x = _target_player.transform.position.x;
         _target_y = _target_player.transform.position.y;
         Move();
-        degree_change += _degrees_per_second * Time.deltaTime;
+        degree_change += _degrees_per_second * Time.fixedDeltaTime;
 
         if (degree_change > _upper_degree_bound || degree_change < -_upper_degree_bound)
         {
             _degrees_per_second = -_degrees_per_second;
         }
 
-        _rb.velocity = RotateVector2(_rb.velocity, degree_change);
+        _rb.velocity = GameController.instance.RotateVector2(_rb.velocity, degree_change);
     }
 
     private void Move() // sets rigidbody velocity DIRECTLY towards target x and y 
@@ -106,15 +112,6 @@ public class Boss : Enemy
         transform.rotation = Quaternion.identity;
         _projectile_timer = 0f;
         _health = _max_health;
-    }
-    private Vector2 RotateVector2(Vector2 inputVector2, float degrees)
-    {
-        float rotationRadians = degrees * Mathf.Deg2Rad;
-        Vector2 newVector2 = Vector2.zero;
-        newVector2.x = inputVector2.x * Mathf.Cos(rotationRadians) + inputVector2.y * Mathf.Sin(rotationRadians);
-        newVector2.y = -inputVector2.x * Mathf.Sin(rotationRadians) + inputVector2.y * Mathf.Cos(rotationRadians);
-
-        return (newVector2);
     }
 
     IEnumerator ChargeToTarget(float duration) // longer the charge, the more the boss accelerates

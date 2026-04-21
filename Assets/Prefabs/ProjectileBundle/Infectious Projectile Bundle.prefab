@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 5774052926393301841}
   - component: {fileID: 1577752956284722001}
   m_Layer: 0
-  m_Name: Spiral Projectile Bundle
+  m_Name: Infectious Projectile Bundle
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -44,10 +44,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 28e6cc3c6fd365a47874e36178b69eac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _projectile: {fileID: 1692330459229102373, guid: e88142febede8284eb5971ebc30f1d9d, type: 3}
-  _distance_from_center: 2
-  _projectile_count: 10
+  _projectile: {fileID: 2145519010166405205, guid: a32399d1d6893ec4380a9232ddc33de4, type: 3}
+  _distance_from_center: 1.5
+  _projectile_count: 3
   _clockwise: 1
-  _seconds_between_projectile_spawn: 0.1
+  _seconds_between_projectile_spawn: 0.03
   _fired_by_boss: 1
-  _infectious: 0
+  _infectious: 1

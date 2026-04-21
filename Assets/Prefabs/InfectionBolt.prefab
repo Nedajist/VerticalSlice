@@ -13,8 +13,8 @@ GameObject:
   - component: {fileID: 2416613325882464105}
   - component: {fileID: 4870699771348560771}
   - component: {fileID: 4977596039423209674}
-  m_Layer: 6
-  m_Name: PoisonBolt
+  m_Layer: 8
+  m_Name: InfectionBolt
   m_TagString: Projectile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -76,7 +76,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: 21300000, guid: 6355ed8933450194c9d61afb8f932b82, type: 3}
+  m_Sprite: {fileID: 21300000, guid: a8fe024890f25554b8e61bd8efa9c666, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -106,22 +106,22 @@ MonoBehaviour:
   contact_damage: 0
   _velocity_additive: {x: 0, y: 0}
   _velocity_multiplicative: 1
-  _lifespan: 6
-  _movement_speed: 8
-  _min_movement_speed: 5
-  _seconds_of_homing_time: 2
+  _lifespan: 3.8
+  _movement_speed: 6
+  _min_movement_speed: 4
+  _seconds_of_homing_time: 3
   _homing: 1
   _rotating: 0
-  clockwise: 0
-  _angles_per_second: 80
-  _initial_lock_on: 1
-  damage: 15
+  clockwise: 1
+  _angles_per_second: 200
+  _initial_lock_on: 0
+  damage: 7
   velocity_additive: {x: 0, y: 0}
-  infectious: 0
-  infectious_target_index: 0
-  seconds_of_DOT: 0
+  infectious: 1
+  infectious_target_index: 2
+  seconds_of_DOT: 7
   starting_mouseclick_position: {x: 0, y: 0, z: 0}
-  starting_angle: 0
+  starting_angle: 240
   _rigidbody: {fileID: 4870699771348560771}
 --- !u!50 &4870699771348560771
 Rigidbody2D:
@@ -186,7 +186,7 @@ PolygonCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.2, y: 0.07}
+    oldSize: {x: 0.26, y: 0.24}
     newSize: {x: 0.19, y: 0.08}
     adaptiveTilingThreshold: 0.5
     drawMode: 0

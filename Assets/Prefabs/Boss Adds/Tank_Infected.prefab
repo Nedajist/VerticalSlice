@@ -280,17 +280,18 @@ MonoBehaviour:
   _speed: 6
   _health: 150
   _max_health: 150
-  infected: 0
   _target_player: {fileID: 0}
-  contact_damage: 0
+  contact_damage: 30
   _velocity_additive: {x: 0, y: 0}
   _velocity_multiplicative: 1
   _rb: {fileID: 619263289229688581}
   _targeting_cooldown: 5
   _ability_cooldown: 0
   _starting_position: {x: 0, y: 0, z: 0}
+  _degrees_per_second: 3
+  _upper_degree_bound: 30
   _target: {fileID: 0}
-  risen_class: 0
+  risen_class: 1
   _scale_growth_additive_per_second: 0.2
   _death_square: {fileID: 6825694895562673788, guid: 6487cae75cbff604bb786c613d1644ef, type: 3}
 --- !u!114 &6629010863467075140
@@ -321,6 +322,7 @@ MonoBehaviour:
   _health_bar: {fileID: 1958341647888743115}
   _lazy_bar: {fileID: 3440496025293844421}
   _rate_of_change: 25
+  _infection_sign: {fileID: 0}
 --- !u!50 &619263289229688581
 Rigidbody2D:
   serializedVersion: 4

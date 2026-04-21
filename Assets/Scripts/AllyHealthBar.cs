@@ -8,6 +8,8 @@ public class AllyHealthBar : MonoBehaviour
     [SerializeField] private Slider _health_bar;
     [SerializeField] private Slider _lazy_bar;
     [SerializeField] private float _rate_of_change;
+    [SerializeField] private Image _infection_sign;
+
 
     private LivingEntity _living_entity;
     private float _current_health;

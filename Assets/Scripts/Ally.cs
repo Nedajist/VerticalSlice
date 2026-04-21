@@ -19,6 +19,10 @@ public class Ally : LivingEntity // the clone
 
     public Vector2 _velocity_additive;
     public bool is_clone = true;
+    public float seconds_of_infection;
+    public bool infected = false;
+
+
     protected List<InputData> _list_of_inputs = new List<InputData>();
     protected List<InputData> _list_of_unchanging_inputs = new List<InputData>(); // this list is used to clone the given list of inputdata when _list_of_inputs runs out 
 
@@ -29,6 +33,10 @@ public class Ally : LivingEntity // the clone
     protected int _physics_frames;
     protected float _i_frames;
     protected bool _executing = false;
+    protected float _infection_damage = 20;
+
+    private bool _dead = false;
+
 
 
     // Start is called before the first frame update
@@ -54,6 +62,15 @@ public class Ally : LivingEntity // the clone
         {
             _execute();
         }
+
+        if (seconds_of_infection > 0)
+        {
+            //Debug.Log("Receieved " + _infection_damage * Time.fixedDeltaTime + " infection damage");
+            seconds_of_infection -= Time.fixedDeltaTime;
+            ReceiveInfectionDamage(_infection_damage * Time.fixedDeltaTime); 
+        }
+
+
 
     }
 
@@ -171,12 +188,20 @@ public class Ally : LivingEntity // the clone
         {
             if (collision.transform.CompareTag("Projectile"))
             {
-                ReceiveDamage(collision.transform.GetComponent<Projectile>().damage);
+                Projectile projectile = collision.transform.GetComponent<Projectile>();
+                ReceiveDamage(projectile.damage);
+
+                if (projectile.infectious == true)
+                {
+                    seconds_of_infection += projectile.seconds_of_DOT;
+                }
+
             }
 
             if (collision.transform.CompareTag("Enemy"))
             {
-                ReceiveDamage(collision.transform.GetComponent<Enemy>().contact_damage);
+                Enemy enemy = collision.transform.GetComponent<Enemy>();
+                ReceiveDamage(enemy.contact_damage);
             }
 
         }
@@ -184,7 +209,7 @@ public class Ally : LivingEntity // the clone
 
     public override void ReceiveDamage(float amount)
     {
-        if (_i_frames > 0)
+        if (_i_frames > 0 || _dead == true)
         {
             return;
         }
@@ -200,6 +225,32 @@ public class Ally : LivingEntity // the clone
                     break;
                 }
             }
+
+            if (seconds_of_infection > 0)
+            {
+                GameController.instance.SummonRisen(transform.position, _class);
+                GameController.instance.SummonInfectiousProjectileBundle(transform.position);
+            }
+
+            _dead = true;
+            Destroy(gameObject);
+        }
+    }
+
+    public virtual void ReceiveInfectionDamage(float amount) // ignores iframes
+    {
+        if (_dead == true)
+        {
+            return;
+        }
+
+        _health -= amount;
+
+        if (_health <= 0)
+        {
+            _dead = true;
+            GameController.instance.SummonRisen(transform.position, _class);
+            GameController.instance.SummonInfectiousProjectileBundle(transform.position);
             Destroy(gameObject);
         }
     }

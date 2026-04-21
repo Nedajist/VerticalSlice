@@ -51,6 +51,8 @@ public class Player : Ally
         _physics_frames += 1;
         _ability_1_timer -= Time.fixedDeltaTime;
         _ability_2_timer -= Time.fixedDeltaTime;
+        _i_frames -= Time.fixedDeltaTime;
+
 
         _move_input = _movement_inputs.action.ReadValue<Vector2>(); // vector 2 made by WASD
         _mouse_input = _mouse_inputs.action.ReadValue<float>(); // 0 or 1 made by no click and mouse click  
@@ -115,6 +117,13 @@ public class Player : Ally
         _previous_ability_input = _ability_input;
         _previous_mouse_input = _mouse_input;
 
+        if (seconds_of_infection > 0)
+        {
+            Debug.Log("Receieved " + _infection_damage * Time.fixedDeltaTime + " infection damage");
+            seconds_of_infection -= Time.fixedDeltaTime;
+            ReceiveInfectionDamage(_infection_damage * Time.fixedDeltaTime);
+        }
+
     }
 
     protected override void OnCollisionEnter2D(Collision2D collision)
@@ -123,11 +132,19 @@ public class Player : Ally
         {
             if (collision.transform.CompareTag("Projectile"))
             {
-                ReceiveDamage(collision.transform.GetComponent<Projectile>().damage);
+                Projectile projectile = collision.transform.GetComponent<Projectile>();
+                ReceiveDamage(projectile.damage);
+
+                if (projectile.infectious == true)
+                {
+                    seconds_of_infection += projectile.seconds_of_DOT;
+                }
             }
+
             if (collision.transform.CompareTag("Enemy"))
             {
-                ReceiveDamage(50);
+                Enemy enemy = collision.transform.GetComponent<Enemy>();
+                ReceiveDamage(enemy.contact_damage);
             }
         }
 
@@ -136,6 +153,12 @@ public class Player : Ally
 
     public override void ReceiveDamage(float amount)
     {
+        if (_i_frames > 0) // if has iframes, doesn't take damage
+        {
+            return;
+        }
+        _i_frames = _iframe_duration;
+
         _health -= amount;
         if (_health <= 0) // die
         {
@@ -143,10 +166,19 @@ public class Player : Ally
             //_death_data.inputType = "Die";
             //_death_data.inputFrame = _physics_frames;
             //_list_of_inputs.Add(_death_data);
-
-
             ResetSelf();
         }
+    }
+
+    public override void ReceiveInfectionDamage(float amount)
+    {
+        _health -= amount;
+        if (_health <= 0)
+        {
+            ResetSelf();
+        }
+
+
     }
 
 
@@ -160,6 +192,8 @@ public class Player : Ally
         _starting_position += new Vector3(1, 0, 0);
         _health = _max_health;
         transform.position = _starting_position;
+        seconds_of_infection = 0;
+        GameController.instance.SummonInfectiousProjectileBundle(new Vector3(0, 3, 0));
     }
 
 }

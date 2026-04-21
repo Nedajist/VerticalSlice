@@ -8,6 +8,7 @@ public class projectileBundle : MonoBehaviour
     [SerializeField] bool _clockwise;
     [SerializeField] float _seconds_between_projectile_spawn = 0;
     [SerializeField] bool _fired_by_boss;
+    [SerializeField] bool _infectious;
     private GameObject _instantiated_projectile;
     private float _projectile_timer = 0;
     private int _summoned_projectile_count = 0;
@@ -29,6 +30,10 @@ public class projectileBundle : MonoBehaviour
                 {
                     _projectile.gameObject.layer = LayerMask.NameToLayer("Boss Projectile");
                 }
+                if (_infectious == true)
+                {
+                    _projectile.transform.GetComponent<Projectile>().infectious_target_index = i;
+                }
                 _instantiated_projectile = Instantiate(_projectile, new Vector3(_spawn_x, _spawn_y, 0), Quaternion.identity);
 
             }
@@ -37,10 +42,10 @@ public class projectileBundle : MonoBehaviour
 
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
-        _projectile_timer -= Time.deltaTime;
-        if (_projectile_timer < 0)
+        _projectile_timer -= Time.fixedDeltaTime;
+        if (_projectile_timer <= 0)
         {
             _projectile_timer = _seconds_between_projectile_spawn;
             float angle = (360 / _projectile_count) * _summoned_projectile_count;
@@ -52,6 +57,11 @@ public class projectileBundle : MonoBehaviour
             if (_fired_by_boss == true)
             {
                 _projectile.gameObject.layer = LayerMask.NameToLayer("Boss Projectile");
+            }
+
+            if (_infectious == true)
+            {
+                _projectile.transform.GetComponent<Projectile>().infectious_target_index = _summoned_projectile_count;
             }
 
             _instantiated_projectile = Instantiate(_projectile, new Vector3(_spawn_x, _spawn_y, 0), Quaternion.identity);

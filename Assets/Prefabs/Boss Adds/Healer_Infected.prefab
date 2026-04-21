@@ -594,7 +594,6 @@ MonoBehaviour:
   _speed: 3
   _health: 100
   _max_health: 100
-  infected: 0
   _target_player: {fileID: 0}
   contact_damage: 25
   _velocity_additive: {x: 0, y: 0}
@@ -603,8 +602,10 @@ MonoBehaviour:
   _targeting_cooldown: 5
   _ability_cooldown: 3
   _starting_position: {x: 0, y: 0, z: 0}
+  _degrees_per_second: 30
+  _upper_degree_bound: 90
   _target: {fileID: 0}
-  risen_class: 0
+  risen_class: 2
 --- !u!114 &5305682489708926103
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -633,6 +634,7 @@ MonoBehaviour:
   _health_bar: {fileID: 6820396623864054108}
   _lazy_bar: {fileID: 1818245110103055180}
   _rate_of_change: 25
+  _infection_sign: {fileID: 0}
 --- !u!50 &3498961432721847859
 Rigidbody2D:
   serializedVersion: 4
