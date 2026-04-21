@@ -499,7 +499,7 @@ GameObject:
   m_Component:
   - component: {fileID: 931234027169329041}
   - component: {fileID: 1789929542441813357}
-  - component: {fileID: -2483844538425192288}
+  - component: {fileID: -7071709306950783501}
   - component: {fileID: 5305682489708926103}
   - component: {fileID: 3739101953333203321}
   - component: {fileID: 3498961432721847859}
@@ -579,7 +579,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &-2483844538425192288
+--- !u!114 &-7071709306950783501
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -588,18 +588,23 @@ MonoBehaviour:
   m_GameObject: {fileID: 6450899322734345284}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 842ebb1a846bcb3419e19f2b49143871, type: 3}
+  m_Script: {fileID: 11500000, guid: ed21b12727b01544d8bd3eddcc6301cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _speed: 5
+  _speed: 3
   _health: 100
   _max_health: 100
   infected: 0
+  _target_player: {fileID: 0}
+  contact_damage: 25
+  _velocity_additive: {x: 0, y: 0}
+  _velocity_multiplicative: 1
   _rb: {fileID: 3498961432721847859}
-  _ability_cooldown: 0
+  _targeting_cooldown: 5
+  _ability_cooldown: 3
   _starting_position: {x: 0, y: 0, z: 0}
   _target: {fileID: 0}
-  risen_class: 2
+  risen_class: 0
 --- !u!114 &5305682489708926103
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -612,7 +617,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a4cc8473ff24612439394669df475161, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _healer_circle: {fileID: 2824291148003576153, guid: 2898a17da255f8047bcbfb6677cc4a6b, type: 3}
+  _healer_circle: {fileID: 2824291148003576153, guid: a758271c2f0146a45ad0bae34ef31252, type: 3}
 --- !u!114 &3739101953333203321
 MonoBehaviour:
   m_ObjectHideFlags: 0

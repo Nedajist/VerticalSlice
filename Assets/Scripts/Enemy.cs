@@ -5,6 +5,13 @@ using UnityEngine;
 public class Enemy : LivingEntity
 {
     [SerializeField] protected Ally _target_player;
+
+    [SerializeField] public float contact_damage;
+    [SerializeField] public Vector2 _velocity_additive;
+    [SerializeField] public float _velocity_multiplicative = 1;
+
+
+
     protected void TargetNearestPlayer()
     {
         GameController.instance.RefreshAllyList();

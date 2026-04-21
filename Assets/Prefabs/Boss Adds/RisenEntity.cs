@@ -2,29 +2,37 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RisenEntity : LivingEntity
+public class RisenEntity : Enemy
 {
     [SerializeField] Rigidbody2D _rb;
+    [SerializeField] protected float _targeting_cooldown;
     [SerializeField] protected float _ability_cooldown;
     [SerializeField] protected Vector3 _starting_position = Vector3.zero;
     [SerializeField] GameObject _target;
 
+    protected float _ability_timer;
+    protected float _targeting_timer;
+
     public PlayerClass risen_class;
 
-    // Start is called before the first frame update
-    void Start()
+    protected virtual void OnCollisionEnter2D(Collision2D collision)
     {
-        transform.position = _starting_position;
+        if (collision.transform.CompareTag("Projectile"))
+        {
+            if (collision.transform.CompareTag("Projectile"))
+            {
+                ReceiveDamage(collision.transform.GetComponent<Projectile>().damage);
+            }
+
+        }
     }
 
-    // Update is called once per frame
-    void Update()
+    protected void MoveToTarget()
     {
-        
-
-
-
-
-
+        Vector2 _line_to_target =  (Vector2) _target_player.transform.position - (Vector2) transform.position;
+        _rb.velocity = (_line_to_target + _velocity_additive) * _velocity_multiplicative;
     }
 }
+    
+
+

@@ -174,6 +174,11 @@ public class Ally : LivingEntity // the clone
                 ReceiveDamage(collision.transform.GetComponent<Projectile>().damage);
             }
 
+            if (collision.transform.CompareTag("Enemy"))
+            {
+                ReceiveDamage(collision.transform.GetComponent<Enemy>().contact_damage);
+            }
+
         }
     }
 

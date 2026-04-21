@@ -10,7 +10,7 @@ public class Projectile: Enemy
     [SerializeField] bool _homing;
     [SerializeField] bool _rotating;
     [SerializeField] public bool clockwise = true;
-    [SerializeField] float _angles_per_second = 5;
+    [SerializeField] float _angles_per_second = 5; // also needed for homing
     [SerializeField] bool _initial_lock_on = true; // if true, locks on to player at start
     [SerializeField] public float damage;
     [SerializeField] public Vector2 velocity_additive;

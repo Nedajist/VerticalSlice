@@ -19,6 +19,10 @@ public class LivingEntity : MonoBehaviour
     public virtual void ReceiveDamage(float amount)
     {
         _health -= amount;
+        if (_health<= 0)
+        {
+            Destroy(gameObject);
+        }
     }
 
     public float GetHealth()

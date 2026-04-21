@@ -7,8 +7,6 @@ public class Boss : Enemy
 {
 
     [SerializeField] Rigidbody2D _rb;
-    [SerializeField] public Vector2 _velocity_additive;
-    [SerializeField] public float _velocity_multiplicative = 1;
     [SerializeField] public Vector2 _dash_additive;
     [SerializeField] GameObject _spiral_projectile_bundle;
     [SerializeField] GameObject _gatling_projectile_bundle;

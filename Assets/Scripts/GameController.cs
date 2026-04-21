@@ -161,6 +161,10 @@ public class GameController : MonoBehaviour
                 Boss boss = enemyObjects[i].GetComponent<Boss>();
                 boss.ResetSelf();
             }
+            else
+            {
+                Destroy(enemyObjects[i]);
+            }
         }
     }
     void ResetProjectiles()

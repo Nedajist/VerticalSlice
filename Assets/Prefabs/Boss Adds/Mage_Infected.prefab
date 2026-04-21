@@ -427,7 +427,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2586117590706655252}
   - component: {fileID: 3996401278963506867}
-  - component: {fileID: -1721025112847566637}
+  - component: {fileID: -7511120640282240196}
   - component: {fileID: 2014933933321023234}
   - component: {fileID: 923605592546001782}
   - component: {fileID: 7557587598728034004}
@@ -507,7 +507,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &-1721025112847566637
+--- !u!114 &-7511120640282240196
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -516,22 +516,23 @@ MonoBehaviour:
   m_GameObject: {fileID: 3726226174166467842}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 805d5ab43f4abb04b9c07b5ea8b4bef6, type: 3}
+  m_Script: {fileID: 11500000, guid: ee3ffb5516ce3a148abe220567735226, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _speed: 5
   _health: 100
   _max_health: 100
   infected: 0
-  _rb: {fileID: 7557587598728034004}
-  _class: 0
-  _selected_ability: 1
-  _ability_1_cooldown: 1
-  _ability_2_cooldown: 0
-  _starting_position: {x: 0, y: 0, z: 0}
-  _iframe_duration: 0.25
+  _target_player: {fileID: 0}
+  contact_damage: 25
   _velocity_additive: {x: 0, y: 0}
-  is_clone: 1
+  _velocity_multiplicative: 1
+  _rb: {fileID: 7557587598728034004}
+  _targeting_cooldown: 0
+  _ability_cooldown: 2.5
+  _starting_position: {x: 0, y: 0, z: 0}
+  _target: {fileID: 0}
+  risen_class: 0
 --- !u!114 &2014933933321023234
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -544,7 +545,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0392506ab86448c4787ce780a8fa814a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _mage_projectile: {fileID: 2145519010166405205, guid: f5875cdbca445fc4980c7535ea9cc0ec, type: 3}
+  _mage_projectile: {fileID: 2145519010166405205, guid: 7ec6906d548b8d447bfc87aff0f152a3, type: 3}
 --- !u!114 &923605592546001782
 MonoBehaviour:
   m_ObjectHideFlags: 0

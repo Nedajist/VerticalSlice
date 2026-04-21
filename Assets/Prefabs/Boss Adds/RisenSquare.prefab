@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 3495904700819038082}
   - component: {fileID: -361556481990975827}
   m_Layer: 0
-  m_Name: DamageCircle
+  m_Name: RisenSquare
   m_TagString: AOE
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -76,7 +76,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: -1
-  m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
+  m_Sprite: {fileID: 7482667652216324306, guid: 48e93eef0688c4a259cb0eddcd8661f7, type: 3}
   m_Color: {r: 0.4566037, g: 0.09957559, b: 0.07839799, a: 0}
   m_FlipX: 0
   m_FlipY: 0
@@ -101,7 +101,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _lifespan: 3
   _sprite_renderer: {fileID: 8387889789954995084}
-  _damage: 50
+  _damage: 30
   _rb: {fileID: -361556481990975827}
   _max_scale: 2.5
 --- !u!58 &3495904700819038082

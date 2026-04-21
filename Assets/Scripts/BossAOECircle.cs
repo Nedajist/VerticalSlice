@@ -6,8 +6,8 @@ public class BossAOECircle : Circle
 {
     [SerializeField] float _damage;
     [SerializeField] Rigidbody2D _rb;
+    [SerializeField] public float _max_scale = 2.5f;
 
-    private float _max_scale = 2.5f;
     private float _speed = 4.5f;
     private LivingEntity _target;
 

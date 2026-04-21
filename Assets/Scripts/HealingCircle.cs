@@ -8,10 +8,12 @@ public class HealingCircle : Circle
 
     private float _radius;
     private float _radius_multiplier = 2.5f;
+    private float _starting_scale;
 
     // Start is called before the first frame update
     void Start()
     {
+        _starting_scale = transform.localScale.x;
         _max_lifespan = _lifespan;
         _radius = (transform.localScale.x / 2f) * _radius_multiplier; // to make sure entities touching the outer edge of the circle are counted as close enough to be healed 
     }
@@ -35,7 +37,7 @@ public class HealingCircle : Circle
         _lifespan -= Time.deltaTime;
         
         _sprite_renderer.color = new Color(_sprite_renderer.color.r, _sprite_renderer.color.g, _sprite_renderer.color.b, _lifespan / _max_lifespan); // circle becomes more transparent each frame
-        transform.localScale = new Vector3(1.5f * _lifespan / _max_lifespan, 1.5f * _lifespan / _max_lifespan, 0);
+        transform.localScale = new Vector3(_starting_scale * _lifespan / _max_lifespan, _starting_scale * _lifespan / _max_lifespan, 0);
         _radius = (transform.localScale.x / 2f) * _radius_multiplier; 
 
         if (_lifespan <= 0)

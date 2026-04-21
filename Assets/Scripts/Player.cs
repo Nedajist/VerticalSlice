@@ -125,9 +125,9 @@ public class Player : Ally
             {
                 ReceiveDamage(collision.transform.GetComponent<Projectile>().damage);
             }
-            else
+            if (collision.transform.CompareTag("Enemy"))
             {
-                ReceiveDamage(_max_health);
+                ReceiveDamage(50);
             }
         }
 
