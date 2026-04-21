@@ -11,8 +11,7 @@ GameObject:
   - component: {fileID: 7793920361458653128}
   - component: {fileID: 5179233553587159508}
   - component: {fileID: 5394149589848294396}
-  - component: {fileID: 4410372172033223180}
-  - component: {fileID: 392602907603572978}
+  - component: {fileID: 2678174767022922086}
   m_Layer: 8
   m_Name: Fireball
   m_TagString: Projectile
@@ -30,7 +29,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 1.383273, y: 1.0302874, z: -0.056962073}
-  m_LocalScale: {x: 0.2, y: 0.2, z: 0.2}
+  m_LocalScale: {x: 2, y: 2, z: 2}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
@@ -76,12 +75,12 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: d5226633836bae6469344b6d2ea29748, type: 3}
+  m_Sprite: {fileID: 21300000, guid: a8eb958cd5845ab4d8fe9c9ade643767, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 7.04, y: 7.04}
+  m_Size: {x: 0.2, y: 0.1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -99,6 +98,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 409630be6643bc547b2df0f793ee9883, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _speed: 0
+  _health: 100
+  _max_health: 100
   _target_player: {fileID: 0}
   _lifespan: 6
   _movement_speed: 4
@@ -110,37 +112,11 @@ MonoBehaviour:
   _angles_per_second: 5
   _initial_lock_on: 1
   damage: 50
+  velocity_additive: {x: 0, y: 0}
   starting_mouseclick_position: {x: 0, y: 0, z: 0}
   starting_angle: 0
-  _rigidbody: {fileID: 4410372172033223180}
---- !u!50 &4410372172033223180
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4795105618167548376}
-  m_BodyType: 0
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 0
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 256
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 0
---- !u!60 &392602907603572978
+  _rigidbody: {fileID: 0}
+--- !u!60 &2678174767022922086
 PolygonCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -176,33 +152,17 @@ PolygonCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 7.04, y: 7.04}
-    newSize: {x: 7.04, y: 7.04}
+    oldSize: {x: 0.2, y: 0.1}
+    newSize: {x: 0.2, y: 0.1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: 1.5799999, y: 0.98999995}
-      - {x: 1.3199999, y: 1.12}
-      - {x: 0.65999997, y: 1.12}
-      - {x: 0.64, y: 1.1}
-      - {x: 0.22, y: 0.9}
-      - {x: 0.19999999, y: 0.88}
-      - {x: -0.01, y: 0.7}
-      - {x: -0.049999997, y: 0.48}
-      - {x: -1.12, y: 0.45999998}
-      - {x: -1.12, y: 0.21}
-      - {x: -1.11, y: 0.17}
-      - {x: -0.91999996, y: -0.22999999}
-      - {x: -0.68, y: -0.48}
-      - {x: 0.58, y: -1.12}
-      - {x: 1.37, y: -1.12}
-      - {x: 2, y: -0.44}
-      - {x: 2, y: 0.57}
-    - - {x: -1.3399999, y: 0.02}
-      - {x: -1.3399999, y: -0.24}
-      - {x: -1.0799999, y: -0.24}
-      - {x: -1.0799999, y: 0.02}
+    - - {x: -0.08, y: 0.049999997}
+      - {x: -0.099999994, y: 0.02}
+      - {x: -0.099999994, y: -0.049999997}
+      - {x: 0.099999994, y: -0.049999997}
+      - {x: 0.099999994, y: 0.049999997}
   m_UseDelaunayMesh: 0

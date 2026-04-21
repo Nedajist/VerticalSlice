@@ -13,7 +13,7 @@ public class Boss : Enemy
     [SerializeField] GameObject _spiral_projectile_bundle;
     [SerializeField] GameObject _gatling_projectile_bundle;
     [SerializeField] GameObject _homing_projectile_bundle;
-    [SerializeField] GameObject _boss_AOE;
+    [SerializeField] GameObject _boss_disease_AOE;
     [SerializeField] float _degrees_per_second; // as pertaining to movement rotation. Might change during later phases. 
     [SerializeField] float _upper_degree_bound; // also determines lower bound
 
@@ -44,7 +44,7 @@ public class Boss : Enemy
         _projectile_timer -= Time.deltaTime;
         if (_projectile_timer < 0)
         {
-            GameObject instantiated_spiral_bundle = Instantiate(_homing_projectile_bundle, transform.position, Quaternion.identity);
+            GameObject instantiated_spiral_bundle = Instantiate(_spiral_projectile_bundle, transform.position, Quaternion.identity);
             instantiated_spiral_bundle.transform.SetParent(transform);
             _projectile_timer = 3; // temp value
             
@@ -148,6 +148,11 @@ public class Boss : Enemy
         GameController.instance.RefreshAllyList();
         for (int i = 0; i < GameController.instance.ally_list.Count; i++)
         {
+            if (i < GameController.instance.ally_list.Count == false) 
+            {
+                break;
+            }
+
             duration -= Time.fixedDeltaTime;
             if (duration > 0)
             {
@@ -157,7 +162,7 @@ public class Boss : Enemy
             if (GameController.instance.ally_list[i] != null)
             {
                 duration = interval_between_attacks;
-                GameObject _instantiated_AOE_circle = Instantiate(_boss_AOE, GameController.instance.ally_list[i].transform.position, Quaternion.identity);
+                GameObject _instantiated_AOE_circle = Instantiate(_boss_disease_AOE, GameController.instance.ally_list[i].transform.position, Quaternion.identity);
                 yield return new WaitForFixedUpdate();
             }
         }

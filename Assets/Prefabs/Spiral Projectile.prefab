@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 2252534712165393190}
   - component: {fileID: 3903022283185886474}
   - component: {fileID: 7534720723758528884}
-  - component: {fileID: 4123320528135858884}
+  - component: {fileID: 8247307790069412431}
   m_Layer: 8
   m_Name: Spiral Projectile
   m_TagString: Projectile
@@ -76,12 +76,12 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: bbffa1e95a6c09b4fac8e4222aaa793c, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 343bc925a09db804b9ff6667d15ea3c1, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 0.16, y: 0.08}
+  m_Size: {x: 0.12, y: 0.13}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -99,6 +99,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 409630be6643bc547b2df0f793ee9883, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _speed: 0
+  _health: 100
+  _max_health: 100
   _target_player: {fileID: 0}
   _lifespan: 15
   _movement_speed: 1
@@ -110,6 +113,7 @@ MonoBehaviour:
   _angles_per_second: 25
   _initial_lock_on: 0
   damage: 50
+  velocity_additive: {x: 0, y: 0}
   starting_mouseclick_position: {x: 0, y: 0, z: 0}
   starting_angle: 324
   _rigidbody: {fileID: 7534720723758528884}
@@ -140,7 +144,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!60 &4123320528135858884
+--- !u!60 &8247307790069412431
 PolygonCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -176,16 +180,18 @@ PolygonCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.16, y: 0.08}
-    newSize: {x: 0.16, y: 0.08}
+    oldSize: {x: 0.12, y: 0.13}
+    newSize: {x: 0.12, y: 0.13}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: -0.08, y: 0.04}
-      - {x: -0.08, y: -0.04}
-      - {x: 0.08, y: -0.04}
-      - {x: 0.08, y: 0.04}
+    - - {x: -0.06, y: 0.065}
+      - {x: -0.06, y: -0.065}
+      - {x: 0.04, y: -0.065}
+      - {x: 0.06, y: -0.044999998}
+      - {x: 0.06, y: 0.044999998}
+      - {x: 0.04, y: 0.065}
   m_UseDelaunayMesh: 0
