@@ -46,9 +46,9 @@ public class Ally : LivingEntity // the clone
 
     protected virtual void FixedUpdate()
     {
-        _i_frames -= Time.deltaTime;
-        _ability_1_timer -= Time.deltaTime;
-        _ability_2_timer -= Time.deltaTime;
+        _i_frames -= Time.fixedDeltaTime;
+        _ability_1_timer -= Time.fixedDeltaTime;
+        _ability_2_timer -= Time.fixedDeltaTime;
         _physics_frames += 1;
         if (_executing) // calls _execute() once every physics frame, so 0-1 inputs are executed each second. 
         {

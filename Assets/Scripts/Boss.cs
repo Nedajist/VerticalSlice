@@ -13,6 +13,7 @@ public class Boss : Enemy
     [SerializeField] GameObject _spiral_projectile_bundle;
     [SerializeField] GameObject _gatling_projectile_bundle;
     [SerializeField] GameObject _homing_projectile_bundle;
+    [SerializeField] GameObject _boss_AOE;
     [SerializeField] float _degrees_per_second; // as pertaining to movement rotation. Might change during later phases. 
     [SerializeField] float _upper_degree_bound; // also determines lower bound
 
@@ -51,8 +52,8 @@ public class Boss : Enemy
 
         if (_charge_timer < 0)
         {
-            StartCoroutine(ChargeToTarget(4));
-            _charge_timer = 8; // temp value
+            StartCoroutine(MassAOE(0.1f));
+            _charge_timer = 3; // temp value
         }
 
     }
@@ -123,22 +124,48 @@ public class Boss : Enemy
         float _time = 0;
         while (_time < duration)
         {
-            _time += Time.deltaTime;
+            _time += Time.fixedDeltaTime;
             _velocity_multiplicative = 0.5f * Mathf.Pow(6, _time / 3.3f) ;
-            yield return null;
+            yield return new WaitForFixedUpdate();
         }
 
         _time = 0;
         while (_time < 0.5f) // 0.5 is the deceleration period 
         {
             
-            _time += Time.deltaTime;
+            _time += Time.fixedDeltaTime;
             _velocity_multiplicative = Mathf.Lerp(_velocity_multiplicative, 1, 2f * Time.deltaTime);
-            yield return null;
+            yield return new WaitForFixedUpdate();
         }
         _velocity_multiplicative = 1;
         yield return null;
     }
+
+    IEnumerator MassAOE(float interval_between_attacks)
+    {
+        float duration = interval_between_attacks;
+
+        GameController.instance.RefreshAllyList();
+        for (int i = 0; i < GameController.instance.ally_list.Count; i++)
+        {
+            duration -= Time.fixedDeltaTime;
+            if (duration > 0)
+            {
+                yield return new WaitForFixedUpdate();
+            }
+
+            if (GameController.instance.ally_list[i] != null)
+            {
+                duration = interval_between_attacks;
+                GameObject _instantiated_AOE_circle = Instantiate(_boss_AOE, GameController.instance.ally_list[i].transform.position, Quaternion.identity);
+                yield return new WaitForFixedUpdate();
+            }
+        }
+
+        yield return null;
+
+    }
+
 
 
 }

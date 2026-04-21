@@ -2,16 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class HealingCircle : MonoBehaviour
+public class HealingCircle : Circle
 {
-    [SerializeField] SpriteRenderer _sprite_renderer;
     [SerializeField] float _healing_per_second;
-    [SerializeField] float _lifespan;
 
-    private float _max_lifespan;
     private float _radius;
-    private float _radius_multiplier = 1.5f;
-    private List<LivingEntity> _list_of_recipients = new List<LivingEntity>(); // ontriggerstay2d only tracks moving entities, this list is used to check if any entities who has touched the circle are touching it on every physics frames 
+    private float _radius_multiplier = 2.5f;
 
     // Start is called before the first frame update
     void Start()
@@ -39,29 +35,25 @@ public class HealingCircle : MonoBehaviour
         _lifespan -= Time.deltaTime;
         
         _sprite_renderer.color = new Color(_sprite_renderer.color.r, _sprite_renderer.color.g, _sprite_renderer.color.b, _lifespan / _max_lifespan); // circle becomes more transparent each frame
+        transform.localScale = new Vector3(1.5f * _lifespan / _max_lifespan, 1.5f * _lifespan / _max_lifespan, 0);
+        _radius = (transform.localScale.x / 2f) * _radius_multiplier; 
+
         if (_lifespan <= 0)
         {
             Destroy(gameObject); 
         }
 
     }
-
-    private void OnTriggerEnter2D(Collider2D collision) // living things added to list
+    protected override void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.transform.GetComponent<LivingEntity>() != null)
-        {
-            _list_of_recipients.Add(collision.transform.GetComponent<LivingEntity>());
-        }
-
+        base.OnTriggerEnter2D(collision);
     }
 
-    private void OnTriggerExit2D(Collider2D collision) // living things removed from list 
+    protected override void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.transform.GetComponent<LivingEntity>() != null)
-        { 
-            _list_of_recipients.Remove(collision.transform.GetComponent<LivingEntity>());
-        }
+        base.OnTriggerExit2D(collision);
     }
+
 
 
 

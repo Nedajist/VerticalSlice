@@ -49,8 +49,8 @@ public class Player : Ally
     protected override void FixedUpdate()
     {
         _physics_frames += 1;
-        _ability_1_timer -= Time.deltaTime;
-        _ability_2_timer -= Time.deltaTime;
+        _ability_1_timer -= Time.fixedDeltaTime;
+        _ability_2_timer -= Time.fixedDeltaTime;
 
         _move_input = _movement_inputs.action.ReadValue<Vector2>(); // vector 2 made by WASD
         _mouse_input = _mouse_inputs.action.ReadValue<float>(); // 0 or 1 made by no click and mouse click  
@@ -70,7 +70,6 @@ public class Player : Ally
             else // if previous movement input is same as new one, adds 1 to previous scriptableobject's lifespan instead of creating new scriptable object
             {
                 _move_data.heldFrames += 1;
-                Debug.Log(_move_data.heldFrames);
             }
             HandleMovementInput(_move_input);
         }
