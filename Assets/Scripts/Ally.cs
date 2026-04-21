@@ -20,6 +20,8 @@ public class Ally : LivingEntity // the clone
     public Vector2 _velocity_additive;
     public bool is_clone = true;
     protected List<InputData> _list_of_inputs = new List<InputData>();
+    protected List<InputData> _list_of_unchanging_inputs = new List<InputData>(); // this list is used to clone the given list of inputdata when _list_of_inputs runs out 
+
 
     protected float _ability_1_timer = 0;
     protected float _ability_2_timer = 0;
@@ -66,10 +68,6 @@ public class Ally : LivingEntity // the clone
 
             if (current_input.inputFrame != _physics_frames && current_input.startedExecution == false) // if the selected input does not happen this frame / is not a previous input which stretches on to this frame, ends the loop
             {
-                if (moved_this_frame == false)
-                {
-                    FreezeVelocity(); // resets velocity if not executing movement input this turn to preserve determinism
-                }
                 //Debug.Log("RETURNED. CURRENT FRAME: " + _physics_frames + ". INPUT FRAME: " + current_input.inputFrame + "STARTED EXECUTION: " + current_input.startedExecution);
                 return;
             }
@@ -89,9 +87,11 @@ public class Ally : LivingEntity // the clone
                 case "LeftMouseClick":
                     HandleMouseInput(current_input.mousePosition);
                     break;
-                case "Die":
-                    Destroy(gameObject);
-                    return;
+            }
+
+            if (moved_this_frame == false)
+            {
+                FreezeVelocity(); // resets velocity if not executing movement input this turn to preserve determinism
             }
 
             current_input.heldFrames -= 1; // subtracts 1 from its lifespan 
@@ -100,16 +100,13 @@ public class Ally : LivingEntity // the clone
                 _list_of_inputs.RemoveAt(i); // removes executed input if its lifespan has reached 
                 i--;
             }
-            // Debug.Log(_list_of_inputs.Count + "inputs remaining!");
-            // Debug.Log("current input: "+ current_input.inputType + current_input.heldFrames);
+            Debug.Log(_list_of_inputs.Count + "inputs remaining!");
+            Debug.Log("current input: "+ current_input.inputType + "heldframes remaining: "+ current_input.heldFrames);
         }
 
         if (_list_of_inputs.Count == 0)
         {
-            _executing = false;
-            FreezeVelocity();
-            Debug.Log("FINISHED EXECUTING ON FRAME " + _physics_frames);
-            Destroy(gameObject); // die doesn't seem to be working
+            ResetInputs();
         }
 
     }
@@ -208,14 +205,26 @@ public class Ally : LivingEntity // the clone
         _starting_position = starting_position;
         _physics_frames = 0;
 
-        for (int i = 0; i < list_of_inputs.Count; i++)
+        for (int i = 0; i < list_of_inputs.Count; i++) // true copies mutable values 
         {
             InputData new_input_data = ScriptableObject.CreateInstance<InputData>();
             new_input_data.SetValues(list_of_inputs[i]);
-            _list_of_inputs.Add(new_input_data);
+            _list_of_unchanging_inputs.Add(new_input_data);
         }
 
 
+    }
+
+    private void ResetInputs()
+    {
+        for (int i = 0; i < _list_of_unchanging_inputs.Count; i++)
+        {
+            InputData new_input_data = ScriptableObject.CreateInstance<InputData>();
+            new_input_data.SetValues(_list_of_unchanging_inputs[i]);
+            _list_of_inputs.Add(new_input_data);
+        }
+        _physics_frames = 0;
+        FreezeVelocity();
     }
 
 

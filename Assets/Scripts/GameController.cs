@@ -59,7 +59,7 @@ public class GameController : MonoBehaviour
         _soul_data.list_of_inputs = new_input_list;
 
         _soul_data.player_class = player_class;
-        _soul_data.speed = speed;
+        _soul_data.speed = speed; // spd, hp, mhp all are currently redunant as the prefab provides those values 
         _soul_data.health = max_health;
         _soul_data.max_health = max_health;
         _soul_data.ability_1_cooldown = ability_1_cooldown;

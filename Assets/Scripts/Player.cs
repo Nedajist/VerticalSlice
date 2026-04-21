@@ -39,19 +39,25 @@ public class Player : Ally
     // Update is called once per frame
     protected override void Update()
     {
-        _ability_1_timer -= Time.deltaTime;
-        _ability_2_timer -= Time.deltaTime;
         if (Input.GetKeyDown(KeyCode.R))
         {
             ResetSelf();
         }
+    }
+
+
+    protected override void FixedUpdate()
+    {
+        _physics_frames += 1;
+        _ability_1_timer -= Time.deltaTime;
+        _ability_2_timer -= Time.deltaTime;
 
         _move_input = _movement_inputs.action.ReadValue<Vector2>(); // vector 2 made by WASD
         _mouse_input = _mouse_inputs.action.ReadValue<float>(); // 0 or 1 made by no click and mouse click  
         _ability_input = _ability_inputs.action.ReadValue<float>(); // -1 or 1 made by 1 and 2
         _mouse_position = _camera.ScreenToWorldPoint(_mouse_movements.action.ReadValue<Vector2>()); // constantly set, Vector3
 
-        if (_move_input != Vector2.zero && _executing == false) // checks if moved while not executing
+        if (_move_input != Vector2.zero) // checks if moved while not executing
         {
             if (_move_input != _previous_move_input)  // creates new scriptable objects if input is different from last one
             {
@@ -64,14 +70,14 @@ public class Player : Ally
             else // if previous movement input is same as new one, adds 1 to previous scriptableobject's lifespan instead of creating new scriptable object
             {
                 _move_data.heldFrames += 1;
+                Debug.Log(_move_data.heldFrames);
             }
             HandleMovementInput(_move_input);
         }
-        else if (_executing == false) // sets velocity to zero. Otherwise after letting go of WASD player keeps moving
+        else
         {
             FreezeVelocity();
         }
-
 
         if (_ability_input != 0) // checks if ability 1 (-1) or ability 2 (1) has been selected 
         {
@@ -112,14 +118,6 @@ public class Player : Ally
 
     }
 
-
-    protected override void FixedUpdate()
-    {
-
-        _physics_frames += 1;
-
-    }
-
     protected override void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.transform.CompareTag("Projectile") || collision.transform.CompareTag("Enemy"))
@@ -142,10 +140,10 @@ public class Player : Ally
         _health -= amount;
         if (_health <= 0) // die
         {
-            InputData _death_data = ScriptableObject.CreateInstance<InputData>();
-            _death_data.inputType = "Die";
-            _death_data.inputFrame = _physics_frames;
-            _list_of_inputs.Add(_death_data);
+            //InputData _death_data = ScriptableObject.CreateInstance<InputData>();
+            //_death_data.inputType = "Die";
+            //_death_data.inputFrame = _physics_frames;
+            //_list_of_inputs.Add(_death_data);
 
 
             ResetSelf();
