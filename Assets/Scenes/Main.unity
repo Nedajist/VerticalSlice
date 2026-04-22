@@ -2612,7 +2612,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!212 &2048984344
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2674,7 +2674,7 @@ Transform:
   m_GameObject: {fileID: 2048984343}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -5.35, y: 2.51, z: 0}
+  m_LocalPosition: {x: 0, y: 5, z: 0}
   m_LocalScale: {x: 2, y: 2, z: 2}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -2785,6 +2785,7 @@ MonoBehaviour:
   _homing_projectile_bundle: {fileID: 4230999469861839926, guid: 003cc6efc2dbf06469ab9b9c4e6b83d7, type: 3}
   _boss_disease_AOE: {fileID: 6825694895562673788, guid: 3c56ebb12b0ab3442b6e0fa4dbebc55e, type: 3}
   _normal_sword_slash: {fileID: 4721629833262049022, guid: a9296b2a7bed6b34d84caa5075611269, type: 3}
+  _wide_sword_slash: {fileID: 980023007204364952, guid: 73fd3ae7b317da84791e79e8c91d143a, type: 3}
   _degrees_per_second: 0
   _upper_degree_bound: 0
   starting_position: {x: 0, y: 5, z: 0}
@@ -2827,6 +2828,8 @@ MonoBehaviour:
       mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089","$version":"A"},"$version":"A"},{"name":"Targeting
       Timer","value":{"$content":0.0,"$type":"System.Single"},"typeHandle":{"Identification":"System.Single,
       mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089","$version":"A"},"$version":"A"},{"name":"Attack
+      Index","value":{"$content":0,"$type":"System.Int32"},"typeHandle":{"Identification":"System.Int32,
+      mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089","$version":"A"},"$version":"A"},{"name":"Target
       Index","value":{"$content":0,"$type":"System.Int32"},"typeHandle":{"Identification":"System.Int32,
       mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089","$version":"A"},"$version":"A"}],"$version":"A"},"$version":"A"}}'
     _objectReferences:

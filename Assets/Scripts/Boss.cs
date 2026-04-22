@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using static UnityEngine.GraphicsBuffer;
 
@@ -37,45 +38,36 @@ public class Boss : Enemy
 
     private void FixedUpdate()
     {
-        _charge_timer -= Time.fixedDeltaTime;
-        _projectile_timer -= Time.fixedDeltaTime;
-
-
-        TargetNearestPlayer();
-        SlitherTowardsTargetPlayer();
-
-        if (_projectile_timer < 0) // temp timer 
-        {
-            SummonWideSlash();
-            _projectile_timer = 3; // temp value
-
-        }
-
-        if (_charge_timer < 0) // temp timer
-        {
-            //StartCoroutine(MassAOE(0.1f));
-            _charge_timer = 3; // temp value
-        }
-
-
+        
     }
 
-    private void SummonSpiralProjectiles()
+    public void SummonSpiralProjectiles()
     {
         GameObject instantiated_spiral_bundle = Instantiate(_spiral_projectile_bundle, transform.position, Quaternion.identity);
         instantiated_spiral_bundle.transform.SetParent(transform);
     }
 
-    private void SummonHomingProjectiles()
+    public void SummonHomingProjectiles()
     {
         GameObject instantiated_homing_bundle = Instantiate(_homing_projectile_bundle, transform.position, Quaternion.identity);
         instantiated_homing_bundle.transform.SetParent(transform);
     }
 
-    private void SummonGatlingProjectiles()
+    public void SummonInfectiousProjectiles()
+    {
+        GameController.instance.SummonInfectiousProjectileBundle(transform.position);
+    }
+
+    public void SummonGatlingProjectiles()
     {
         GameObject instantiated_gatling_bundle = Instantiate(_gatling_projectile_bundle, transform.position, Quaternion.identity);
         instantiated_gatling_bundle.transform.SetParent(transform);
+    }
+
+    public void SummonRisenMages()
+    {
+        GameController.instance.SummonRisen(transform.position + new Vector3(-2, 0, 0), PlayerClass.Mage);
+        GameController.instance.SummonRisen(transform.position + new Vector3(-2, 0, 0), PlayerClass.Mage);
     }
 
     public void SummonNormalSlash()
@@ -106,14 +98,14 @@ public class Boss : Enemy
         return (starting_rotation);
     }
 
-    private void MoveTowardsTargetPlayer() // beelines player. Best for melee.
+    public void MoveTowardsTargetPlayer() // beelines player. Best for melee.
     {
         _target_x = _target_player.transform.position.x;
         _target_y = _target_player.transform.position.y;
         Move();
     }
 
-    private void SlitherTowardsTargetPlayer() // Kinda rotates around player but also zigzaggy. Best for ranged. 
+    public void SlitherTowardsTargetPlayer() // Kinda rotates around player but also zigzaggy. Best for ranged. 
     {
         _target_x = _target_player.transform.position.x;
         _target_y = _target_player.transform.position.y;
@@ -148,15 +140,21 @@ public class Boss : Enemy
         transform.rotation = Quaternion.identity;
         _projectile_timer = 0f;
         _health = _max_health;
+        CustomEvent.Trigger(transform.gameObject, "ReturnToPhase1");
     }
 
-    IEnumerator ChargeToTarget(float duration) // longer the charge, the more the boss accelerates
+    public void SetSpeed(float new_speed)
+    {
+        _speed = new_speed;
+    }
+
+    public IEnumerator ChargeToTarget(float duration) // longer the charge, the more the boss accelerates
     {
         float _time = 0;
         while (_time < duration)
         {
             _time += Time.fixedDeltaTime;
-            _velocity_multiplicative = 0.5f * Mathf.Pow(6, _time / 3.3f) ;
+            _velocity_multiplicative = 0.5f * Mathf.Pow(3, _time / 3.3f) ;
             yield return new WaitForFixedUpdate();
         }
 
@@ -172,7 +170,7 @@ public class Boss : Enemy
         yield return null;
     }
 
-    IEnumerator MassAOE(float interval_between_attacks)
+    public IEnumerator MassAOE(float interval_between_attacks)
     {
         float duration = interval_between_attacks;
         GameController.instance.RefreshAllyList();

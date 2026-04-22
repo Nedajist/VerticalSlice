@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Enemy : LivingEntity
 {
-    [SerializeField] protected Ally _target_player;
+    [SerializeField] public Ally _target_player;
 
     [SerializeField] public float contact_damage;
     [SerializeField] public Vector2 _velocity_additive;
@@ -12,7 +12,7 @@ public class Enemy : LivingEntity
 
 
 
-    protected void TargetNearestPlayer()
+    public void TargetNearestPlayer()
     {
         GameController.instance.RefreshAllyList();
         float nearest_distance = Vector3.Distance(transform.position, GameController.instance.ally_list[0].transform.position);
@@ -29,7 +29,7 @@ public class Enemy : LivingEntity
         }
     }
 
-    protected void TargetFarthestPlayer()
+    public void TargetFarthestPlayer()
     {
         GameController.instance.RefreshAllyList();
         float farthest_distance = Vector3.Distance(transform.position, GameController.instance.ally_list[0].transform.position);
@@ -47,7 +47,7 @@ public class Enemy : LivingEntity
 
     }
 
-    protected void TargetStrongestPlayer()
+    public void TargetStrongestPlayer()
     {
         GameController.instance.RefreshAllyList();
         float highest_health = GameController.instance.ally_list[0].GetHealth();
@@ -64,7 +64,7 @@ public class Enemy : LivingEntity
         }
     }
 
-    protected void TargetWeakestPlayer()
+    public void TargetWeakestPlayer()
     {
         GameController.instance.RefreshAllyList();
         float lowest_health = GameController.instance.ally_list[0].GetHealth();

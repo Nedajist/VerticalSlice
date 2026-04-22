@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 5179233553587159508}
   - component: {fileID: 5394149589848294396}
   - component: {fileID: 2678174767022922086}
+  - component: {fileID: -9134613226487456217}
   m_Layer: 8
   m_Name: Fireball
   m_TagString: Projectile
@@ -120,8 +121,8 @@ MonoBehaviour:
   infectious_target_index: 0
   seconds_of_DOT: 0
   starting_mouseclick_position: {x: 0, y: 0, z: 0}
-  starting_angle: 0
-  _rigidbody: {fileID: 0}
+  starting_angle: 324
+  _rigidbody: {fileID: -9134613226487456217}
 --- !u!60 &2678174767022922086
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -172,3 +173,30 @@ PolygonCollider2D:
       - {x: 0.099999994, y: -0.049999997}
       - {x: 0.099999994, y: 0.049999997}
   m_UseDelaunayMesh: 0
+--- !u!50 &-9134613226487456217
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4795105618167548376}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 320
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0

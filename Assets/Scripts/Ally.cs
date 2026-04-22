@@ -117,8 +117,8 @@ public class Ally : LivingEntity // the clone
                 _list_of_inputs.RemoveAt(i); // removes executed input if its lifespan has reached 
                 i--;
             }
-            Debug.Log(_list_of_inputs.Count + "inputs remaining!");
-            Debug.Log("current input: "+ current_input.inputType + "heldframes remaining: "+ current_input.heldFrames);
+            //Debug.Log(_list_of_inputs.Count + "inputs remaining!");
+            //Debug.Log("current input: "+ current_input.inputType + "heldframes remaining: "+ current_input.heldFrames);
         }
 
         if (_list_of_inputs.Count == 0)
