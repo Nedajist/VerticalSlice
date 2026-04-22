@@ -21,6 +21,7 @@ public class GameController : MonoBehaviour
 
 
     public static GameController instance;
+    public Boss boss;
     public List<Ally> ally_list = new List<Ally>();
 
     public List<CloneTemplate> past_incarnation_list = new List<CloneTemplate>(); // list containing the hp, health, class, etc of past incarnatinos of the player
@@ -37,7 +38,7 @@ public class GameController : MonoBehaviour
         {
             Destroy(gameObject);
         }
-
+        boss = GameObject.FindObjectOfType<Boss>();
         RefreshAllyList();
 
     }
