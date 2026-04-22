@@ -5,6 +5,7 @@ using UnityEngine;
 public class Tank : ClassAbility
 {
     [SerializeField] private GameObject _tank_sword;
+
     public override void Ability1(Vector3 mouse_position)
     {
         Vector3 line_to_mouse = Vector3.Normalize(mouse_position - transform.position);
@@ -15,11 +16,11 @@ public class Tank : ClassAbility
             angle = 180 + (180 - angle);
         }
 
-        Quaternion starting_rotation = Quaternion.Euler(0, 0, angle - _tank_sword.GetComponent<TankSword>().target_angles_traveled/2); // starts tank sword at an angle such that the mouse position is the halfway point of the arc 
+        Quaternion starting_rotation = Quaternion.Euler(0, 0, angle - _tank_sword.GetComponent<RotatingSword>().target_angles_traveled/2); // starts tank sword at an angle such that the mouse position is the halfway point of the arc 
 
 
         GameObject _instantiated_tank_sword = Instantiate(_tank_sword, transform.position, starting_rotation);
-        _instantiated_tank_sword.GetComponent<TankSword>().center = transform.gameObject;
+        _instantiated_tank_sword.GetComponent<RotatingSword>().center = transform.gameObject;
         
     }
     public override void Ability2(Vector3 mouse_position)

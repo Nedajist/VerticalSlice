@@ -12,6 +12,9 @@ public class Boss : Enemy
     [SerializeField] GameObject _gatling_projectile_bundle;
     [SerializeField] GameObject _homing_projectile_bundle;
     [SerializeField] GameObject _boss_disease_AOE;
+    [SerializeField] GameObject _normal_sword_slash;
+    [SerializeField] GameObject _wide_sword_slash;
+
     [SerializeField] float _degrees_per_second; // as pertaining to movement rotation. Might change during later phases. 
     [SerializeField] float _upper_degree_bound; // also determines lower bound
 
@@ -43,14 +46,14 @@ public class Boss : Enemy
 
         if (_projectile_timer < 0) // temp timer 
         {
-            GameController.instance.SummonInfectiousProjectileBundle(transform.position);
+            SummonWideSlash();
             _projectile_timer = 3; // temp value
 
         }
 
         if (_charge_timer < 0) // temp timer
         {
-            StartCoroutine(MassAOE(0.1f));
+            //StartCoroutine(MassAOE(0.1f));
             _charge_timer = 3; // temp value
         }
 
@@ -75,8 +78,33 @@ public class Boss : Enemy
         instantiated_gatling_bundle.transform.SetParent(transform);
     }
 
+    public void SummonNormalSlash()
+    {
+        Quaternion starting_rotation = GetStartingQuaternion();
+        GameObject _instantiated_tank_sword = Instantiate(_normal_sword_slash, transform.position, starting_rotation);
+        _instantiated_tank_sword.GetComponent<RotatingSword>().center = transform.gameObject;
+    }
 
+    public void SummonWideSlash()
+    {
+        Quaternion starting_rotation = GetStartingQuaternion();
+        GameObject _instantiated_tank_sword = Instantiate(_wide_sword_slash, transform.position, starting_rotation);
+        _instantiated_tank_sword.GetComponent<RotatingSword>().center = transform.gameObject;
+    }
 
+    private Quaternion GetStartingQuaternion()
+    {
+        Vector3 line_to_mouse = Vector3.Normalize(_target_player.transform.position - transform.position);
+        float angle = Vector3.Angle(line_to_mouse, transform.right);
+
+        if (transform.position.y > transform.position.y) // attack is below player. the Vector3.angle function gets the SMALLEST angle between 2 angles, not the clockwise angle needed by the sword. 
+        {
+            angle = 180 + (180 - angle);
+        }
+
+        Quaternion starting_rotation = Quaternion.Euler(0, 0, angle - _normal_sword_slash.GetComponent<RotatingSword>().target_angles_traveled / 2); // starts tank sword at an angle such that the mouse position is the halfway point of the arc 
+        return (starting_rotation);
+    }
 
     private void MoveTowardsTargetPlayer() // beelines player. Best for melee.
     {
@@ -147,8 +175,8 @@ public class Boss : Enemy
     IEnumerator MassAOE(float interval_between_attacks)
     {
         float duration = interval_between_attacks;
-
         GameController.instance.RefreshAllyList();
+
         for (int i = 0; i < GameController.instance.ally_list.Count; i++)
         {
             if (i < GameController.instance.ally_list.Count == false) 
@@ -164,6 +192,7 @@ public class Boss : Enemy
 
             if (GameController.instance.ally_list[i] != null)
             {
+                GameController.instance.RefreshAllyList();
                 duration = interval_between_attacks;
                 GameObject _instantiated_AOE_circle = Instantiate(_boss_disease_AOE, GameController.instance.ally_list[i].transform.position, Quaternion.identity);
                 yield return new WaitForFixedUpdate();
