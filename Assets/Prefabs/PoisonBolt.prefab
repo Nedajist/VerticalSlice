@@ -107,7 +107,7 @@ MonoBehaviour:
   _velocity_additive: {x: 0, y: 0}
   _velocity_multiplicative: 1
   _lifespan: 6
-  _movement_speed: 8
+  _movement_speed: 7
   _min_movement_speed: 5
   _seconds_of_homing_time: 2
   _homing: 1

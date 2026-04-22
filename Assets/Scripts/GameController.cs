@@ -39,8 +39,9 @@ public class GameController : MonoBehaviour
     public List<CloneTemplate> past_incarnation_list = new List<CloneTemplate>(); // list containing the hp, health, class, etc of past incarnatinos of the player
     public GameState current_gamestate;
 
-    private Vector3 _player_starting_position = Vector3.zero;
+    private Vector3 _player_starting_position = new Vector3(-3, 0, 0); // effectively this is (-2, 0, 0) as 1 is added to vector3.x immediately
     private GameObject _selected_player;
+
 
     private void Awake()
     {
@@ -253,6 +254,10 @@ public class GameController : MonoBehaviour
                 boss.transform.gameObject.SetActive(false);
                 CullClones();
                 _player_starting_position += new Vector3(1, 0, 0);
+                if (_player_starting_position.x == 3)
+                {
+                    _player_starting_position = new Vector3(-2, _player_starting_position.y - 1, 0);
+                }
 
 
                 break;
