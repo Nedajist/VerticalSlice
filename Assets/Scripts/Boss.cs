@@ -122,8 +122,10 @@ public class Boss : Enemy
 
     private void Move() // sets rigidbody velocity DIRECTLY towards target x and y 
     {
+        
         Vector2 _line_to_target = new Vector2(_target_x, _target_y) - (Vector2)transform.position;
-        _rb.velocity = (_line_to_target + _velocity_additive) * _velocity_multiplicative;
+        _line_to_target = _line_to_target.normalized;
+        _rb.velocity = (_line_to_target + _velocity_additive) * _velocity_multiplicative * _speed;
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -154,7 +156,7 @@ public class Boss : Enemy
         while (_time < duration)
         {
             _time += Time.fixedDeltaTime;
-            _velocity_multiplicative = 0.5f * Mathf.Pow(3, _time / 2.3f) ;
+            _velocity_multiplicative += 0.2f * Time.fixedDeltaTime;
             yield return new WaitForFixedUpdate();
         }
 

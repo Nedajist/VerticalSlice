@@ -33,7 +33,8 @@ public class RisenEntity : Enemy
     protected void MoveToTarget()
     {
         Vector2 _line_to_target =  (Vector2) _target_player.transform.position - (Vector2) transform.position;
-        _rb.velocity = (_line_to_target + _velocity_additive) * _velocity_multiplicative;
+        _line_to_target = _line_to_target.normalized;
+        _rb.velocity = (_line_to_target + _velocity_additive) * _velocity_multiplicative * _speed;
 
         degree_change += _degrees_per_second * Time.fixedDeltaTime;
 
