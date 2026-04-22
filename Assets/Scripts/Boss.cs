@@ -66,8 +66,8 @@ public class Boss : Enemy
 
     public void SummonRisenMages()
     {
-        GameController.instance.SummonRisen(transform.position + new Vector3(-2, 0, 0), PlayerClass.Mage);
-        GameController.instance.SummonRisen(transform.position + new Vector3(-2, 0, 0), PlayerClass.Mage);
+        GameController.instance.SummonRisen(transform.position + new Vector3(-8, 0, 0), PlayerClass.Mage);
+        GameController.instance.SummonRisen(transform.position + new Vector3(8, 0, 0), PlayerClass.Mage);
     }
 
     public void SummonNormalSlash()
@@ -154,12 +154,12 @@ public class Boss : Enemy
         while (_time < duration)
         {
             _time += Time.fixedDeltaTime;
-            _velocity_multiplicative = 0.5f * Mathf.Pow(3, _time / 3.3f) ;
+            _velocity_multiplicative = 0.5f * Mathf.Pow(3, _time / 2.3f) ;
             yield return new WaitForFixedUpdate();
         }
 
         _time = 0;
-        while (_time < 0.5f) // 0.5 is the deceleration period 
+        while (_time < 0.25f) // 0.5 is the deceleration period 
         {
             
             _time += Time.fixedDeltaTime;
