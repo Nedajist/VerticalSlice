@@ -17,15 +17,8 @@ public class Boss : Enemy
 
     [SerializeField] Vector3 starting_position;
 
-
-
-
     private float _target_x;
     private float _target_y;
-    private float _distance_to_target_x;
-    private float _distance_to_target_y;
-    private float _vertical_movement_additive;
-    private float _horizontal_movement_additive;
 
     private float _projectile_timer = 0;
     private float _charge_timer = 0;
@@ -38,35 +31,51 @@ public class Boss : Enemy
         
     }
 
-    // Update is called once per frame
-    void Update()
+
+    private void FixedUpdate()
     {
-        _charge_timer -= Time.deltaTime;
-        _projectile_timer -= Time.deltaTime;
-        if (_projectile_timer < 0)
+        _charge_timer -= Time.fixedDeltaTime;
+        _projectile_timer -= Time.fixedDeltaTime;
+
+
+        TargetNearestPlayer();
+        SlitherTowardsTargetPlayer();
+
+        if (_projectile_timer < 0) // temp timer 
         {
-            //GameObject instantiated_spiral_bundle = Instantiate(_spiral_projectile_bundle, transform.position, Quaternion.identity);
-            //instantiated_spiral_bundle.transform.SetParent(transform);
-
             GameController.instance.SummonInfectiousProjectileBundle(transform.position);
-
             _projectile_timer = 3; // temp value
-            
+
         }
 
-        if (_charge_timer < 0)
+        if (_charge_timer < 0) // temp timer
         {
             StartCoroutine(MassAOE(0.1f));
             _charge_timer = 3; // temp value
         }
 
+
     }
 
-    private void FixedUpdate()
+    private void SummonSpiralProjectiles()
     {
-        TargetNearestPlayer();
-        SlitherTowardsTargetPlayer();
+        GameObject instantiated_spiral_bundle = Instantiate(_spiral_projectile_bundle, transform.position, Quaternion.identity);
+        instantiated_spiral_bundle.transform.SetParent(transform);
     }
+
+    private void SummonHomingProjectiles()
+    {
+        GameObject instantiated_homing_bundle = Instantiate(_homing_projectile_bundle, transform.position, Quaternion.identity);
+        instantiated_homing_bundle.transform.SetParent(transform);
+    }
+
+    private void SummonGatlingProjectiles()
+    {
+        GameObject instantiated_gatling_bundle = Instantiate(_gatling_projectile_bundle, transform.position, Quaternion.identity);
+        instantiated_gatling_bundle.transform.SetParent(transform);
+    }
+
+
 
 
     private void MoveTowardsTargetPlayer() // beelines player. Best for melee.
@@ -93,7 +102,6 @@ public class Boss : Enemy
 
     private void Move() // sets rigidbody velocity DIRECTLY towards target x and y 
     {
-
         Vector2 _line_to_target = new Vector2(_target_x, _target_y) - (Vector2)transform.position;
         _rb.velocity = (_line_to_target + _velocity_additive) * _velocity_multiplicative;
     }
