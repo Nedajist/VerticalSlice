@@ -12,12 +12,17 @@ public class UIController : MonoBehaviour
     [SerializeField] private float _rate_of_bar_change;
     [SerializeField] private GameObject _character_select_menu;
 
+    [SerializeField] private GameObject _mage_symbol;
+    [SerializeField] private GameObject _healer_symbol;
+    [SerializeField] private GameObject _tank_symbol;
+
     private float _current_health;
+    private Vector3 _current_class_symbol_position = new Vector3(10, -45, 0);
 
     // Start is called before the first frame update
     void Start()
     {
-
+        
     }
 
     // Update is called once per frame
@@ -29,12 +34,13 @@ public class UIController : MonoBehaviour
         }
     }
 
-    public void ShowSelectionScreen()
+    public void ShowSelectionScreen() // called when entering selecting phase
     {
         _character_select_menu.SetActive(true);
+        _current_class_symbol_position += new Vector3(40, 0, 0);
     }
 
-    public void HideSelectionScreen()
+    public void HideSelectionScreen() // called when entering playing phase
     {
         _character_select_menu.SetActive(false);
     }
@@ -58,10 +64,31 @@ public class UIController : MonoBehaviour
         {
             _lazy_bar.value = _health_bar.value;
         }
-
-
-
-
     }
+
+    public void DisplayMageClassSymbol()
+    {
+        GameObject _instantiated_class_symbol = Instantiate(_mage_symbol, Vector3.zero, Quaternion.identity);
+        _instantiated_class_symbol.transform.SetParent(_character_select_menu.transform);
+        _instantiated_class_symbol.transform.localPosition = _current_class_symbol_position;
+    }
+
+    public void DisplayHealerClassSymbol()
+    {
+        GameObject _instantiated_class_symbol = Instantiate(_healer_symbol, Vector3.zero, Quaternion.identity);
+        _instantiated_class_symbol.transform.SetParent(_character_select_menu.transform);
+        _instantiated_class_symbol.transform.localPosition = _current_class_symbol_position;
+    }
+    
+
+    public void DisplayTankClassSymbol()
+    {
+        GameObject _instantiated_class_symbol = Instantiate(_tank_symbol, Vector3.zero, Quaternion.identity);
+        _instantiated_class_symbol.transform.SetParent(_character_select_menu.transform);
+        _instantiated_class_symbol.transform.localPosition = _current_class_symbol_position;
+    }
+
+
+
 }
 
