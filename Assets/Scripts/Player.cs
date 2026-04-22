@@ -13,7 +13,7 @@ public class Player : Ally
     [SerializeField] InputActionReference _ability_inputs;
     [SerializeField] InputActionReference _mouse_inputs;
     [SerializeField] InputActionReference _mouse_movements;
-    [SerializeField] Camera _camera;
+    [SerializeField] public Camera _camera;
 
 
     InputData _move_data; // InputData is the scriptableobject class. These are created and added to _list_of_inputs
@@ -33,7 +33,8 @@ public class Player : Ally
     // Start is called before the first frame update
     protected override void Start()
     {
-        transform.position = _starting_position;
+        transform.position = starting_position;
+        _camera = GameController.instance.main_camera;
     }
 
     // Update is called once per frame
@@ -184,16 +185,11 @@ public class Player : Ally
 
     private void ResetSelf()
     {
-        GameController.instance.CullClones();
-        GameController.instance.AddNewClone(_starting_position, _list_of_inputs, _class, _speed, _max_health, _ability_1_cooldown, _ability_2_cooldown);
-        GameController.instance.SummonAllClones();
-        _list_of_inputs = new List<InputData>();
-        _physics_frames = 0;
-        _starting_position += new Vector3(1, 0, 0);
-        _health = _max_health;
-        transform.position = _starting_position;
-        seconds_of_infection = 0;
-        GameController.instance.SummonInfectiousProjectileBundle(new Vector3(0, 3, 0));
+        GameController.instance.AddNewClone(starting_position, _list_of_inputs, _class, _speed, _max_health, _ability_1_cooldown, _ability_2_cooldown);
+        GameController.instance.main_camera.transform.SetParent(GameController.instance.transform);
+        GameController.instance.TransitionGameState(GameState.selecting);
+        gameObject.SetActive(false);
+        Destroy(gameObject);
     }
 
 }

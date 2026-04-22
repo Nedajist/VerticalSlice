@@ -14,7 +14,7 @@ public class Ally : LivingEntity // the clone
     [SerializeField] protected float _ability_1_cooldown;
     [SerializeField] protected float _ability_2_cooldown;
 
-    [SerializeField] protected Vector3 _starting_position = Vector3.zero;
+    [SerializeField] public Vector3 starting_position = Vector3.zero;
     [SerializeField] protected float _iframe_duration = 0.25f;
 
     public Vector2 _velocity_additive;
@@ -42,7 +42,7 @@ public class Ally : LivingEntity // the clone
     // Start is called before the first frame update
     protected virtual void Start()
     {
-        transform.position = _starting_position;
+        transform.position = starting_position;
         _physics_frames = 0;
     }
 
@@ -179,7 +179,7 @@ public class Ally : LivingEntity // the clone
     public void StartExecuting()
     {
         _executing = true;
-        transform.position = _starting_position;
+        transform.position = starting_position;
     }
 
     protected virtual void OnCollisionEnter2D(Collision2D collision)
@@ -256,9 +256,9 @@ public class Ally : LivingEntity // the clone
     }
 
 
-    public void GiveLife(Vector3 starting_position, List<InputData> list_of_inputs)
+    public void GiveLife(Vector3 start_position, List<InputData> list_of_inputs)
     {
-        _starting_position = starting_position;
+        starting_position = start_position;
         _physics_frames = 0;
 
         for (int i = 0; i < list_of_inputs.Count; i++) // true copies mutable values 

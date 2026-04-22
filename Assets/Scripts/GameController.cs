@@ -6,8 +6,18 @@ using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
 
+public enum GameState
+{
+    selecting,
+    playing
+}
+
+
 public class GameController : MonoBehaviour
 {
+    [SerializeField] GameObject _mage_player;
+    [SerializeField] GameObject _healer_player;
+    [SerializeField] GameObject _tank_player;
 
     [SerializeField] GameObject _mage_stc;
     [SerializeField] GameObject _healer_stc;
@@ -18,15 +28,19 @@ public class GameController : MonoBehaviour
     [SerializeField] GameObject _tank_add;
 
     [SerializeField] GameObject _infectious_projectile_bundle;
-
+    [SerializeField] public GameObject boss_object;
 
     public static GameController instance;
+    public Camera main_camera;
     public Boss boss;
+    public UIController UI;
     public List<Ally> ally_list = new List<Ally>();
 
     public List<CloneTemplate> past_incarnation_list = new List<CloneTemplate>(); // list containing the hp, health, class, etc of past incarnatinos of the player
+    public GameState current_gamestate;
 
-
+    private Vector3 _player_starting_position = Vector3.zero;
+    private GameObject _selected_player;
 
     private void Awake()
     {
@@ -38,14 +52,17 @@ public class GameController : MonoBehaviour
         {
             Destroy(gameObject);
         }
-        boss = GameObject.FindObjectOfType<Boss>();
-        RefreshAllyList();
+        boss = boss_object.GetComponent<Boss>();
+        UI = GameObject.FindObjectOfType<UIController>();
+        main_camera = GameObject.FindObjectOfType<Camera>();
 
+        RefreshAllyList();
+        TransitionGameState(GameState.selecting);
     }
 
     private void FixedUpdate()
     {
-        
+
     }
 
     public void AddNewClone(Vector3 starting_position, List<InputData> list_of_inputs, PlayerClass player_class, float speed, float max_health, float ability_1_cooldown, float ability_2_cooldown)
@@ -173,6 +190,7 @@ public class GameController : MonoBehaviour
             }
         }
     }
+
     void ResetProjectiles()
     { 
         GameObject[] projectiles = GameObject.FindGameObjectsWithTag("Projectile"); // TEMPORARY
@@ -223,16 +241,56 @@ public class GameController : MonoBehaviour
         return (newVector2);
     }
 
-
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    public void TransitionGameState(GameState new_state)
     {
+        Debug.Log("SWITCHING STATE");
+        switch (new_state)
+        {
+            case (GameState.selecting):
+                UI.ShowSelectionScreen();
+
+                Time.timeScale = 0;
+                boss.transform.gameObject.SetActive(false);
+                CullClones();
+                _player_starting_position += new Vector3(1, 0, 0);
+
+
+                break;
+            case (GameState.playing):
+                UI.HideSelectionScreen();
+
+                boss.transform.gameObject.SetActive(true);
+                boss.ResetSelf();
+                SummonAllClones();
+                GameObject _instantiated_player = Instantiate(_selected_player, transform.position, Quaternion.identity);
+                _instantiated_player.GetComponent<Player>().starting_position = _player_starting_position;
+                main_camera.transform.SetParent(_instantiated_player.transform);
+                main_camera.transform.localPosition = new Vector3(0, 0, -1);
+                Time.timeScale = 1;
+                break;
+        }
+        current_gamestate = new_state;
 
     }
 
-    // Update is called once per frame
-    void Update()
+    public void TankSelected()
     {
-
+        _selected_player = _tank_player;
+        TransitionGameState(GameState.playing);
     }
+
+    public void HealerSelected()
+    {
+        _selected_player = _healer_player;
+        TransitionGameState(GameState.playing);
+    }
+
+    public void MageSelected()
+    {
+        _selected_player = _mage_player;
+        TransitionGameState(GameState.playing);
+    }
+
+
+
 }

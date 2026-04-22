@@ -5,10 +5,14 @@ using UnityEngine;
 public class HealingCircle : Circle
 {
     [SerializeField] float _healing_per_second;
+    [SerializeField] Rigidbody2D _rb;
+    [SerializeField] float _speed;
 
     private float _radius;
     private float _radius_multiplier = 2.5f;
     private float _starting_scale;
+
+    private LivingEntity _target;
 
     // Start is called before the first frame update
     void Start()
@@ -45,10 +49,19 @@ public class HealingCircle : Circle
             Destroy(gameObject); 
         }
 
+        if (_target != null) 
+        {
+            _rb.velocity = (Vector2)(_target.transform.position - transform.position).normalized * _speed;
+        }
+
     }
     protected override void OnTriggerEnter2D(Collider2D collision)
     {
         base.OnTriggerEnter2D(collision);
+        if (collision.transform.GetComponent<LivingEntity>() != null)
+        {
+            _target = collision.transform.GetComponent<LivingEntity>();
+        }
     }
 
     protected override void OnTriggerExit2D(Collider2D collision)

@@ -15,7 +15,7 @@ public class RisenTank : RisenEntity
 
         transform.localScale = new Vector3(transform.localScale.x + _scale_additive, transform.localScale.y + _scale_additive, 0);
 
-        if (_targeting_timer <= 0)
+        if (_targeting_timer <= 0 || _target_player == null) 
         {
             TargetStrongestPlayer();
             _targeting_timer = _targeting_cooldown;

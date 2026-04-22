@@ -16,7 +16,7 @@ public class RisenHealer : RisenEntity
         _targeting_timer -= Time.fixedDeltaTime;
         _ability_timer -= Time.fixedDeltaTime;
 
-        if (_targeting_timer <= 0)
+        if (_targeting_timer <= 0 || _target_player == null)
         {
             TargetFarthestPlayer();
             _targeting_timer = _targeting_cooldown;
