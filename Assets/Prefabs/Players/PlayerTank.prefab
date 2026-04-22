@@ -756,7 +756,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e33f8e3c26cf824ebe6e3e28a4ee1e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _speed: 5
+  _speed: 4
   _health: 200
   _max_health: 200
   _rb: {fileID: 4729562725565324174}
@@ -764,7 +764,7 @@ MonoBehaviour:
   _selected_ability: 1
   _ability_1_cooldown: 1
   _ability_2_cooldown: 1
-  _starting_position: {x: 0, y: 0, z: 0}
+  starting_position: {x: 0, y: 0, z: 0}
   _iframe_duration: 0.25
   _velocity_additive: {x: 0, y: 0}
   is_clone: 0

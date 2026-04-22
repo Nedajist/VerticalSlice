@@ -519,7 +519,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 805d5ab43f4abb04b9c07b5ea8b4bef6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _speed: 5
+  _speed: 4
   _health: 100
   _max_health: 100
   _rb: {fileID: 7557587598728034004}
@@ -527,10 +527,12 @@ MonoBehaviour:
   _selected_ability: 1
   _ability_1_cooldown: 1
   _ability_2_cooldown: 0
-  _starting_position: {x: 0, y: 0, z: 0}
+  starting_position: {x: 0, y: 0, z: 0}
   _iframe_duration: 0.25
   _velocity_additive: {x: 0, y: 0}
   is_clone: 1
+  seconds_of_infection: 0
+  infected: 0
 --- !u!114 &2014933933321023234
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -559,6 +561,7 @@ MonoBehaviour:
   _health_bar: {fileID: 930543878214184723}
   _lazy_bar: {fileID: 3820539694398467683}
   _rate_of_change: 25
+  _infection_sign: {fileID: 0}
 --- !u!50 &7557587598728034004
 Rigidbody2D:
   serializedVersion: 4
