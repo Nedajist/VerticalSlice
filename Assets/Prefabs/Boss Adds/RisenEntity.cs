@@ -18,6 +18,11 @@ public class RisenEntity : Enemy
 
     public PlayerClass risen_class;
 
+    protected override void Start()
+    {
+        SetColor();
+    }
+
     protected virtual void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.transform.CompareTag("Projectile"))

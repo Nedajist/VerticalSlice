@@ -519,9 +519,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 805d5ab43f4abb04b9c07b5ea8b4bef6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _speed: 4
-  _health: 100
-  _max_health: 100
+  _speed: 4.5
+  _health: 200
+  _max_health: 200
+  _sprite: {fileID: 3996401278963506867}
   _rb: {fileID: 7557587598728034004}
   _class: 0
   _selected_ability: 1

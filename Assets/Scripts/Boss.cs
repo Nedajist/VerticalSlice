@@ -30,11 +30,6 @@ public class Boss : Enemy
     private float degree_change = 0; // how much the rat changes degrees every fixedupdate 
 
     // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
 
     private void FixedUpdate()
     {
@@ -138,6 +133,7 @@ public class Boss : Enemy
 
     public void ResetSelf()
     {
+        StopAllCoroutines();
         transform.position = starting_position;
         transform.rotation = Quaternion.identity;
         _projectile_timer = 0f;

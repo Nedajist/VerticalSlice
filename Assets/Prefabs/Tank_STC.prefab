@@ -278,8 +278,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _speed: 4
-  _health: 200
-  _max_health: 200
+  _health: 400
+  _max_health: 400
+  _sprite: {fileID: 8511563717327968215}
   _rb: {fileID: 619263289229688581}
   _class: 1
   _selected_ability: 1

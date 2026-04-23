@@ -34,6 +34,7 @@ public class Player : Ally
     {
         transform.position = starting_position;
         _camera = GameController.instance.main_camera;
+        SetColor();
     }
 
     // Update is called once per frame
@@ -160,6 +161,8 @@ public class Player : Ally
         _i_frames = _iframe_duration;
 
         _health -= amount;
+        StartCoroutine(FlashColor(0.08f, 0.08f, Color.red));
+
         if (_health <= 0) // die
         {
             //InputData _death_data = ScriptableObject.CreateInstance<InputData>();
@@ -178,6 +181,7 @@ public class Player : Ally
             ResetSelf();
         }
 
+        StartCoroutine(FlashColor(0.08f, 0.08f, Color.magenta));
 
     }
 

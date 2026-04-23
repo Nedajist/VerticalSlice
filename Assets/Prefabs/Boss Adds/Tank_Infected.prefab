@@ -280,6 +280,7 @@ MonoBehaviour:
   _speed: 4
   _health: 150
   _max_health: 150
+  _sprite: {fileID: 8511563717327968215}
   _target_player: {fileID: 0}
   contact_damage: 30
   _velocity_additive: {x: 0, y: 0}
