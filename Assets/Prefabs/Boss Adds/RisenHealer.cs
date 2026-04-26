@@ -6,8 +6,9 @@ public class RisenHealer : RisenEntity
 {
     private Boss _target_boss;
 
-    private void Start()
+    protected override void Start()
     {
+        SetColor();
         _target_boss = GameObject.FindAnyObjectByType<Boss>();
     }
 

@@ -59,12 +59,6 @@ public class Boss : Enemy
         instantiated_gatling_bundle.transform.SetParent(transform);
     }
 
-    public void SummonRisenMages()
-    {
-        GameController.instance.SummonRisen(transform.position + new Vector3(-8, 0, 0), PlayerClass.Mage);
-        GameController.instance.SummonRisen(transform.position + new Vector3(8, 0, 0), PlayerClass.Mage);
-    }
-
     public void SummonNormalSlash()
     {
         Quaternion starting_rotation = GetStartingQuaternion();
