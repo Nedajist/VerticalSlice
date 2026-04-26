@@ -17,7 +17,7 @@ public class Projectile: Enemy
     [SerializeField] public bool infectious;
     [SerializeField] public int infectious_target_index;
     [SerializeField] public float seconds_of_DOT;
-
+    
     private float _angle;
     public Vector3 starting_mouseclick_position;
     public float starting_angle;
