@@ -6,7 +6,7 @@ CardinalMageSummon calls the GameController singleton's SummonRisen() method, wh
 CardinalHealerSummon fuctions much the same, calling SummonRisen() 4 times, taking in 4 of the graph Vector3 variables, summoning enemy healers in North, East, South, and West positions on the map. DiagonalTankSummon summons enemy tanks in the 4 diagonal directions. 
 This script machine is attached to the Boss gameobject, and the custom events are triggered by the Boss's state machine at either specific health thresholds or regular attack intervals. 
 
-<img width="1728" height="1728" alt="GDIM 33 Game Breakdown (1)" src="https://github.com/user-attachments/assets/a89c0a9a-ac5c-4e6b-b2a7-a89d616c2780" />
+<img width="1728" height="1728" alt="GDIM 33 Game Breakdown" src="https://github.com/user-attachments/assets/ca07acb7-078b-4818-964a-42e9ad65a587" />
 
 
 I added the Boss, Phase 1, Phase 2, and Phase 3 circles to my game breakdown. The Boss inherits from a basic enemy script, has multiple attacks and abilities, and 3 behavior states/phases. Each phase circle describes the boss's suite of abilities during said phase, targeting behavior, and movement behavior. 
