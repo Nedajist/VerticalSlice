@@ -6,6 +6,9 @@ CardinalMageSummon calls the GameController singleton's SummonRisen() method, wh
 CardinalHealerSummon fuctions much the same, calling SummonRisen() 4 times, taking in 4 of the graph Vector3 variables, summoning enemy healers in North, East, South, and West positions on the map. DiagonalTankSummon summons enemy tanks in the 4 diagonal directions. 
 This script machine is attached to the Boss gameobject, and the custom events are triggered by the Boss's state machine at either specific health thresholds or regular attack intervals. 
 
+<img width="1728" height="1728" alt="GDIM 33 Game Breakdown" src="https://github.com/user-attachments/assets/924bc11f-614e-48c2-9054-6ce35f601cef" />
+
+
 I added the Boss, Phase 1, Phase 2, and Phase 3 circles to my game breakdown. The Boss inherits from a basic enemy script, has multiple attacks and abilities, and 3 behavior states/phases. Each phase circle describes the boss's suite of abilities during said phase, targeting behavior, and movement behavior. 
 Every state in the BossStateMachine works in a similar way. Upon entering the state, Object variables determining the seconds between each boss attack and target switch is set to a specific amount of seconds. As the phase number increases, that time gets shorter. Timer object variables tracking the number of seconds until the next attack or target switch are set to zero, and Time.FixedDeltaTime is subtracted from each on every Fixed Update.
 If the target switch timer reaches zero, it is reset back to its cooldown value, and the graph calls a targeting script from the Boss script based on the current number of target switches so far (tracked through an index variable). For example, in phase 1, the boss will loop between targeting the nearest and farthest player characters.
