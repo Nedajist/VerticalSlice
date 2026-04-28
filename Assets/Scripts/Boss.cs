@@ -114,7 +114,7 @@ public class Boss : Enemy
         
         Vector2 _line_to_target = new Vector2(_target_x, _target_y) - (Vector2)transform.position;
         _line_to_target = _line_to_target.normalized;
-        _rb.velocity = (_line_to_target + _velocity_additive) * _velocity_multiplicative * _speed;
+        _rb.velocity = (_line_to_target * _velocity_multiplicative * _speed) + velocity_additive;
     }
 
     private void OnCollisionEnter2D(Collision2D collision)

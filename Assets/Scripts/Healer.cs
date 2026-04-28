@@ -5,6 +5,8 @@ using UnityEngine;
 public class Healer : ClassAbility
 {
     [SerializeField] private GameObject _healer_circle;
+    [SerializeField] private GameObject _turret;
+
     public override void Ability1(Vector3 mouse_position)
     {
         Vector3 spawn_position = new Vector3(mouse_position.x, mouse_position.y, 0);
@@ -12,6 +14,7 @@ public class Healer : ClassAbility
     }
     public override void Ability2(Vector3 mouse_position)
     {
-        Debug.Log("Healer ability 2!");
+        Vector3 spawn_position = new Vector3(mouse_position.x, mouse_position.y, 0);
+        GameObject instantiated_turret = Instantiate(_turret, spawn_position, Quaternion.identity);
     }
 }

@@ -760,20 +760,21 @@ MonoBehaviour:
   _health: 400
   _max_health: 400
   _sprite: {fileID: 3308103108737852252}
+  velocity_additive: {x: 0, y: 0}
   _rb: {fileID: 4729562725565324174}
   _class: 1
   _selected_ability: 1
   _ability_1_cooldown: 1
-  _ability_2_cooldown: 1
+  _ability_2_cooldown: 3
   starting_position: {x: 0, y: 0, z: 0}
   _iframe_duration: 0.25
-  _velocity_additive: {x: 0, y: 0}
   is_clone: 0
   seconds_of_infection: 0
   infected: 0
   _movement_inputs: {fileID: 3806103233571715801, guid: 262f60194586c9647b11581f0b60906e, type: 3}
   _ability_inputs: {fileID: -4725048727283489658, guid: 262f60194586c9647b11581f0b60906e, type: 3}
   _mouse_inputs: {fileID: 4170317999478087825, guid: 262f60194586c9647b11581f0b60906e, type: 3}
+  _right_mouse_inputs: {fileID: -3371297281629351893, guid: 262f60194586c9647b11581f0b60906e, type: 3}
   _mouse_movements: {fileID: 83493714385962677, guid: 262f60194586c9647b11581f0b60906e, type: 3}
   _camera: {fileID: 0}
 --- !u!114 &4784126669059166024

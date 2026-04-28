@@ -281,14 +281,14 @@ MonoBehaviour:
   _health: 400
   _max_health: 400
   _sprite: {fileID: 8511563717327968215}
+  velocity_additive: {x: 0, y: 0}
   _rb: {fileID: 619263289229688581}
   _class: 1
   _selected_ability: 1
   _ability_1_cooldown: 1
-  _ability_2_cooldown: 1
+  _ability_2_cooldown: 3
   starting_position: {x: 0, y: 0, z: 0}
   _iframe_duration: 0.25
-  _velocity_additive: {x: 0, y: 0}
   is_clone: 1
   seconds_of_infection: 0
   infected: 0

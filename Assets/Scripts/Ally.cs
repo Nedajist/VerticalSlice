@@ -17,7 +17,6 @@ public class Ally : LivingEntity // the clone
     [SerializeField] public Vector3 starting_position = Vector3.zero;
     [SerializeField] protected float _iframe_duration = 0.25f;
 
-    public Vector2 _velocity_additive;
     public bool is_clone = true;
     public float seconds_of_infection;
     public bool infected = false;
@@ -70,9 +69,6 @@ public class Ally : LivingEntity // the clone
             seconds_of_infection -= Time.fixedDeltaTime;
             ReceiveInfectionDamage(_infection_damage * Time.fixedDeltaTime); 
         }
-
-
-
     }
 
     protected void _execute() // executes all inputs that start on this frame or on a previous frame but have not finished executing. Each individual input is executed only once per frame. This method is only called once per frame.
@@ -99,11 +95,11 @@ public class Ally : LivingEntity // the clone
                     moved_this_frame = true; // ensures velocity isn't frozen
                     HandleMovementInput(current_input.movementData);
                     break;
-                case "AbilitySelect":
-                    HandleAbilityInput(current_input.abilityData);
-                    break;
                 case "LeftMouseClick":
-                    HandleMouseInput(current_input.mousePosition);
+                    HandleLeftMouseInput(current_input.mousePosition);
+                    break;
+                case "RightMouseClick":
+                    HandleRightMouseInput(current_input.mousePosition);
                     break;
             }
 
@@ -131,30 +127,22 @@ public class Ally : LivingEntity // the clone
 
     protected void HandleMovementInput(Vector2 direction) // moves this player by direction
     {
-        _rb.velocity = (direction * _speed) + _velocity_additive;
+        _rb.velocity = (direction * _speed) + velocity_additive;
     }
 
-    protected void HandleAbilityInput(float number) // selects ability
-    {
-        if (number == -1)
-        {
-            _selected_ability = 1;
-        }
-        else if (number == 1)
-        {
-            _selected_ability = 2;
-        }
-    }
 
-    protected void HandleMouseInput(Vector3 mouse_position)
+    protected void HandleLeftMouseInput(Vector3 mouse_position)
     {
-        if (_selected_ability == 1 && _ability_1_timer <= 0)
+        if (_ability_1_timer <= 0)
         {
             _ability_1_timer = _ability_1_cooldown;
             ActivateAbility1(mouse_position);
         }
+    }
 
-        else if (_selected_ability == 2 && _ability_2_timer <= 0)
+    protected void HandleRightMouseInput(Vector3 mouse_position)
+    { 
+        if (_ability_2_timer <= 0)
         {
             _ability_2_timer = _ability_2_cooldown;
             ActivateAbility2(mouse_position);
@@ -174,7 +162,7 @@ public class Ally : LivingEntity // the clone
 
     protected void FreezeVelocity()
     {
-        _rb.velocity = Vector2.zero + _velocity_additive;
+        _rb.velocity = Vector2.zero + velocity_additive;
     }
 
     public void StartExecuting()
@@ -214,6 +202,7 @@ public class Ally : LivingEntity // the clone
         {
             return;
         }
+
         _i_frames = _iframe_duration;
         _health -= amount;
         StartCoroutine(FlashColor(0.08f, 0.08f, Color.red));
@@ -274,6 +263,11 @@ public class Ally : LivingEntity // the clone
         }
 
 
+    }
+
+    public void AddIFrames(float seconds_of_iframes)
+    {
+        _i_frames += seconds_of_iframes;
     }
 
     private void ResetInputs()

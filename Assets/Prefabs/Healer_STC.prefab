@@ -595,14 +595,14 @@ MonoBehaviour:
   _health: 200
   _max_health: 200
   _sprite: {fileID: 1789929542441813357}
+  velocity_additive: {x: 0, y: 0}
   _rb: {fileID: 3498961432721847859}
   _class: 2
   _selected_ability: 1
   _ability_1_cooldown: 1
-  _ability_2_cooldown: 1
+  _ability_2_cooldown: 3
   starting_position: {x: 0, y: 0, z: 0}
   _iframe_duration: 0.25
-  _velocity_additive: {x: 0, y: 0}
   is_clone: 1
   seconds_of_infection: 0
   infected: 0
@@ -619,6 +619,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _healer_circle: {fileID: 2824291148003576153, guid: 2898a17da255f8047bcbfb6677cc4a6b, type: 3}
+  _turret: {fileID: 2730798812739659380, guid: 3d69674498cefb0418feddbc2b3ca453, type: 3}
 --- !u!114 &3739101953333203321
 MonoBehaviour:
   m_ObjectHideFlags: 0

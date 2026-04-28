@@ -10,11 +10,11 @@ GameObject:
   m_Component:
   - component: {fileID: 7518495004459493294}
   - component: {fileID: 1903953356677788456}
-  - component: {fileID: 6182590399807459894}
   - component: {fileID: 5174558010876095162}
+  - component: {fileID: 5261794726397696865}
   - component: {fileID: 7343340182497150024}
   m_Layer: 0
-  m_Name: HealingCircle
+  m_Name: VortexCircle
   m_TagString: AOE
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -30,7 +30,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 1.97, y: 0.11, z: 0}
-  m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
+  m_LocalScale: {x: 2, y: 2, z: 2}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
@@ -76,8 +76,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: -1
-  m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
-  m_Color: {r: 0.26463407, g: 0.8113208, b: 0.17604119, a: 1}
+  m_Sprite: {fileID: -2135585597343286014, guid: eed45a33cd08446c8b88325cf82fc52f, type: 3}
+  m_Color: {r: 0.1764706, g: 0.6692704, b: 0.8117647, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -87,23 +87,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &6182590399807459894
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2824291148003576153}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 89c636509e157d54b942d6c71a67f87a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _lifespan: 5
-  _sprite_renderer: {fileID: 1903953356677788456}
-  _healing_per_second: 18
-  _rb: {fileID: 7343340182497150024}
-  _speed: 4
 --- !u!58 &5174558010876095162
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -139,6 +122,21 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.5
+--- !u!114 &5261794726397696865
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2824291148003576153}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ef303bb00d6e2d40ac7b1ff4832b670, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _lifespan: 5
+  _sprite_renderer: {fileID: 1903953356677788456}
+  _pull_strength: 2
 --- !u!50 &7343340182497150024
 Rigidbody2D:
   serializedVersion: 4

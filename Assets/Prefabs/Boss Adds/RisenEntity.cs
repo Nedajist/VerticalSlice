@@ -39,7 +39,7 @@ public class RisenEntity : Enemy
     {
         Vector2 _line_to_target =  (Vector2) _target_player.transform.position - (Vector2) transform.position;
         _line_to_target = _line_to_target.normalized;
-        _rb.velocity = (_line_to_target + _velocity_additive) * _velocity_multiplicative * _speed;
+        _rb.velocity = (_line_to_target * _speed);
 
         degree_change += _degrees_per_second * Time.fixedDeltaTime;
 
@@ -48,7 +48,7 @@ public class RisenEntity : Enemy
             _degrees_per_second = -_degrees_per_second;
         }
 
-        _rb.velocity = GameController.instance.RotateVector2(_rb.velocity, degree_change);
+        _rb.velocity = GameController.instance.RotateVector2(_rb.velocity, degree_change) + velocity_additive;
 
     }
 

@@ -58,7 +58,7 @@ public class HealingCircle : Circle
     protected override void OnTriggerEnter2D(Collider2D collision)
     {
         base.OnTriggerEnter2D(collision);
-        if (collision.transform.GetComponent<LivingEntity>() != null)
+        if (collision.transform.GetComponent<LivingEntity>() != null && _target == null)
         {
             _target = collision.transform.GetComponent<LivingEntity>();
         }

@@ -13,7 +13,6 @@ public class Projectile: Enemy
     [SerializeField] float _angles_per_second = 5; // also needed for homing
     [SerializeField] bool _initial_lock_on = true; // if true, locks on to player at start
     [SerializeField] public float damage;
-    [SerializeField] public Vector2 velocity_additive;
     [SerializeField] public bool infectious;
     [SerializeField] public int infectious_target_index;
     [SerializeField] public float seconds_of_DOT;
@@ -34,6 +33,7 @@ public class Projectile: Enemy
             TargetNearestPlayer();
             transform.right = _target_player.transform.position - transform.position;
         }
+
 
         if (infectious == true)
         {
@@ -106,9 +106,9 @@ public class Projectile: Enemy
             transform.right = transform.right + ((_target_player.transform.position - transform.position) - transform.right) * (Time.deltaTime * _angles_per_second / 360f);
             _rigidbody.velocity = (transform.right * _movement_speed) + new Vector3(velocity_additive.x, velocity_additive.y, 0); // this is where projectiles move forward if homing;
         }
-        else
+        else // this is where projectiles move forward if not homing;
         {
-            _rigidbody.AddForce(transform.right * _movement_speed + new Vector3(velocity_additive.x, velocity_additive.y, 0)); // this is where projectiles move forward if not homing;
+            _rigidbody.AddForce(transform.right * _movement_speed + new Vector3(velocity_additive.x, velocity_additive.y, 0));
         }
 
 
@@ -120,10 +120,21 @@ public class Projectile: Enemy
 
     }
 
+    public void TargetLivingEntity(LivingEntity target)
+    {
+        transform.right = target.transform.position - transform.position;
+    }
+
     private void OnCollisionEnter2D(Collision2D collision)
     {
         Destroy(gameObject);
 
     }
+
+    public void FreezeVelocity()
+    {
+        _rigidbody.velocity = Vector2.zero;
+    }
+
 
 }

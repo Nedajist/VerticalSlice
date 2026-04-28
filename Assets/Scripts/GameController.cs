@@ -130,8 +130,6 @@ public class GameController : MonoBehaviour
 
 
     }
-
-
     public void RefreshAllyList()
     {
         GameObject[] playerObjects = GameObject.FindGameObjectsWithTag("Player");

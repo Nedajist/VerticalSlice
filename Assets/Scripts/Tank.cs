@@ -25,6 +25,21 @@ public class Tank : ClassAbility
     }
     public override void Ability2(Vector3 mouse_position)
     {
-        Debug.Log("Tank ability 2!");
+        StartCoroutine(Charge(1f));
+    }
+
+
+
+    public IEnumerator Charge(float duration)
+    {
+        Ally own_self = transform.GetComponent<Ally>();
+        float original_speed = own_self.GetSpeed();
+
+        own_self.SetSpeed(original_speed + 3);
+        own_self.AddIFrames(duration);
+        yield return new WaitForSeconds(duration);
+
+        own_self.SetSpeed(original_speed);
+        yield return null;
     }
 }

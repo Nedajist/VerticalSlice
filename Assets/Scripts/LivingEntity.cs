@@ -8,6 +8,9 @@ public class LivingEntity : MonoBehaviour
     [SerializeField] protected float _health = 100;
     [SerializeField] protected float _max_health = 100;
     [SerializeField] SpriteRenderer _sprite;
+
+    public Vector2 velocity_additive;
+
     private Color _original_color;
 
     protected virtual void Start()
@@ -28,7 +31,7 @@ public class LivingEntity : MonoBehaviour
         _health += amount;
         _health = Mathf.Clamp(_health, 0, _max_health);
         StartCoroutine(FlashColor(0.08f, 0.08f, Color.green));
-        Debug.Log("HEALED FOR " + amount);
+        //Debug.Log("HEALED FOR " + amount);
     }
 
     public virtual void ReceiveDamage(float amount)
@@ -51,6 +54,16 @@ public class LivingEntity : MonoBehaviour
         return (_max_health);
     }
 
+    public float GetSpeed()
+    {
+        return _speed;
+    }
+
+    public void SetSpeed(float new_speed)
+    {
+        _speed = new_speed;
+    }
+
     protected IEnumerator FlashColor(float ease_in_duration, float ease_out_duration, Color _new_color)
     {
         float _ease_in_timer = ease_in_duration;
@@ -69,10 +82,6 @@ public class LivingEntity : MonoBehaviour
             _sprite.color = Color.Lerp(_new_color, _original_color, 1 - (_ease_out_timer / ease_out_duration));
             yield return new WaitForFixedUpdate();
         }
-
-
-
-
 
         yield return null;
     }

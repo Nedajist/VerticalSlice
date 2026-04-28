@@ -11156,9 +11156,9 @@ MonoBehaviour:
   _health: 3000
   _max_health: 3000
   _sprite: {fileID: 2048984344}
+  velocity_additive: {x: 0, y: 0}
   _target_player: {fileID: 0}
   contact_damage: 50
-  _velocity_additive: {x: 0, y: 0}
   _velocity_multiplicative: 1
   _rb: {fileID: 2048984347}
   _dash_additive: {x: 0, y: 0}
