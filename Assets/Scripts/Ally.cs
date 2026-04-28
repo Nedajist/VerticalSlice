@@ -282,6 +282,22 @@ public class Ally : LivingEntity // the clone
         FreezeVelocity();
     }
 
+    public float GetAbility1Timer()
+    {
+        return _ability_1_timer;
+    }
+    public float GetAbility2Timer()
+    {
+        return _ability_2_timer;
+    }
 
+    public float GetAbility1Cooldown()
+    {
+        return _ability_1_cooldown;
+    }
 
+    public float GetAbility2Cooldown()
+    {
+        return _ability_2_cooldown;
+    }
 }

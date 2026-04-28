@@ -42,6 +42,8 @@ public class GameController : MonoBehaviour
     private Vector3 _player_starting_position = new Vector3(-3, 0, 0); // effectively this is (-2, 0, 0) as 1 is added to vector3.x immediately
     private GameObject _selected_player;
 
+    public GameObject current_player;
+
 
     private void Awake()
     {
@@ -260,15 +262,17 @@ public class GameController : MonoBehaviour
 
                 break;
             case (GameState.playing):
-                UI.HideSelectionScreen();
 
                 boss.transform.gameObject.SetActive(true);
                 boss.ResetSelf();
                 SummonAllClones();
-                GameObject _instantiated_player = Instantiate(_selected_player, transform.position, Quaternion.identity);
-                _instantiated_player.GetComponent<Player>().starting_position = _player_starting_position;
-                main_camera.transform.SetParent(_instantiated_player.transform);
+                current_player = Instantiate(_selected_player, transform.position, Quaternion.identity);
+                current_player.GetComponent<Player>().starting_position = _player_starting_position;
+                main_camera.transform.SetParent(current_player.transform);
                 main_camera.transform.localPosition = new Vector3(0, 0, -1);
+
+                UI.HideSelectionScreen();
+
                 Time.timeScale = 1;
                 break;
         }
