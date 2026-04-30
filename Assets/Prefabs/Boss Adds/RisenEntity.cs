@@ -71,6 +71,11 @@ public class RisenEntity : Enemy
 
         }
 
+        if (velocity_additive.magnitude > _repulsion_factor)
+        {
+            velocity_additive = velocity_additive.normalized;
+            velocity_additive *= _repulsion_factor;
+        }
     }
 
 
