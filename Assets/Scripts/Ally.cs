@@ -15,7 +15,6 @@ public class Ally : LivingEntity // the clone
     [SerializeField] protected float _ability_2_cooldown;
 
     [SerializeField] public Vector3 starting_position = Vector3.zero;
-    [SerializeField] protected float _iframe_duration = 0.25f;
 
     public bool is_clone = true;
     public float seconds_of_infection;
@@ -30,7 +29,6 @@ public class Ally : LivingEntity // the clone
     protected float _ability_2_timer = 0;
 
     protected int _physics_frames;
-    protected float _i_frames;
     protected bool _executing = false;
     protected float _infection_damage = 20;
 
@@ -205,6 +203,7 @@ public class Ally : LivingEntity // the clone
 
         _i_frames = _iframe_duration;
         _health -= amount;
+        ShakeHealthBar();
         StartCoroutine(FlashColor(0.08f, 0.08f, Color.red));
         if (_health <= 0) // die
         {
@@ -281,6 +280,8 @@ public class Ally : LivingEntity // the clone
         _physics_frames = 0;
         FreezeVelocity();
     }
+
+
 
     public float GetAbility1Timer()
     {

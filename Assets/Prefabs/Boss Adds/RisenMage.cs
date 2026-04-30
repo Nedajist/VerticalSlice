@@ -6,6 +6,7 @@ public class RisenMage : RisenEntity
 {
     private void FixedUpdate()
     {
+        _i_frames -= Time.fixedDeltaTime;
         _targeting_timer -= Time.fixedDeltaTime;
         _ability_timer -= Time.fixedDeltaTime;
 

@@ -24,9 +24,6 @@ public class Boss : Enemy
     private float _target_x;
     private float _target_y;
 
-    private float _projectile_timer = 0;
-    private float _charge_timer = 0;
-
     private float degree_change = 0; // how much the rat changes degrees every fixedupdate 
 
     // Start is called before the first frame update
@@ -34,6 +31,28 @@ public class Boss : Enemy
     private void FixedUpdate()
     {
         
+    }
+
+    public override void ReceiveDamage(float amount)
+    {
+        if (_i_frames > 0)
+        {
+            return;
+        }
+        _i_frames = _iframe_duration;
+
+        _health -= amount;
+        StartCoroutine(FlashColor(0.1f, 0.1f, Color.red));
+        if (_health <= 0)
+        {
+            Destroy(gameObject);
+        }
+    }
+
+    protected override void Start()
+    {
+        base.Start();
+        _iframe_duration = -1; // boss doesn't have iframes
     }
 
     public void SummonSpiralProjectiles()
@@ -130,14 +149,8 @@ public class Boss : Enemy
         StopAllCoroutines();
         transform.position = starting_position;
         transform.rotation = Quaternion.identity;
-        _projectile_timer = 0f;
         _health = _max_health;
         CustomEvent.Trigger(transform.gameObject, "ReturnToPhase1");
-    }
-
-    public void SetSpeed(float new_speed)
-    {
-        _speed = new_speed;
     }
 
     public IEnumerator ChargeToTarget(float duration) // longer the charge, the more the boss accelerates

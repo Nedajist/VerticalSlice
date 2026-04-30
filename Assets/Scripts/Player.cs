@@ -152,6 +152,7 @@ public class Player : Ally
         _i_frames = _iframe_duration;
 
         _health -= amount;
+        ShakeHealthBar();
         StartCoroutine(FlashColor(0.08f, 0.08f, Color.red));
 
         if (_health <= 0) // die

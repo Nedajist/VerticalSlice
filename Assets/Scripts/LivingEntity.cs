@@ -9,6 +9,11 @@ public class LivingEntity : MonoBehaviour
     [SerializeField] protected float _max_health = 100;
     [SerializeField] SpriteRenderer _sprite;
 
+    protected float _iframe_duration = 0.25f;
+    protected float _i_frames = 0f;
+
+
+
     public Vector2 velocity_additive;
 
     private Color _original_color;
@@ -36,7 +41,14 @@ public class LivingEntity : MonoBehaviour
 
     public virtual void ReceiveDamage(float amount)
     {
+        if (_i_frames > 0)
+        {
+            return;
+        }
+        _i_frames = _iframe_duration;
+
         _health -= amount;
+        ShakeHealthBar();
         StartCoroutine(FlashColor(0.1f, 0.1f, Color.red));
         if (_health<= 0)
         {
@@ -86,6 +98,10 @@ public class LivingEntity : MonoBehaviour
         yield return null;
     }
 
+    protected void ShakeHealthBar()
+    {
+        transform.GetComponent<HealthBar>().StartCoroutine(transform.GetComponent<HealthBar>().TempSizeChange(0.5f, 0.5f, 0.3f));
+    }
 
 
 }

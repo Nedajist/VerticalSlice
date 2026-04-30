@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Timeline;
 using UnityEngine;
 
 public class RisenTank : RisenEntity
@@ -9,6 +10,7 @@ public class RisenTank : RisenEntity
 
     private void FixedUpdate()
     {
+        _i_frames -= Time.fixedDeltaTime;
         _targeting_timer -= Time.fixedDeltaTime;
 
         float _scale_additive = _scale_growth_additive_per_second * Time.fixedDeltaTime;
