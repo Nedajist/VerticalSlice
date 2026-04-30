@@ -70,7 +70,7 @@ public class HealthBar : MonoBehaviour
         while (duration > 0)
         {
             duration -= Time.fixedDeltaTime;
-            _bar_canvas.transform.localScale = Vector3.Lerp(newScale, _original_scale, 1 - duration / ease_in);
+            _bar_canvas.transform.localScale = Vector3.Lerp(newScale, _original_scale, 1 - duration / ease_out);
             yield return new WaitForFixedUpdate();
         }
     }

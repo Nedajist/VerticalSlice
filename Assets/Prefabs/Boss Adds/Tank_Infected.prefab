@@ -117,9 +117,10 @@ MonoBehaviour:
   _degrees_per_second: 3
   _upper_degree_bound: 30
   _target: {fileID: 0}
+  _minimum_distance_from_characters: 0
   risen_class: 1
   _scale_growth_additive_per_second: 0.2
-  _death_square: {fileID: 6825694895562673788, guid: 6487cae75cbff604bb786c613d1644ef, type: 3}
+  _death_square: {fileID: 6825694895562673788, guid: 3c56ebb12b0ab3442b6e0fa4dbebc55e, type: 3}
 --- !u!114 &6629010863467075140
 MonoBehaviour:
   m_ObjectHideFlags: 0

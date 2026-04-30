@@ -100,7 +100,7 @@ public class LivingEntity : MonoBehaviour
 
     protected void ShakeHealthBar()
     {
-        transform.GetComponent<HealthBar>().StartCoroutine(transform.GetComponent<HealthBar>().TempSizeChange(0.5f, 0.5f, 0.3f));
+        transform.GetComponent<HealthBar>().StartCoroutine(transform.GetComponent<HealthBar>().TempSizeChange(0.15f, 0.3f, 0.3f));
     }
 
 
