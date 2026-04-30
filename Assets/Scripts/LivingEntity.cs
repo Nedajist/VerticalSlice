@@ -98,7 +98,7 @@ public class LivingEntity : MonoBehaviour
         yield return null;
     }
 
-    protected void ShakeHealthBar()
+    protected virtual void ShakeHealthBar()
     {
         transform.GetComponent<HealthBar>().StartCoroutine(transform.GetComponent<HealthBar>().TempSizeChange(0.15f, 0.3f, 0.3f));
     }

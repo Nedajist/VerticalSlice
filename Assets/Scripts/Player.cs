@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -153,6 +154,7 @@ public class Player : Ally
 
         _health -= amount;
         ShakeHealthBar();
+        StartCoroutine(ShakeCamera(0.15f));
         StartCoroutine(FlashColor(0.08f, 0.08f, Color.red));
 
         if (_health <= 0) // die
@@ -187,4 +189,21 @@ public class Player : Ally
         Destroy(gameObject);
     }
 
+    private IEnumerator ShakeCamera(float duration)
+    {
+        while (duration > 0)
+        {
+            duration -= Time.deltaTime;
+            _camera.transform.localEulerAngles += _RandomNormalVector3();
+            yield return new WaitForFixedUpdate();
+        }
+
+        _camera.transform.localEulerAngles = Vector3.zero;
+        yield return null;
+
+    }
+    private Vector3 _RandomNormalVector3()
+    {
+        return (new Vector3(Random.Range(-1f, 1f), Random.Range(-1f, 1f), Random.Range(-1f, 1f)));
+    }
 }

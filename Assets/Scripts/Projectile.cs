@@ -78,12 +78,12 @@ public class Projectile: Enemy
         {
             if (clockwise)
             {
-                _angle += _angles_per_second * Time.deltaTime;
+                _angle += _angles_per_second * Time.fixedDeltaTime;
 
             }
             else
             {
-                _angle -= _angles_per_second * Time.deltaTime;
+                _angle -= _angles_per_second * Time.fixedDeltaTime;
             }
 
             _angle %= 360;

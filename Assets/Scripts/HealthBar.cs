@@ -66,13 +66,15 @@ public class HealthBar : MonoBehaviour
         }
 
         duration = ease_out;
-        Vector3 newScale = transform.localScale;
+        Vector3 newScale = _bar_canvas.transform.localScale;
         while (duration > 0)
         {
             duration -= Time.fixedDeltaTime;
             _bar_canvas.transform.localScale = Vector3.Lerp(newScale, _original_scale, 1 - duration / ease_out);
             yield return new WaitForFixedUpdate();
         }
+
+        yield return null;
     }
 
 

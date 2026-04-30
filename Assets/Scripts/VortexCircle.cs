@@ -10,6 +10,8 @@ public class VortexCircle : Circle
     private float _safe_zone = 0.3f;
     private float _boss_resistance_factor = 0.5f;
     private float _projectile_resistance_factor = 2f;
+    private float _angles_per_second = 90;
+    private float _angle;
     private void Start()
     {
         _starting_scale = transform.localScale.x;
@@ -18,6 +20,8 @@ public class VortexCircle : Circle
 
     private void FixedUpdate()
     {
+        _angle += _angles_per_second * Time.fixedDeltaTime;
+
         for (int i = 0; i < _list_of_recipients.Count; i++)
         {
             if (_list_of_recipients[i] != null) // loops through list of entities who are in the circle
@@ -50,6 +54,9 @@ public class VortexCircle : Circle
         }
 
         _lifespan -= Time.deltaTime;
+
+        transform.eulerAngles = new Vector3(0, 0, _angle);
+
 
         _sprite_renderer.color = new Color(_sprite_renderer.color.r, _sprite_renderer.color.g, _sprite_renderer.color.b, _lifespan / _max_lifespan); // circle becomes more transparent each frame
 

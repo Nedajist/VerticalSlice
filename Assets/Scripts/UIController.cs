@@ -38,7 +38,6 @@ public class UIController : MonoBehaviour
     {
         if (GameController.instance.current_gamestate == GameState.playing)
         {
-            UpdateBossHealthBar();
             UpdateAbilityHealthBars();
         }
     }
@@ -63,26 +62,6 @@ public class UIController : MonoBehaviour
 
     }
 
-    private void UpdateBossHealthBar()
-    {
-        _current_health = GameController.instance.boss.GetHealth();
-        _health_bar.value = _current_health;
-
-
-        if (Mathf.Abs(_lazy_bar.value - _health_bar.value) < 1)
-        {
-            return;
-        }
-
-        if (_lazy_bar.value > _health_bar.value)
-        {
-            _lazy_bar.value -= _rate_of_bar_change * Time.deltaTime;
-        }
-        if (_lazy_bar.value < _health_bar.value)
-        {
-            _lazy_bar.value = _health_bar.value;
-        }
-    }
 
     private void UpdateAbilityHealthBars()
     {

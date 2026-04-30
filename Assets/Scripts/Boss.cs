@@ -43,6 +43,7 @@ public class Boss : Enemy
 
         _health -= amount;
         StartCoroutine(FlashColor(0.1f, 0.1f, Color.red));
+        ShakeHealthBar();
         if (_health <= 0)
         {
             Destroy(gameObject);
@@ -206,6 +207,9 @@ public class Boss : Enemy
 
     }
 
-
+    protected override void ShakeHealthBar()
+    {
+        transform.GetComponent<HealthBar>().StartCoroutine(transform.GetComponent<HealthBar>().TempSizeChange(0.15f, 0.3f, 0.03f));
+    }
 
 }
