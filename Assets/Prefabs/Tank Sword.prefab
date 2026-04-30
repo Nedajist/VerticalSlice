@@ -157,5 +157,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _angles_per_second: 240
-  _center: {fileID: 0}
+  _acceleration_angles_per_second: 240
   _radius: 1
+  center: {fileID: 0}
+  _fired_by_boss: 0
+  _damage: 30
+  target_angles_traveled: 150
