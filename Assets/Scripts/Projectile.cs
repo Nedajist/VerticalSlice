@@ -3,10 +3,10 @@ using UnityEngine;
 
 public class Projectile: Enemy
 {
-    [SerializeField] float _lifespan = 6;
-    [SerializeField] float _movement_speed = 4; // right now Speed is redundant and not used by projectile 
-    [SerializeField] float _min_movement_speed = 2;
-    [SerializeField] float _seconds_of_homing_time;
+    [SerializeField] protected float _lifespan = 6;
+    [SerializeField] protected float _movement_speed = 4; // right now Speed is redundant and not used by projectile 
+    [SerializeField] protected float _min_movement_speed = 2;
+    [SerializeField] protected float _seconds_of_homing_time;
     [SerializeField] bool _homing;
     [SerializeField] bool _rotating;
     [SerializeField] public bool clockwise = true;
@@ -21,7 +21,7 @@ public class Projectile: Enemy
     public Vector3 starting_mouseclick_position;
     public float starting_angle;
 
-    [SerializeField] Rigidbody2D _rigidbody;
+    [SerializeField] protected Rigidbody2D _rigidbody;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     protected override void Start()
@@ -110,7 +110,6 @@ public class Projectile: Enemy
         {
             _rigidbody.AddForce(transform.right * _movement_speed + new Vector3(velocity_additive.x, velocity_additive.y, 0));
         }
-
 
 
         if (_rotating == true)

@@ -4,13 +4,13 @@ public enum PlayerClass
 {
     Mage,
     Tank,
-    Healer
+    Healer,
+    Rogue
 }
 public class Ally : LivingEntity // the clone
 {
     [SerializeField] protected Rigidbody2D _rb;
     [SerializeField] protected PlayerClass _class;
-    [SerializeField] protected int _selected_ability = 1; // 1 or 2 
     [SerializeField] protected float _ability_1_cooldown;
     [SerializeField] protected float _ability_2_cooldown;
 

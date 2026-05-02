@@ -10,8 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 7518495004459493294}
   - component: {fileID: 1903953356677788456}
-  - component: {fileID: 5174558010876095162}
   - component: {fileID: 5261794726397696865}
+  - component: {fileID: 5174558010876095162}
   - component: {fileID: 7343340182497150024}
   m_Layer: 0
   m_Name: VortexCircle
@@ -87,6 +87,21 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &5261794726397696865
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2824291148003576153}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ef303bb00d6e2d40ac7b1ff4832b670, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _lifespan: 5
+  _sprite_renderer: {fileID: 1903953356677788456}
+  _pull_strength: 3
 --- !u!58 &5174558010876095162
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -122,21 +137,6 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.5
---- !u!114 &5261794726397696865
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2824291148003576153}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5ef303bb00d6e2d40ac7b1ff4832b670, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _lifespan: 5
-  _sprite_renderer: {fileID: 1903953356677788456}
-  _pull_strength: 2
 --- !u!50 &7343340182497150024
 Rigidbody2D:
   serializedVersion: 4

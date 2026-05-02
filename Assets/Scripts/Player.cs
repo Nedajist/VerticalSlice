@@ -45,6 +45,7 @@ public class Player : Ally
         {
             ResetSelf();
         }
+
     }
 
 
@@ -90,6 +91,7 @@ public class Player : Ally
             _mouse_click_data.inputFrame = _physics_frames;
             _list_of_inputs.Add(_mouse_click_data);
 
+            Debug.Log(_mouse_position);
             HandleLeftMouseInput(_mouse_position);
 
         }
@@ -183,6 +185,7 @@ public class Player : Ally
     private void ResetSelf()
     {
         GameController.instance.AddNewClone(starting_position, _list_of_inputs, _class, _speed, _max_health, _ability_1_cooldown, _ability_2_cooldown);
+        Debug.Log(_class);
         GameController.instance.main_camera.transform.SetParent(GameController.instance.transform);
         GameController.instance.TransitionGameState(GameState.selecting);
         gameObject.SetActive(false);

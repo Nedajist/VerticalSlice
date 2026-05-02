@@ -21,6 +21,8 @@ public class UIController : MonoBehaviour
     [SerializeField] private GameObject _mage_symbol;
     [SerializeField] private GameObject _healer_symbol;
     [SerializeField] private GameObject _tank_symbol;
+    [SerializeField] private GameObject _rogue_symbol;
+
 
     private float _current_health;
     private Vector3 _current_class_symbol_position = new Vector3(10, -45, 0);
@@ -73,7 +75,7 @@ public class UIController : MonoBehaviour
 
     }
 
-    public void DisplayMageClassSymbol()
+    public void DisplayMageClassSymbol() 
     {
         GameObject _instantiated_class_symbol = Instantiate(_mage_symbol, Vector3.zero, Quaternion.identity);
         _instantiated_class_symbol.transform.SetParent(_character_select_menu.transform);
@@ -95,7 +97,12 @@ public class UIController : MonoBehaviour
         _instantiated_class_symbol.transform.localPosition = _current_class_symbol_position;
     }
 
-
+    public void DisplayRogueClassSymbol()
+    {
+        GameObject _instantiated_class_symbol = Instantiate(_rogue_symbol, Vector3.zero, Quaternion.identity);
+        _instantiated_class_symbol.transform.SetParent(_character_select_menu.transform);
+        _instantiated_class_symbol.transform.localPosition = _current_class_symbol_position;
+    }
 
 }
 

@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class VortexCircle : Circle
 {
-    [SerializeField] private float _pull_strength = 4;
+    [SerializeField] private float _pull_strength = 3f;
+    [SerializeField] float _projectile_resistance_factor = 2f;
+    [SerializeField] float _boss_resistance_factor = 0.5f;
 
     private float _starting_scale;
     private float _safe_zone = 0.3f;
-    private float _boss_resistance_factor = 0.5f;
-    private float _projectile_resistance_factor = 2f;
     private float _angles_per_second = 90;
     private float _angle;
     private void Start()
@@ -33,15 +33,22 @@ public class VortexCircle : Circle
                     Vector2 lineToSelf = transform.position - recipient.transform.position; // gets line FROM recipient TO this circle
                     lineToSelf = lineToSelf.normalized * _pull_strength;
 
-                    if (recipient.GetComponent<Boss>() != null)
+                    if (recipient.GetComponent<Boss>() != null) // if boss gets caught 
                     {
                         recipient.velocity_additive = lineToSelf * _boss_resistance_factor; // if recipient is the boss, strength of pull is reduced by 50%
                     }
-                    else if (recipient.GetComponent<Projectile>() != null)
+                    else if (recipient.GetComponent<Projectile>() != null) // if projectile gets caught
                     {
-                        recipient.velocity_additive = lineToSelf * _projectile_resistance_factor; // if recipient is the projectile, strength of pull is strengthened
+                        if (recipient.GetComponent<Projectile>().infectious == true) // infectious projectiles are unaffected
+                        {
+                            continue;
+                        }
+                        else // normal projectiles are affected 
+                        {
+                            recipient.velocity_additive = lineToSelf * _projectile_resistance_factor; // if recipient is the projectile, strength of pull is strengthened
+                        }
                     }
-                    else
+                    else // if non-boss characters get caught 
                     {
                         recipient.velocity_additive = lineToSelf;
                     }
@@ -56,8 +63,6 @@ public class VortexCircle : Circle
         _lifespan -= Time.deltaTime;
 
         transform.eulerAngles = new Vector3(0, 0, _angle);
-
-
         _sprite_renderer.color = new Color(_sprite_renderer.color.r, _sprite_renderer.color.g, _sprite_renderer.color.b, _lifespan / _max_lifespan); // circle becomes more transparent each frame
 
         if (_lifespan <= 0)

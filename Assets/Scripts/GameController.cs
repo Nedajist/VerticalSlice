@@ -18,14 +18,19 @@ public class GameController : MonoBehaviour
     [SerializeField] GameObject _mage_player;
     [SerializeField] GameObject _healer_player;
     [SerializeField] GameObject _tank_player;
+    [SerializeField] GameObject _rogue_player;
+
 
     [SerializeField] GameObject _mage_stc;
     [SerializeField] GameObject _healer_stc;
     [SerializeField] GameObject _tank_stc;
+    [SerializeField] GameObject _rogue_stc;
 
     [SerializeField] GameObject _mage_add;
     [SerializeField] GameObject _healer_add;
     [SerializeField] GameObject _tank_add;
+    [SerializeField] GameObject _rogue_add;
+
 
     [SerializeField] GameObject _infectious_projectile_bundle;
     [SerializeField] public GameObject boss_object;
@@ -119,14 +124,14 @@ public class GameController : MonoBehaviour
                 case PlayerClass.Tank:
                     instantiated_clone = Instantiate(_tank_stc, Vector3.zero, Quaternion.identity);
                     break;
+                case PlayerClass.Rogue:
+                    instantiated_clone = Instantiate(_rogue_stc, Vector3.zero, Quaternion.identity);
+                    break;
             }
-
 
             Ally clone = instantiated_clone.GetComponent<Ally>();
             clone.GiveLife(clone_data.starting_position, clone_data.list_of_inputs);
             clone.StartExecuting();
-
-
 
         }
 
@@ -194,16 +199,23 @@ public class GameController : MonoBehaviour
 
     void ResetProjectiles()
     { 
-        GameObject[] projectiles = GameObject.FindGameObjectsWithTag("Projectile"); // TEMPORARY
+        GameObject[] projectiles = GameObject.FindGameObjectsWithTag("Projectile"); 
         for (int i = 0; i < projectiles.Count(); i++)
         {
             Destroy(projectiles[i]);
         }
+
+        Projectile[] bossChildProjectiles = boss.transform.GetComponentsInChildren<Projectile>(); // deletes hooks attached to boss
+        foreach (Projectile projectile in bossChildProjectiles)
+        {
+            Destroy(projectile.transform.gameObject);
+        }
+
     }
 
     void ResetAOEs()
     {
-        GameObject[] AOEs = GameObject.FindGameObjectsWithTag("AOE"); // TEMPORARY
+        GameObject[] AOEs = GameObject.FindGameObjectsWithTag("AOE"); 
         for (int i = 0; i < AOEs.Count(); i++)
         {
             Destroy(AOEs[i]);
@@ -223,6 +235,9 @@ public class GameController : MonoBehaviour
                 break;
             case PlayerClass.Mage:
                 GameObject _instantiated_mage = Instantiate(_mage_add, location, Quaternion.identity);
+                break;
+            case PlayerClass.Rogue:
+                GameObject _instantiated_rogue = Instantiate(_rogue_add, location, Quaternion.identity);
                 break;
         }
     }
@@ -297,6 +312,12 @@ public class GameController : MonoBehaviour
         _selected_player = _mage_player;
         TransitionGameState(GameState.playing);
     }
+    public void RogueSelected()
+    {
+        _selected_player = _rogue_player;
+        TransitionGameState(GameState.playing);
+    }
+
 
 
 

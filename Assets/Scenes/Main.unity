@@ -865,6 +865,7 @@ MonoBehaviour:
   _mage_symbol: {fileID: 4398942634694615749, guid: 4df02d7624ec39a46b3529f6680bd278, type: 3}
   _healer_symbol: {fileID: 587002583173361508, guid: ba4a6f10a7f873547999dd516b42f577, type: 3}
   _tank_symbol: {fileID: 7617129173982104151, guid: df3cafe2ed89cd64884a4431a8351d01, type: 3}
+  _rogue_symbol: {fileID: 7680981807578804900, guid: c0230e4940b37ee40838420c376cb19a, type: 3}
 --- !u!1 &619394800
 GameObject:
   m_ObjectHideFlags: 0
@@ -9661,12 +9662,15 @@ MonoBehaviour:
   _mage_player: {fileID: 6300768339305309504, guid: 823b5832c80d9994991c0d1a1be9f26c, type: 3}
   _healer_player: {fileID: 4735233934441035572, guid: 32fcdfb98c2ebeb448ad6b5b96826fbe, type: 3}
   _tank_player: {fileID: 8576404076224224775, guid: 98129163c506c144db16525ab764e5b1, type: 3}
+  _rogue_player: {fileID: 2276575980216221604, guid: 640ae7e83a832ad4a9aec0545f68f043, type: 3}
   _mage_stc: {fileID: 3726226174166467842, guid: 50870a582532a754b974636ca7654b3e, type: 3}
   _healer_stc: {fileID: 6450899322734345284, guid: bd36547e67fdee844a07b2a5b3498a24, type: 3}
   _tank_stc: {fileID: 2308839945440456617, guid: 07af28dd4b1b2174d947bd0fdcd46ea4, type: 3}
+  _rogue_stc: {fileID: 3664145294170776765, guid: f841ed129bdd7a84cb51f809a02d8504, type: 3}
   _mage_add: {fileID: 3726226174166467842, guid: 0373bfd8abb5cbf47905c8c31fccd192, type: 3}
   _healer_add: {fileID: 6450899322734345284, guid: 36c4cca2b262bcb4385614a2e048d2aa, type: 3}
   _tank_add: {fileID: 2308839945440456617, guid: cbdbbbd3d35cf0b40a7d6e0af90fe8df, type: 3}
+  _rogue_add: {fileID: 0}
   _infectious_projectile_bundle: {fileID: 8473234058073744903, guid: 34751ce111e4bf64eb14261c82ec41df, type: 3}
   boss_object: {fileID: 2048984343}
   main_camera: {fileID: 0}
@@ -10997,7 +11001,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1501505483
 RectTransform:
   m_ObjectHideFlags: 0
@@ -11016,6 +11020,7 @@ RectTransform:
   - {fileID: 1385695307}
   - {fileID: 1063184436}
   - {fileID: 1411227364}
+  - {fileID: 4320199770601708735}
   m_Father: {fileID: 504349824}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
@@ -12074,15 +12079,159 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
+--- !u!1 &606853594596670227
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4320199770601708735}
+  - component: {fileID: 3022769737155123405}
+  - component: {fileID: 3394052027205290402}
+  - component: {fileID: 4320199770601708736}
+  m_Layer: 5
+  m_Name: SelectRogue
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!222 &3022769737155123405
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 606853594596670227}
+  m_CullTransparentMesh: 1
+--- !u!114 &3394052027205290402
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 606853594596670227}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 21300000, guid: 454ca3d909e602d45ba3d52f5dee80c2, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!224 &4320199770601708735
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 606853594596670227}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1501505483}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 219, y: 92}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &4320199770601708736
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 606853594596670227}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Navigation:
+    m_Mode: 3
+    m_WrapAround: 0
+    m_SelectOnUp: {fileID: 0}
+    m_SelectOnDown: {fileID: 0}
+    m_SelectOnLeft: {fileID: 0}
+    m_SelectOnRight: {fileID: 0}
+  m_Transition: 1
+  m_Colors:
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
+    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_ColorMultiplier: 1
+    m_FadeDuration: 0.1
+  m_SpriteState:
+    m_HighlightedSprite: {fileID: 0}
+    m_PressedSprite: {fileID: 0}
+    m_SelectedSprite: {fileID: 0}
+    m_DisabledSprite: {fileID: 0}
+  m_AnimationTriggers:
+    m_NormalTrigger: Normal
+    m_HighlightedTrigger: Highlighted
+    m_PressedTrigger: Pressed
+    m_SelectedTrigger: Selected
+    m_DisabledTrigger: Disabled
+  m_Interactable: 1
+  m_TargetGraphic: {fileID: 3394052027205290402}
+  m_OnClick:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 854993198}
+        m_TargetAssemblyTypeName: GameController, Assembly-CSharp
+        m_MethodName: RogueSelected
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 504349825}
+        m_TargetAssemblyTypeName: UIController, Assembly-CSharp
+        m_MethodName: DisplayRogueClassSymbol
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
+  - {fileID: 854993197}
   - {fileID: 619394802}
   - {fileID: 342874832}
   - {fileID: 1479400579}
   - {fileID: 504349824}
-  - {fileID: 854993197}
   - {fileID: 2048984345}
   - {fileID: 1563468125}
   - {fileID: 1937686822}
