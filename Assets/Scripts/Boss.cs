@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 using static UnityEngine.GraphicsBuffer;
@@ -15,6 +16,7 @@ public class Boss : Enemy
     [SerializeField] GameObject _boss_disease_AOE;
     [SerializeField] GameObject _normal_sword_slash;
     [SerializeField] GameObject _wide_sword_slash;
+
 
     [SerializeField] float _degrees_per_second; // as pertaining to movement rotation. Might change during later phases. 
     [SerializeField] float _upper_degree_bound; // also determines lower bound
@@ -151,6 +153,7 @@ public class Boss : Enemy
         transform.position = starting_position;
         transform.rotation = Quaternion.identity;
         _health = _max_health;
+        _sprite.color = Color.white;
         CustomEvent.Trigger(transform.gameObject, "ReturnToPhase1");
     }
 

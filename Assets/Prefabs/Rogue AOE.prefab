@@ -99,11 +99,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1acbc17430a504f48a778576a73a6f73, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _lifespan: 0.75
+  _lifespan: 1
   _sprite_renderer: {fileID: 2086231939142864732}
-  _damage: 30
+  _damage: 40
   _rb: {fileID: 3194306490528770732}
   _max_scale: 2.5
+  _speed: 4.5
   originator: {fileID: 0}
 --- !u!50 &3194306490528770732
 Rigidbody2D:

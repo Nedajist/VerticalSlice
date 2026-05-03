@@ -7,7 +7,7 @@ public class LivingEntity : MonoBehaviour
     [SerializeField] protected float _speed;
     [SerializeField] protected float _health = 100;
     [SerializeField] protected float _max_health = 100;
-    [SerializeField] SpriteRenderer _sprite;
+    [SerializeField] protected SpriteRenderer _sprite;
 
     protected float _iframe_duration = 0.25f;
     protected float _i_frames = 0f;

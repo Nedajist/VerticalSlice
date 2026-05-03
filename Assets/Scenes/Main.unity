@@ -9670,7 +9670,7 @@ MonoBehaviour:
   _mage_add: {fileID: 3726226174166467842, guid: 0373bfd8abb5cbf47905c8c31fccd192, type: 3}
   _healer_add: {fileID: 6450899322734345284, guid: 36c4cca2b262bcb4385614a2e048d2aa, type: 3}
   _tank_add: {fileID: 2308839945440456617, guid: cbdbbbd3d35cf0b40a7d6e0af90fe8df, type: 3}
-  _rogue_add: {fileID: 0}
+  _rogue_add: {fileID: 4943816995229160182, guid: 52859618726cb644ba862e7148e47554, type: 3}
   _infectious_projectile_bundle: {fileID: 8473234058073744903, guid: 34751ce111e4bf64eb14261c82ec41df, type: 3}
   boss_object: {fileID: 2048984343}
   main_camera: {fileID: 0}

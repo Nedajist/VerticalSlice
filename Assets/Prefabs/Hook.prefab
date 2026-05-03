@@ -108,8 +108,8 @@ MonoBehaviour:
   contact_damage: 0
   _velocity_multiplicative: 1
   _lifespan: 8
-  _movement_speed: 6
-  _min_movement_speed: 5
+  _movement_speed: 7
+  _min_movement_speed: 6
   _seconds_of_homing_time: 0
   _homing: 0
   _rotating: 0

@@ -30,7 +30,7 @@ public class Ally : LivingEntity // the clone
 
     protected int _physics_frames;
     protected bool _executing = false;
-    protected float _infection_damage = 20;
+    protected float _infection_damage = 35;
 
     private bool _dead = false;
 

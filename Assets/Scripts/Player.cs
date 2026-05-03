@@ -176,8 +176,10 @@ public class Player : Ally
         {
             ResetSelf();
         }
-
-        StartCoroutine(FlashColor(0.08f, 0.08f, Color.magenta));
+        else
+        {
+            StartCoroutine(FlashColor(0.08f, 0.08f, Color.magenta));
+        }
 
     }
 

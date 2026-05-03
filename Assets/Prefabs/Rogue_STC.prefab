@@ -110,7 +110,6 @@ MonoBehaviour:
   velocity_additive: {x: 0, y: 0}
   _rb: {fileID: 1595476600195502413}
   _class: 3
-  _selected_ability: 1
   _ability_1_cooldown: 1.5
   _ability_2_cooldown: 1.5
   starting_position: {x: 0, y: 0, z: 0}

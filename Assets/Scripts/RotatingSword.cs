@@ -13,7 +13,6 @@ public class RotatingSword : MonoBehaviour
     [SerializeField] float _damage = 30f;
 
 
-
     public float target_angles_traveled = 150; // length of the sweep arc
     private float _angles_traveled = 0;
 
@@ -59,7 +58,7 @@ public class RotatingSword : MonoBehaviour
     {
         LivingEntity target_entity = collision.GetComponent<LivingEntity>();
 
-        if (collision.GetComponent<Projectile>() != null)
+        if (collision.GetComponent<Projectile>() != null && collision.GetComponent<Hook>() == null) // can destory all projectiles except for hooks 
         {
             Destroy(collision.gameObject);
             return;
