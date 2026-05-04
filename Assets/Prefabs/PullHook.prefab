@@ -107,7 +107,7 @@ MonoBehaviour:
   _target_player: {fileID: 0}
   contact_damage: 0
   _velocity_multiplicative: 1
-  _lifespan: 6
+  _lifespan: 4
   _movement_speed: 7
   _min_movement_speed: 6
   _seconds_of_homing_time: 0
