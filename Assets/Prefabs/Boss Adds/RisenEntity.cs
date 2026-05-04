@@ -17,6 +17,7 @@ public class RisenEntity : Enemy
     protected float _targeting_timer;
     private float _degree_change = 0; // how much the entity changes degrees every fixedupdate 
     private float _repulsion_factor = 2;
+    private Vector2 _previous_avoidance_velocity = Vector2.zero;
 
     public PlayerClass risen_class;
 
@@ -58,30 +59,31 @@ public class RisenEntity : Enemy
 
     private void AvoidanceCheck()
     {
-        velocity_additive = Vector2.zero;
+        Vector2 linetoself = Vector2.zero;
         RaycastHit2D[] collider_list = Physics2D.CircleCastAll(transform.position, _minimum_distance_from_characters, Vector2.zero);
         foreach (RaycastHit2D hit in collider_list)
         {
             if (hit.transform.gameObject != _target && (hit.transform.GetComponent<Enemy>() != null || hit.transform.GetComponent<Ally>() != null))
             {
-                Vector2 linetoself = transform.position - hit.transform.position;
+                linetoself = transform.position - hit.transform.position;
                 linetoself = linetoself.normalized;
-                velocity_additive += linetoself * _repulsion_factor;
+                linetoself = linetoself * _repulsion_factor;
             }
 
         }
 
-        if (velocity_additive.magnitude > _repulsion_factor)
-        {
-            velocity_additive = velocity_additive.normalized;
-            velocity_additive *= _repulsion_factor;
-        }
+        
+        linetoself = linetoself.normalized;
+        linetoself *= _repulsion_factor;
+        _previous_avoidance_velocity = linetoself;
+        velocity_additive += linetoself - _previous_avoidance_velocity;
+            
+    }
     }
 
 
 
 
-}
     
 
 

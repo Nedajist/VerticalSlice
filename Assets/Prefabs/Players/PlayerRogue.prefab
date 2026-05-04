@@ -151,8 +151,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ad0aec895b96b745a76f1c9d4e5985d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _hook: {fileID: 7382519632814428974, guid: 17d48396ff478ab49b98e7997eef2a99, type: 3}
-  _rogue_AOE: {fileID: 3974157863190624208, guid: 3658f0ef901c771488559fd6d0c95e36, type: 3}
+  _pullHook: {fileID: 7382519632814428974, guid: 80b91378a3a1457469c100d8ed3ab3bc, type: 3}
+  _pushHook: {fileID: 7382519632814428974, guid: 17d48396ff478ab49b98e7997eef2a99, type: 3}
 --- !u!50 &4123300982838569547
 Rigidbody2D:
   serializedVersion: 4

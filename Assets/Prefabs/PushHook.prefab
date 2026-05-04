@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 2866584250105325105}
   - component: {fileID: 1920259893610561386}
   m_Layer: 6
-  m_Name: Hook
+  m_Name: PushHook
   m_TagString: Projectile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -77,7 +77,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: c6b892530ddc227408a545cd84163557, type: 3}
-  m_Color: {r: 0.62253463, g: 0.67641795, b: 0.7584905, a: 1}
+  m_Color: {r: 0.85660374, g: 0.50160176, b: 0.45739403, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -107,7 +107,7 @@ MonoBehaviour:
   _target_player: {fileID: 0}
   contact_damage: 0
   _velocity_multiplicative: 1
-  _lifespan: 8
+  _lifespan: 4
   _movement_speed: 7
   _min_movement_speed: 6
   _seconds_of_homing_time: 0
@@ -123,7 +123,9 @@ MonoBehaviour:
   starting_mouseclick_position: {x: 0, y: 0, z: 0}
   starting_angle: 0
   _rigidbody: {fileID: 2866584250105325105}
-  _pullForce: 3
+  _selfPushPullForce: 3
+  _otherPushPullForce: 3
+  _hookMode: 0
   originator: {fileID: 0}
 --- !u!50 &2866584250105325105
 Rigidbody2D:
