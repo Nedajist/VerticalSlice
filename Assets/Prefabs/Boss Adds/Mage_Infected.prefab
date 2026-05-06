@@ -103,8 +103,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _speed: 4
-  _health: 100
-  _max_health: 100
+  _health: 80
+  _max_health: 80
   _sprite: {fileID: 3996401278963506867}
   velocity_additive: {x: 0, y: 0}
   _target_player: {fileID: 0}
@@ -117,6 +117,7 @@ MonoBehaviour:
   _degrees_per_second: 40
   _upper_degree_bound: 80
   _target: {fileID: 0}
+  _minimum_distance_from_characters: 3
   risen_class: 0
 --- !u!114 &2014933933321023234
 MonoBehaviour:

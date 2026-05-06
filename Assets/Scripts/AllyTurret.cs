@@ -47,6 +47,26 @@ public class AllyTurret : Ally
             }
 
             Vector3 lineToTarget = nearest_target.transform.position - transform.position;
+
+            RaycastHit2D[] target_in_line_list = Physics2D.RaycastAll(transform.position, lineToTarget);
+            foreach (RaycastHit2D hit in target_in_line_list)
+            {
+                if (hit.transform.GetComponent<Enemy>() != null) // exits loop if enemy will be first one hit
+                {
+                    break;
+                }
+                if (hit.transform.GetComponent<Ally>() != null) // won't fire if ally is in path 
+                {
+                    if (hit.transform == transform) // ignores itself 
+                    {
+                        continue;
+                    }
+                    return;
+                }
+            }
+
+
+
             lineToTarget = lineToTarget.normalized * 1.5f;
             GameObject instantiated_projectile = Instantiate(_turret_bolt, transform.position + lineToTarget, Quaternion.identity);
             instantiated_projectile.GetComponent<Projectile>().TargetLivingEntity(nearest_target);

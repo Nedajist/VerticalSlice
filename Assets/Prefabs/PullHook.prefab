@@ -116,7 +116,7 @@ MonoBehaviour:
   clockwise: 0
   _angles_per_second: 5
   _initial_lock_on: 0
-  damage: 10
+  damage: 25
   infectious: 0
   infectious_target_index: 0
   seconds_of_DOT: 0

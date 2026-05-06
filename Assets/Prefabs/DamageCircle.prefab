@@ -101,9 +101,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _lifespan: 3
   _sprite_renderer: {fileID: 8387889789954995084}
-  _damage: 50
+  _damage: 80
   _rb: {fileID: -361556481990975827}
   _max_scale: 2.5
+  _speed: 4
 --- !u!58 &3495904700819038082
 CircleCollider2D:
   m_ObjectHideFlags: 0
