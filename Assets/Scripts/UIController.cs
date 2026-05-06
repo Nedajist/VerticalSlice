@@ -28,6 +28,7 @@ public class UIController : MonoBehaviour
     private Vector3 _current_class_symbol_position = new Vector3(10, -45, 0);
 
     private Player _active_player;
+    private Color abilityBarColor;
 
     // Start is called before the first frame update
     void Start()
@@ -70,8 +71,8 @@ public class UIController : MonoBehaviour
         _ability_1_bar.value = _ability_1_bar.maxValue - _active_player.GetAbility1Timer();
         _ability_2_bar.value = _ability_2_bar.maxValue - _active_player.GetAbility2Timer();
 
-        _ability_1_image.color = Color.Lerp(Color.black, Color.green, _ability_1_bar.value / _ability_1_bar.maxValue);
-        _ability_2_image.color = Color.Lerp(Color.black, Color.green, _ability_2_bar.value / _ability_2_bar.maxValue);
+        _ability_1_image.color = Color.Lerp(Color.black, abilityBarColor, _ability_1_bar.value / _ability_1_bar.maxValue);
+        _ability_2_image.color = Color.Lerp(Color.black, abilityBarColor, _ability_2_bar.value / _ability_2_bar.maxValue);
 
     }
 
@@ -80,6 +81,7 @@ public class UIController : MonoBehaviour
         GameObject _instantiated_class_symbol = Instantiate(_mage_symbol, Vector3.zero, Quaternion.identity);
         _instantiated_class_symbol.transform.SetParent(_character_select_menu.transform);
         _instantiated_class_symbol.transform.localPosition = _current_class_symbol_position;
+        abilityBarColor = new Color(0.055f, 0.702f, 0.949f, 1f); // mana blue
     }
 
     public void DisplayHealerClassSymbol()
@@ -87,14 +89,17 @@ public class UIController : MonoBehaviour
         GameObject _instantiated_class_symbol = Instantiate(_healer_symbol, Vector3.zero, Quaternion.identity);
         _instantiated_class_symbol.transform.SetParent(_character_select_menu.transform);
         _instantiated_class_symbol.transform.localPosition = _current_class_symbol_position;
+        abilityBarColor = new Color(0.039f, 1f, 0.463f, 1f); // healer green
+
     }
-    
+
 
     public void DisplayTankClassSymbol()
     {
         GameObject _instantiated_class_symbol = Instantiate(_tank_symbol, Vector3.zero, Quaternion.identity);
         _instantiated_class_symbol.transform.SetParent(_character_select_menu.transform);
         _instantiated_class_symbol.transform.localPosition = _current_class_symbol_position;
+        abilityBarColor = new Color(0.7f, 0.231f, 0.231f, 1f); // reddish brown
     }
 
     public void DisplayRogueClassSymbol()
@@ -102,6 +107,8 @@ public class UIController : MonoBehaviour
         GameObject _instantiated_class_symbol = Instantiate(_rogue_symbol, Vector3.zero, Quaternion.identity);
         _instantiated_class_symbol.transform.SetParent(_character_select_menu.transform);
         _instantiated_class_symbol.transform.localPosition = _current_class_symbol_position;
+        abilityBarColor = new Color(1f, 0.612f, 0.039f, 1f); // reddish brown
+
     }
 
 }

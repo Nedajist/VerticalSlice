@@ -45,6 +45,7 @@ public class Player : Ally
         {
             ResetSelf();
         }
+        //Debug.Log(velocity_additive);
 
     }
 

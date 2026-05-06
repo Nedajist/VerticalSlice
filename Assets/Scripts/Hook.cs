@@ -130,13 +130,17 @@ public class Hook : Projectile
     private void Die()
     {
         Destroy(gameObject);
+    }
+
+    private void OnDestroy()
+    {
         if (originator != null)
         {
-            originator.transform.GetComponent<LivingEntity>().velocity_additive -= previousForceToTargetAdditive;
+            originator.transform.GetComponent<LivingEntity>().velocity_additive = Vector2.zero;
         }
-        if (_dualPull && _hookedEntity != null)
+        if ((_dualPull || _dualPush) && _hookedEntity != null)
         {
-            _hookedEntity.transform.GetComponent<LivingEntity>().velocity_additive -= previousForceFromTargetAdditive;
+            _hookedEntity.transform.GetComponent<LivingEntity>().velocity_additive = Vector2.zero;
         }
     }
 
