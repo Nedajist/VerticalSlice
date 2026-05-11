@@ -18,12 +18,42 @@ At the end of every FixedUpdate in phases 1 and 2, the state machine checks if t
 The state machine is directly attached to the Boss gameobject and closely related to it. Most attacks and every target switch is achieved by calling methods in the Boss script. When the boss activates a summoning ability, the script machine triggers an event from the BossAdds graph, also attached to the boss, which interacts with the GameObject singleton to summon additional enemies.
 By controlling the Boss's behavior, the machine also relates to the player and allied NPC (which are ghost replays of the player) systems. The boss's behavior forces the player to respond. When the boss launches an attack, the player will usually attempt to dodge it. When the boss switches targets, the player may wish to protect the new target and adjust their own strategy. The player and their past selves will take damage and die as a result of attacks activated by the boss state machine.
 
-
-
-
-
 ## Milestone 2 Devlog
-Milestone 2 Devlog goes here.
+1. The complicating gameplay feature I'm working on this milestone is the three pre-existing player classes (mage, tank, healer) as well as a new fourth class (rogue). Each class will have 2 abilities, be playable by the player, exist in ghost replay form as an NPC mimicking the player's past inputs, and exist as a zombie with 1 ability. The ghost replay & zombie form architecture already exists, so I will primarily be working on ability implementation. 
+	1. Add a stationary AOE slow spell for the mage
+		1. Create a trigger collider with a rigidbody2D with a script that detects when colliders enter/leave
+		2. Check if each collision belongs to a living entity (not a projectile). 
+		3. If a valid living entity enters/leaves, add/remove them to a list of GameObjects
+		4. Every physicsupdate frame, set those gameobject's velocity additives (a Vector2 variable that is added to a living entity's velocity every frame) towards the center of the collider
+		5. Assign the spell a lifespan, and have the spell sprite's transparency increase and scale decrease as its lifespan decreases. The spell is destroyed when its lifespan reaches 0. 
+		6. Have the mage instantiate the AOE spell at a position by pressing RMB.
+	
+	2. Add a dash for the tank
+		1. Create a coroutine which increases the Rogue's speed for X seconds
+		2. Track the time remaining on a dash by awaiting for new physics frames to ensure that all dashes have the same duration
+		3. Check the rogue's initial speed at the coroutine's start. After the timer is over, set it to that value.
+		4. Trigger the coroutine by pressing RMB. 
+	
+	3. Add a summonable stationary turret for the healer
+		1. Create a script which inherits from the "Ally" script (meaning that enemies will target it, and it has HP), attach it to a static capsule collider. Set its speed to zero.
+		2. Have it periodically cast a circle of R radius around itself, checking all colliders in the circle for enemies 
+		3. Sort through every enemy to find the closest
+		4. Project a raycast from itself to that enemy, checking if any other living entities are in the way
+		5. If nothing is in the way, have it instantiate a projectile gameobject facing that enemy
+		6. Have healers instantiate the turret at mouse position with RMB.
+	
+	4. Add a rogue who fires projectiles that repel & attract. 
+		1. Add a pentagon-shaped sprite with a rigidbody2d, collider, and the "Ally" script attached. Tune its HP, SPD, etc. 
+		2. Create a rogue projectile script inheriting from the base projectile script. Tune its SPD, DMG, lifespan, etc. 
+		3. When a rogue projectile hits a living target or wall, instead of destroying it, shut down its rigidbody and set itself as a child of the target. This way it becomes attached to the target. 
+		4. Have a boolean determine the projectile's type. A pull hook attracts the rogue & projectile together, while a push hook repels them. 
+		5. Add the pushing/pulling forces to the entity's velocity additives. Bosses and walls cannot be pushed/pulled.
+		6. Have the rogue instantiate a pull hook with LMB and a push hook with RMB towards mouse position. 
+
+2. The quiz question from week 5 did not help me build a feature for this milestone, as the feature it described (scriptable objects) was already complete by the end of milestone 1. The breakdowns also did not help, as I only read the instructions for milestone 2 after I had already finished adding all of the character classes. I think splitting steps into as many reasonable written substeps as possible is key for breakdowns; I mostly followed a few vague mental steps while creating the abilities/classse, and as a result I had to re-design the rogue class about half a dozen times. I will improve future breakdowns by actually writing them before programming. 
+
+3. 
+
 ## Milestone 3 Devlog
 Milestone 3 Devlog goes here.
 ## Milestone 4 Devlog
