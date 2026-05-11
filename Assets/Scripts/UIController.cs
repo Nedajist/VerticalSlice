@@ -25,6 +25,7 @@ public class UIController : MonoBehaviour
 
 
     private float _current_health;
+    private float _past_character_count = 0;
     private Vector3 _current_class_symbol_position = new Vector3(10, -45, 0);
 
     private Player _active_player;
@@ -51,7 +52,12 @@ public class UIController : MonoBehaviour
         _current_class_symbol_position += new Vector3(40, 0, 0);
         _ability_1_bar.transform.gameObject.SetActive(false);
         _ability_2_bar.transform.gameObject.SetActive(false);
-
+        if (_past_character_count > 1 && _past_character_count % 10 == 0)
+        {
+            _current_class_symbol_position += new Vector3(0, -40, 0);
+            _current_class_symbol_position = new Vector3(50, _current_class_symbol_position.y, 0);
+        }
+        _past_character_count += 1;
     }
 
     public void HideSelectionScreen() // called when entering playing phase
