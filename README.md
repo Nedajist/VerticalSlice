@@ -52,7 +52,10 @@ By controlling the Boss's behavior, the machine also relates to the player and a
 
 2. The quiz question from week 5 did not help me build a feature for this milestone, as the feature it described (scriptable objects) was already complete by the end of milestone 1. The breakdowns also did not help, as I only read the instructions for milestone 2 after I had already finished adding all of the character classes. I think splitting steps into as many reasonable written substeps as possible is key for breakdowns; I mostly followed a few vague mental steps while creating the abilities/classes, and as a result I had to re-design the rogue class about half a dozen times. I will improve future breakdowns by actually writing them before programming. 
 
-3. <img width="1897" height="1107" alt="Screenshot 2026-05-10 205910" src="https://github.com/user-attachments/assets/eb02d06a-b725-4847-9f1d-44d86bbefeaa" />
+3. <img width="1897" height="1107" alt="Screenshot 2026-05-10 205910" src="https://github.com/user-attachments/assets/eb02d06a-b725-4847-9f1d-44d86bbefeaa" /> This is the BossAdds graph, attached to the Boss gameobject. It contains a series of custom events triggered by the Boss state machine graph that calls the SummonRisen() method from the GameController C# script, summoning zombie player characters of the given class at the given positions. Those positions are stored as Vector3 graph variables. Different triggers summon a different number of zombie NPCs at different positions. This graph serves the architectural purpose of keeping separate things separate, as I decided to build most of the Boss logic within graphs. Boss graphs largely interact with each other, calling methods from scripts when necessary. Using graphs also helps me visualize the number of summons each event trigger would cause. 
+
+4. I implemented the ScriptableObject Unity System for feature 3. The player creates up to 100+ InputData.cs scriptable objects each life, each one representing a single player input. A list of those InputData objects is added to a CloneTemplate.cs scriptable object, representing a past player run in its entirety -- which can then be replayed in future runs. 
+
 
 
 ## Milestone 3 Devlog
