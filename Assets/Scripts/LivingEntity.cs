@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
+
 public class LivingEntity : MonoBehaviour
 {
     [SerializeField] protected float _speed;
@@ -14,7 +16,7 @@ public class LivingEntity : MonoBehaviour
 
 
 
-    public Vector2 velocity_additive;
+    public Dictionary<VelocityAdditiveType, VelocityAdditive> velocity_additive_dict = new Dictionary<VelocityAdditiveType, VelocityAdditive>();
 
     private Color _original_color;
 
@@ -28,6 +30,16 @@ public class LivingEntity : MonoBehaviour
         if (transform.GetComponent<Boss>() != null || transform.GetComponent<Ally>() != null || transform.GetComponent<RisenEntity>() != null)
         {
             _original_color = _sprite.color;
+        }
+    }
+
+    protected void AddVelocityAdditives()
+    {
+        Rigidbody2D rb = transform.GetComponent<Rigidbody2D>();
+        foreach (KeyValuePair<VelocityAdditiveType, VelocityAdditive> pair in velocity_additive_dict)
+        {
+            rb.velocity += pair.Value.GetTrueAdditive();
+            Debug.Log(pair.Value.GetTrueAdditive());
         }
     }
 

@@ -23,12 +23,13 @@ public class Hook : Projectile
     private GameObject _hookedEntity;
 
     private float _disengageDistance = 1.5f;
-    private Vector2 previousForceToTargetAdditive; // the force pulling self to entity or pushing self away from entity
-    private Vector2 previousForceFromTargetAdditive; // the force pulling entity to self or pushing entity away from self 
-
 
     protected override void Start()
     {
+        LivingEntity originatingEntity = originator.GetComponent<LivingEntity>();
+        if (originatingEntity.velocity_additive_dict.ContainsKey(VelocityAdditiveType.hook) == false){
+            originatingEntity.velocity_additive_dict[VelocityAdditiveType.hook] = GetHookVelocityAdditive();
+        }
 
         starting_mouseclick_position.z = 0;
         transform.right = starting_mouseclick_position - transform.position;
@@ -42,7 +43,8 @@ public class Hook : Projectile
 
         if (_hooked == false) // normal projectile movement 
         {
-            _rigidbody.AddForce(transform.right * _movement_speed + new Vector3(velocity_additive.x, velocity_additive.y, 0));
+            _rigidbody.AddForce(transform.right * _movement_speed);
+            AddVelocityAdditives();
             if (_rigidbody.velocity.magnitude < _min_movement_speed)
             {
                 _rigidbody.velocity = _rigidbody.velocity.normalized;
@@ -60,24 +62,21 @@ public class Hook : Projectile
                 lineToHooked = lineToHooked * -1; // pushes if pushing 
             }
 
-            originator.transform.GetComponent<LivingEntity>().velocity_additive += lineToHooked - previousForceToTargetAdditive;
+            originator.transform.GetComponent<LivingEntity>().velocity_additive_dict[VelocityAdditiveType.hook].additive_total += lineToHooked;
             if (_dualPull)
             {
                 Vector2 lineToOriginator = originator.transform.position - transform.position;
                 lineToOriginator = lineToOriginator.normalized * _otherPushPullForce;
-                _hookedEntity.transform.GetComponent<LivingEntity>().velocity_additive += lineToOriginator - previousForceFromTargetAdditive;
-                previousForceFromTargetAdditive = lineToOriginator;
+                _hookedEntity.transform.GetComponent<LivingEntity>().velocity_additive_dict[VelocityAdditiveType.hook].additive_total += lineToOriginator;
             }
 
             else if (_dualPush)
             {
                 Vector2 lineToTarget = transform.position - originator.transform.position;
                 lineToTarget = lineToTarget.normalized * _otherPushPullForce;
-                _hookedEntity.transform.GetComponent<LivingEntity>().velocity_additive += lineToTarget - previousForceFromTargetAdditive;
-                previousForceFromTargetAdditive = lineToTarget;
+                _hookedEntity.transform.GetComponent<LivingEntity>().velocity_additive_dict[VelocityAdditiveType.hook].additive_total += lineToTarget;
             }
 
-            previousForceToTargetAdditive = lineToHooked;
 
 
             if (Vector3.Distance(transform.position, originator.transform.position) < _disengageDistance)
@@ -100,12 +99,20 @@ public class Hook : Projectile
         if (collision.transform.gameObject != originator) // can't hook yourself
         {
             _hookedEntity = collision.transform.gameObject;
+ 
+
+
             transform.SetParent(collision.transform);
             _rigidbody.simulated = false;
             _hooked = true;
 
-            if (collision.transform.GetComponent<Boss>() == null && collision.transform.GetComponent<LivingEntity>() != null) // can't pull/push boss or wall towards self
+
+            LivingEntity _hookedLivingEntity = collision.transform.GetComponent<LivingEntity>();
+            if (collision.transform.GetComponent<Boss>() == null && _hookedLivingEntity != null) // can't pull/push boss or wall towards self
             {
+
+                _hookedLivingEntity.velocity_additive_dict[VelocityAdditiveType.hook] = GetHookVelocityAdditive();
+
                 if (_hookMode == HookMode.pull) // pull mode
                 {
                     _dualPull = true;
@@ -132,15 +139,22 @@ public class Hook : Projectile
         Destroy(gameObject);
     }
 
+    private VelocityAdditive GetHookVelocityAdditive()
+    {
+        VelocityAdditive hook_velocity_additive = new VelocityAdditive();
+        hook_velocity_additive.additive_max_magnitude = _selfPushPullForce;
+        return hook_velocity_additive;
+    }
+
     private void OnDestroy()
     {
         if (originator != null)
         {
-            originator.transform.GetComponent<LivingEntity>().velocity_additive = Vector2.zero;
+            originator.transform.GetComponent<LivingEntity>().velocity_additive_dict[VelocityAdditiveType.hook].additive_total = Vector2.zero;
         }
         if ((_dualPull || _dualPush) && _hookedEntity != null)
         {
-            _hookedEntity.transform.GetComponent<LivingEntity>().velocity_additive = Vector2.zero;
+            _hookedEntity.transform.GetComponent<LivingEntity>().velocity_additive_dict[VelocityAdditiveType.hook].additive_total = Vector2.zero;
         }
     }
 

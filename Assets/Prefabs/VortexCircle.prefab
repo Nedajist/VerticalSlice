@@ -102,6 +102,8 @@ MonoBehaviour:
   _lifespan: 5
   _sprite_renderer: {fileID: 1903953356677788456}
   _pull_strength: 3
+  _projectile_resistance_factor: 0.05
+  _boss_resistance_factor: 0.5
 --- !u!58 &5174558010876095162
 CircleCollider2D:
   m_ObjectHideFlags: 0

@@ -58,7 +58,7 @@ public class Ally : LivingEntity // the clone
         _physics_frames += 1;
         if (_executing) // calls _execute() once every physics frame, so 0-1 inputs are executed each second. 
         {
-            _execute();
+            Execute();
         }
 
         if (seconds_of_infection > 0)
@@ -69,7 +69,7 @@ public class Ally : LivingEntity // the clone
         }
     }
 
-    protected void _execute() // executes all inputs that start on this frame or on a previous frame but have not finished executing. Each individual input is executed only once per frame. This method is only called once per frame.
+    protected void Execute() // executes all inputs that start on this frame or on a previous frame but have not finished executing. Each individual input is executed only once per frame. This method is only called once per frame.
     {
         bool moved_this_frame = false;
 
@@ -125,7 +125,8 @@ public class Ally : LivingEntity // the clone
 
     protected void HandleMovementInput(Vector2 direction) // moves this player by direction
     {
-        _rb.velocity = (direction * _speed) + velocity_additive;
+        _rb.velocity = (direction * _speed);
+        AddVelocityAdditives();
     }
 
 
@@ -160,7 +161,8 @@ public class Ally : LivingEntity // the clone
 
     protected void FreezeVelocity()
     {
-        _rb.velocity = Vector2.zero + velocity_additive;
+        _rb.velocity = Vector2.zero;
+        AddVelocityAdditives();
     }
 
     public void StartExecuting()

@@ -114,6 +114,7 @@ public class Boss : Enemy
         _target_x = _target_player.transform.position.x;
         _target_y = _target_player.transform.position.y;
         Move();
+        AddVelocityAdditives();
     }
 
     public void SlitherTowardsTargetPlayer() // Kinda rotates around player but also zigzaggy. Best for ranged. 
@@ -129,6 +130,7 @@ public class Boss : Enemy
         }
 
         _rb.velocity = GameController.instance.RotateVector2(_rb.velocity, degree_change);
+        AddVelocityAdditives();
     }
 
     private void Move() // sets rigidbody velocity DIRECTLY towards target x and y 
@@ -136,7 +138,7 @@ public class Boss : Enemy
         
         Vector2 _line_to_target = new Vector2(_target_x, _target_y) - (Vector2)transform.position;
         _line_to_target = _line_to_target.normalized;
-        _rb.velocity = (_line_to_target * _velocity_multiplicative * _speed) + velocity_additive;
+        _rb.velocity = _line_to_target * _speed;
     }
 
     private void OnCollisionEnter2D(Collision2D collision)

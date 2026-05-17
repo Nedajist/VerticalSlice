@@ -20,10 +20,14 @@ public class RisenEntity : Enemy
     private Vector2 _previous_avoidance_velocity = Vector2.zero;
 
     public PlayerClass risen_class;
+    
 
     protected override void Start()
     {
         SetColor();
+        VelocityAdditive avoidance_additive = new VelocityAdditive();
+        avoidance_additive.additive_max_magnitude = _repulsion_factor;
+        velocity_additive_dict[VelocityAdditiveType.avoidance] = avoidance_additive;
     }
 
     protected virtual void OnCollisionEnter2D(Collision2D collision)
@@ -52,7 +56,7 @@ public class RisenEntity : Enemy
         }
 
         AvoidanceCheck();
-        _rb.velocity = GameController.instance.RotateVector2(_rb.velocity, _degree_change) + velocity_additive;
+        AddVelocityAdditives();
 
     }
 
@@ -68,15 +72,10 @@ public class RisenEntity : Enemy
                 linetoself = transform.position - hit.transform.position;
                 linetoself = linetoself.normalized;
                 linetoself = linetoself * _repulsion_factor;
+                velocity_additive_dict[VelocityAdditiveType.avoidance].additive_total += linetoself;
             }
-
         }
 
-        
-        linetoself = linetoself.normalized;
-        linetoself *= _repulsion_factor;
-        _previous_avoidance_velocity = linetoself;
-        velocity_additive += linetoself - _previous_avoidance_velocity;
             
     }
     }

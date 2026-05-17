@@ -97,18 +97,18 @@ public class Projectile: Enemy
         
         if (_rigidbody.velocity.magnitude < _min_movement_speed)
         {
-            _rigidbody.velocity = _rigidbody.velocity.normalized * _min_movement_speed + velocity_additive;
+            _rigidbody.velocity = _rigidbody.velocity.normalized * _min_movement_speed;
         }
         
         if (_homing == true && _seconds_of_homing_time > 0 && _target_player != null)
         {
             _seconds_of_homing_time -= Time.deltaTime;
             transform.right = transform.right + ((_target_player.transform.position - transform.position) - transform.right) * (Time.deltaTime * _angles_per_second / 360f);
-            _rigidbody.velocity = (transform.right * _movement_speed) + new Vector3(velocity_additive.x, velocity_additive.y, 0); // this is where projectiles move forward if homing;
+            _rigidbody.velocity = (transform.right * _movement_speed); // this is where projectiles move forward if homing;
         }
         else // this is where projectiles move forward if not homing;
         {
-            _rigidbody.AddForce(transform.right * _movement_speed + new Vector3(velocity_additive.x, velocity_additive.y, 0));
+            _rigidbody.AddForce(transform.right * _movement_speed);
         }
 
 
@@ -116,6 +116,8 @@ public class Projectile: Enemy
         {
             transform.eulerAngles = new Vector3(0, 0, _angle);
         }
+
+        AddVelocityAdditives();
 
     }
 

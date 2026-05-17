@@ -1,11 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEngine.GraphicsBuffer;
 
 public class VortexCircle : Circle
 {
     [SerializeField] private float _pull_strength = 3f;
-    [SerializeField] float _projectile_resistance_factor = 2f;
+    [SerializeField] float _projectile_resistance_factor = 0.3f;
     [SerializeField] float _boss_resistance_factor = 0.5f;
 
     private float _starting_scale;
@@ -32,30 +33,13 @@ public class VortexCircle : Circle
                 {
                     Vector2 lineToSelf = transform.position - recipient.transform.position; // gets line FROM recipient TO this circle
                     lineToSelf = lineToSelf.normalized * _pull_strength;
-
-                    if (recipient.GetComponent<Boss>() != null) // if boss gets caught 
-                    {
-                        recipient.velocity_additive = lineToSelf * _boss_resistance_factor; // if recipient is the boss, strength of pull is reduced by 50%
-                    }
-                    else if (recipient.GetComponent<Projectile>() != null) // if projectile gets caught
-                    {
-                        if (recipient.GetComponent<Projectile>().infectious == true) // infectious projectiles are unaffected
-                        {
-                            continue;
-                        }
-                        else // normal projectiles are affected 
-                        {
-                            recipient.velocity_additive = lineToSelf * _projectile_resistance_factor; // if recipient is the projectile, strength of pull is strengthened
-                        }
-                    }
-                    else // if non-boss characters get caught 
-                    {
-                        recipient.velocity_additive = lineToSelf;
-                    }
+                    recipient.velocity_additive_dict[VelocityAdditiveType.vortex].additive_total += lineToSelf; // if recipient is the boss, strength of pull is reduced by 50%
                 }
                 else // if they are, frees them from forced movement. This reduces rapid movements. 
                 {
-                    recipient.velocity_additive = Vector2.zero;
+                    if (recipient.velocity_additive_dict.ContainsKey(VelocityAdditiveType.vortex) == false) recipient.velocity_additive_dict[VelocityAdditiveType.vortex] = GetVelocityAdditive(recipient);
+
+                    recipient.velocity_additive_dict[VelocityAdditiveType.vortex].additive_total = Vector2.zero;
                 }
             }
         }
@@ -78,7 +62,13 @@ public class VortexCircle : Circle
     {
         if (collision.transform.GetComponent<LivingEntity>() != null)
         {
-            _list_of_recipients.Add(collision.transform.GetComponent<LivingEntity>());
+            LivingEntity target = collision.transform.GetComponent<LivingEntity>();
+            if (target.velocity_additive_dict.ContainsKey(VelocityAdditiveType.vortex) == false)
+            {
+                target.velocity_additive_dict[VelocityAdditiveType.vortex] = GetVelocityAdditive(target);
+            }
+
+            _list_of_recipients.Add(target);
 
             if (collision.transform.GetComponent<Projectile>() != null)
             {
@@ -93,15 +83,22 @@ public class VortexCircle : Circle
     {
         if (collision.transform.GetComponent<LivingEntity>() != null)
         {
-            LivingEntity entity = collision.transform.GetComponent<LivingEntity>();
-            entity.velocity_additive = Vector2.zero;
-
+            LivingEntity target = collision.transform.GetComponent<LivingEntity>();
+            target.velocity_additive_dict.Remove(VelocityAdditiveType.vortex);
             _list_of_recipients.Remove(collision.transform.GetComponent<LivingEntity>());
         }
 
-
     }
 
+    private VelocityAdditive GetVelocityAdditive(LivingEntity target)
+    {
+        VelocityAdditive vortex_additive = new VelocityAdditive();
+
+        if (target.transform.GetComponent<Boss>() != null) vortex_additive.additive_max_magnitude = _pull_strength * _boss_resistance_factor;
+        else if (target.transform.GetComponent<Projectile>() != null) vortex_additive.additive_max_magnitude = _pull_strength * _projectile_resistance_factor;
+        else vortex_additive.additive_max_magnitude = _pull_strength;
+        return vortex_additive;
+    }
 
 }
 
