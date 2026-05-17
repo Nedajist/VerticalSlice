@@ -16,6 +16,7 @@ public class HealthBar : MonoBehaviour
     private LivingEntity _living_entity;
     private float _current_health;
     private float _max_health;
+    private float _bar_height = 1;
     private Vector3 _original_scale;
 
     // Start is called before the first frame update
@@ -38,7 +39,11 @@ public class HealthBar : MonoBehaviour
     {
         _current_health = _living_entity.GetHealth();
         _health_bar.value = _current_health;
-
+        _bar_canvas.transform.rotation = Quaternion.identity;
+        if (transform.GetComponent<Boss>() == null)
+        {
+            _bar_canvas.transform.position = transform.position + new Vector3(0, _bar_height, 0);
+        }
 
         if (Mathf.Abs(_lazy_bar.value - _health_bar.value) < 1)
         {

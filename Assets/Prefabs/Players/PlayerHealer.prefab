@@ -110,7 +110,6 @@ MonoBehaviour:
   velocity_additive: {x: 0, y: 0}
   _rb: {fileID: 1471530773125142405}
   _class: 2
-  _selected_ability: 1
   _ability_1_cooldown: 1
   _ability_2_cooldown: 3
   starting_position: {x: 0, y: 0, z: 0}
@@ -180,7 +179,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 4
+  m_Constraints: 0
 --- !u!114 &8182856222948728574
 MonoBehaviour:
   m_ObjectHideFlags: 0
