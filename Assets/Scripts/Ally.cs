@@ -5,7 +5,8 @@ public enum PlayerClass
     Mage,
     Tank,
     Healer,
-    Rogue
+    Rogue,
+    Painter
 }
 public class Ally : LivingEntity // the clone
 {

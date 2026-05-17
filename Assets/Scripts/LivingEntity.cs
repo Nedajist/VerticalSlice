@@ -18,7 +18,7 @@ public class LivingEntity : MonoBehaviour
 
     public Dictionary<VelocityAdditiveType, VelocityAdditive> velocity_additive_dict = new Dictionary<VelocityAdditiveType, VelocityAdditive>();
 
-    private Color _original_color;
+    protected Color _original_color;
 
     protected virtual void Start()
     {
@@ -27,7 +27,7 @@ public class LivingEntity : MonoBehaviour
 
     protected void SetColor()
     {
-        if (transform.GetComponent<Boss>() != null || transform.GetComponent<Ally>() != null || transform.GetComponent<RisenEntity>() != null)
+        if (transform.GetComponent<Boss>() != null || transform.GetComponent<Ally>() != null || transform.GetComponent<RisenEntity>() != null || transform.GetComponent<PlaceableRectangle>() != null)
         {
             _original_color = _sprite.color;
         }
@@ -39,7 +39,6 @@ public class LivingEntity : MonoBehaviour
         foreach (KeyValuePair<VelocityAdditiveType, VelocityAdditive> pair in velocity_additive_dict)
         {
             rb.velocity += pair.Value.GetTrueAdditive();
-            Debug.Log(pair.Value.GetTrueAdditive());
         }
     }
 

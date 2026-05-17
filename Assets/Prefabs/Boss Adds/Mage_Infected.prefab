@@ -106,12 +106,11 @@ MonoBehaviour:
   _health: 80
   _max_health: 80
   _sprite: {fileID: 3996401278963506867}
-  velocity_additive: {x: 0, y: 0}
   _target_player: {fileID: 0}
   contact_damage: 25
   _velocity_multiplicative: 1
   _rb: {fileID: 7557587598728034004}
-  _targeting_cooldown: 0
+  _targeting_cooldown: 3
   _ability_cooldown: 2.5
   _starting_position: {x: 0, y: 0, z: 0}
   _degrees_per_second: 40

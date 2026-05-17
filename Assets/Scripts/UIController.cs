@@ -22,6 +22,7 @@ public class UIController : MonoBehaviour
     [SerializeField] private GameObject _healer_symbol;
     [SerializeField] private GameObject _tank_symbol;
     [SerializeField] private GameObject _rogue_symbol;
+    [SerializeField] private GameObject _painter_symbol;
 
 
     private float _current_health;
@@ -114,6 +115,15 @@ public class UIController : MonoBehaviour
         _instantiated_class_symbol.transform.SetParent(_character_select_menu.transform);
         _instantiated_class_symbol.transform.localPosition = _current_class_symbol_position;
         abilityBarColor = new Color(1f, 0.612f, 0.039f, 1f); // reddish brown
+
+    }
+
+    public void DisplayPainterClassSymbol()
+    {
+        GameObject _instantiated_class_symbol = Instantiate(_painter_symbol, Vector3.zero, Quaternion.identity);
+        _instantiated_class_symbol.transform.SetParent(_character_select_menu.transform);
+        _instantiated_class_symbol.transform.localPosition = _current_class_symbol_position;
+        abilityBarColor = new Color(0.247f, 0.145f, 0.722f, 1f); // reddish brown
 
     }
 

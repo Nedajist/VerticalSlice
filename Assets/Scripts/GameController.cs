@@ -19,12 +19,15 @@ public class GameController : MonoBehaviour
     [SerializeField] GameObject _healer_player;
     [SerializeField] GameObject _tank_player;
     [SerializeField] GameObject _rogue_player;
+    [SerializeField] GameObject _painter_player;
 
 
     [SerializeField] GameObject _mage_stc;
     [SerializeField] GameObject _healer_stc;
     [SerializeField] GameObject _tank_stc;
     [SerializeField] GameObject _rogue_stc;
+    [SerializeField] GameObject _painter_stc;
+
 
     [SerializeField] GameObject _mage_add;
     [SerializeField] GameObject _healer_add;
@@ -127,6 +130,9 @@ public class GameController : MonoBehaviour
                 case PlayerClass.Rogue:
                     instantiated_clone = Instantiate(_rogue_stc, Vector3.zero, Quaternion.identity);
                     break;
+                case PlayerClass.Painter:
+                    instantiated_clone = Instantiate(_painter_stc, Vector3.zero, Quaternion.identity);
+                    break;
             }
 
             Ally clone = instantiated_clone.GetComponent<Ally>();
@@ -177,7 +183,7 @@ public class GameController : MonoBehaviour
         ResetEnemies();
         ResetProjectiles();
         ResetAOEs();
-
+        ResetObstacles();
     }
 
     void ResetEnemies() // also deletes all enemy projectiles 
@@ -222,6 +228,14 @@ public class GameController : MonoBehaviour
         }
     }
 
+    void ResetObstacles()
+    {
+        GameObject[] AOEs = GameObject.FindGameObjectsWithTag("Obstacle");
+        for (int i = 0; i < AOEs.Count(); i++)
+        {
+            Destroy(AOEs[i]);
+        }
+    }
 
     public void SummonRisen(Vector3 location, PlayerClass risenclass)
     {
@@ -317,7 +331,11 @@ public class GameController : MonoBehaviour
         _selected_player = _rogue_player;
         TransitionGameState(GameState.playing);
     }
-
+    public void PainterSelected()
+    {
+        _selected_player = _painter_player;
+        TransitionGameState(GameState.playing);
+    }
 
 
 
