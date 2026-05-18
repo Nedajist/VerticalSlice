@@ -110,7 +110,7 @@ MonoBehaviour:
   _rb: {fileID: 967836437812052763}
   _class: 4
   _ability_1_cooldown: 1.5
-  _ability_2_cooldown: 1.5
+  _ability_2_cooldown: 1
   starting_position: {x: 0, y: 0, z: 0}
   is_clone: 0
   seconds_of_infection: 0

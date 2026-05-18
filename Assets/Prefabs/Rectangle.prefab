@@ -103,9 +103,9 @@ MonoBehaviour:
   _health: 100
   _max_health: 100
   _sprite: {fileID: 6976260552116415390}
+  _damage: 30
   _collider: {fileID: 1732280997253399415}
   _maxArea: 6
-  _damage: 30
   placed: 0
   placeable: 0
 --- !u!50 &8038908581182425213
@@ -116,7 +116,7 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9053661842445877860}
-  m_BodyType: 2
+  m_BodyType: 1
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
@@ -134,7 +134,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!61 &1732280997253399415
 BoxCollider2D:
   m_ObjectHideFlags: 0

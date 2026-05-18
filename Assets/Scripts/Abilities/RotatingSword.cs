@@ -15,7 +15,7 @@ public class RotatingSword : MonoBehaviour
 
     public float target_angles_traveled = 150; // length of the sweep arc
     private float _angles_traveled = 0;
-
+    private float _rectangle_damage_bonus = 2;
 
     // Start is called before the first frame update
     void Start()
@@ -61,6 +61,12 @@ public class RotatingSword : MonoBehaviour
         if (collision.GetComponent<Projectile>() != null && collision.GetComponent<Hook>() == null) // can destory all projectiles except for hooks 
         {
             Destroy(collision.gameObject);
+            return;
+        }
+
+        else if (collision.GetComponent<Rectangle>() != null)
+        {
+            collision.GetComponent<Rectangle>().ReceiveDamage(_damage * _rectangle_damage_bonus);
             return;
         }
 

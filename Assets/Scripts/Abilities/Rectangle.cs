@@ -67,6 +67,7 @@ public class Rectangle : LivingEntity
             ReceiveDamage(collision.transform.GetComponent<Enemy>().contact_damage);
         }
 
+
     }
 
 }

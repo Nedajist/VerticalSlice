@@ -92,7 +92,6 @@ public class Player : Ally
             _mouse_click_data.inputFrame = _physics_frames;
             _list_of_inputs.Add(_mouse_click_data);
 
-            Debug.Log(_mouse_position);
             HandleLeftMouseInput(_mouse_position);
 
         }

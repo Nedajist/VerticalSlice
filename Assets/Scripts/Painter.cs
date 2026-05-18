@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Painter : ClassAbility
@@ -64,5 +65,13 @@ public class Painter : ClassAbility
             _starting_mouse_coordinates = mouse_position;
         }
 
+    }
+
+    private void OnDestroy()
+    {
+        if (_current_rectangle != null)
+        {
+            Destroy(_current_rectangle.gameObject);
+        }
     }
 }

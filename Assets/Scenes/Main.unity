@@ -9813,7 +9813,7 @@ MonoBehaviour:
   _healer_stc: {fileID: 6450899322734345284, guid: bd36547e67fdee844a07b2a5b3498a24, type: 3}
   _tank_stc: {fileID: 2308839945440456617, guid: 07af28dd4b1b2174d947bd0fdcd46ea4, type: 3}
   _rogue_stc: {fileID: 3664145294170776765, guid: f841ed129bdd7a84cb51f809a02d8504, type: 3}
-  _painter_stc: {fileID: 6450899322734345284, guid: bd36547e67fdee844a07b2a5b3498a24, type: 3}
+  _painter_stc: {fileID: 1386383621433413162, guid: 9f6906fcd5e5c4b408c1ec2f274fe63a, type: 3}
   _mage_add: {fileID: 3726226174166467842, guid: 0373bfd8abb5cbf47905c8c31fccd192, type: 3}
   _healer_add: {fileID: 6450899322734345284, guid: 36c4cca2b262bcb4385614a2e048d2aa, type: 3}
   _tank_add: {fileID: 2308839945440456617, guid: cbdbbbd3d35cf0b40a7d6e0af90fe8df, type: 3}

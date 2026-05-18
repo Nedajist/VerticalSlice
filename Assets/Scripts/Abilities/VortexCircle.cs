@@ -33,6 +33,8 @@ public class VortexCircle : Circle
                 {
                     Vector2 lineToSelf = transform.position - recipient.transform.position; // gets line FROM recipient TO this circle
                     lineToSelf = lineToSelf.normalized * _pull_strength;
+
+                    if (recipient.velocity_additive_dict.ContainsKey(VelocityAdditiveType.vortex) == false) recipient.velocity_additive_dict[VelocityAdditiveType.vortex] = GetVelocityAdditive(recipient);
                     recipient.velocity_additive_dict[VelocityAdditiveType.vortex].additive_total += lineToSelf; // if recipient is the boss, strength of pull is reduced by 50%
                 }
                 else // if they are, frees them from forced movement. This reduces rapid movements. 

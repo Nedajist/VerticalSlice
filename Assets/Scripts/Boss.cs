@@ -37,6 +37,8 @@ public class Boss : Enemy
 
     public override void ReceiveDamage(float amount)
     {
+        if (transform.gameObject.activeSelf == false) return;
+
         if (_i_frames > 0)
         {
             return;
