@@ -5,6 +5,7 @@ using UnityEngine;
 public class Tank : ClassAbility
 {
     [SerializeField] private GameObject _tank_sword;
+    [SerializeField] private TrailRenderer _tank_trail;
 
     public override void Ability1(Vector3 mouse_position)
     {
@@ -32,6 +33,7 @@ public class Tank : ClassAbility
 
     public IEnumerator Charge(float duration)
     {
+        _tank_trail.emitting = true;
         Ally own_self = transform.GetComponent<Ally>();
         float original_speed = own_self.GetSpeed();
 
@@ -40,6 +42,7 @@ public class Tank : ClassAbility
         yield return new WaitForSeconds(duration);
 
         own_self.SetSpeed(original_speed);
+        _tank_trail.emitting = false;
         yield return null;
     }
 }

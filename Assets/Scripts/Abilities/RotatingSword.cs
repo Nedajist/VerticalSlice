@@ -24,6 +24,14 @@ public class RotatingSword : MonoBehaviour
         {
             center = GameController.instance.boss_object;
         }
+
+        Quaternion _rotation_quaternion = Quaternion.Euler(0, 0, transform.rotation.eulerAngles.z); // sets starting rotation/position so trail doesn't glitch out 
+        transform.rotation = _rotation_quaternion;
+        float _circle_x = _radius * Mathf.Cos(transform.rotation.eulerAngles.z * Mathf.Deg2Rad);
+        float _circle_y = _radius * Mathf.Sin(transform.rotation.eulerAngles.z * Mathf.Deg2Rad);
+
+        transform.position = center.transform.position + new Vector3(_circle_x, _circle_y, 0);
+
     }
 
     // Update is called once per frame
