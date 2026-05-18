@@ -23,7 +23,7 @@ public class Rectangle : LivingEntity
         _health -= damage;
         if (_health <= 0)
         {
-            Destroy(gameObject);
+            StartCoroutine(FadeAway(1f));
         }
 
 

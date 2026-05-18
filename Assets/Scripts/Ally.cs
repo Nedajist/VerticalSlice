@@ -226,7 +226,7 @@ public class Ally : LivingEntity // the clone
             }
 
             _dead = true;
-            Destroy(gameObject);
+            StartCoroutine(FadeAway(1f));
         }
     }
 

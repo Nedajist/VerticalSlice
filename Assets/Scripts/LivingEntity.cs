@@ -63,7 +63,7 @@ public class LivingEntity : MonoBehaviour
         StartCoroutine(FlashColor(0.1f, 0.1f, Color.red));
         if (_health<= 0)
         {
-            Destroy(gameObject);
+            StartCoroutine(FadeAway(1f));
         }
     }
 
@@ -114,6 +114,20 @@ public class LivingEntity : MonoBehaviour
         if (transform.GetComponent<HealthBar>() == null) return;
         transform.GetComponent<HealthBar>().StartCoroutine(transform.GetComponent<HealthBar>().TempSizeChange(0.15f, 0.3f, 0.3f));
     }
+
+    protected virtual IEnumerator FadeAway(float duration)
+    {
+        float timer = duration;
+        transform.GetComponent<Rigidbody2D>().simulated = false; // disabled rigidbody
+        while (timer > 0)
+        {
+            timer -= Time.deltaTime;
+            _sprite.color = Color.Lerp(_sprite.color, new Color(Color.red.r, Color.red.b, Color.red.g, timer / duration), timer / duration);
+            yield return new WaitForFixedUpdate();
+        }
+        Destroy(gameObject);
+    }
+
 
 
 }
