@@ -67,6 +67,11 @@ public class Hook : Projectile
             {
                 Vector2 lineToOriginator = originator.transform.position - transform.position;
                 lineToOriginator = lineToOriginator.normalized * _otherPushPullForce;
+                if (_hookedEntity.transform.GetComponent<LivingEntity>().velocity_additive_dict.ContainsKey(VelocityAdditiveType.hook) == false)
+                {
+                    _hookedEntity.transform.GetComponent<LivingEntity>().velocity_additive_dict[VelocityAdditiveType.hook] = GetHookVelocityAdditive();
+                }
+
                 _hookedEntity.transform.GetComponent<LivingEntity>().velocity_additive_dict[VelocityAdditiveType.hook].additive_total += lineToOriginator;
             }
 
@@ -74,6 +79,11 @@ public class Hook : Projectile
             {
                 Vector2 lineToTarget = transform.position - originator.transform.position;
                 lineToTarget = lineToTarget.normalized * _otherPushPullForce;
+                if (_hookedEntity.transform.GetComponent<LivingEntity>().velocity_additive_dict.ContainsKey(VelocityAdditiveType.hook) == false)
+                {
+                    _hookedEntity.transform.GetComponent<LivingEntity>().velocity_additive_dict[VelocityAdditiveType.hook] = GetHookVelocityAdditive();
+                }
+
                 _hookedEntity.transform.GetComponent<LivingEntity>().velocity_additive_dict[VelocityAdditiveType.hook].additive_total += lineToTarget;
             }
 

@@ -33,6 +33,7 @@ public class GameController : MonoBehaviour
     [SerializeField] GameObject _healer_add;
     [SerializeField] GameObject _tank_add;
     [SerializeField] GameObject _rogue_add;
+    [SerializeField] GameObject _painter_add;
 
 
     [SerializeField] GameObject _infectious_projectile_bundle;
@@ -47,7 +48,7 @@ public class GameController : MonoBehaviour
     public List<CloneTemplate> past_incarnation_list = new List<CloneTemplate>(); // list containing the hp, health, class, etc of past incarnatinos of the player
     public GameState current_gamestate;
 
-    private Vector3 _player_starting_position = new Vector3(-3, 0, 0); // effectively this is (-2, 0, 0) as 1 is added to vector3.x immediately
+    private Vector3 _player_starting_position = new Vector3(-1, -1, 0); // effectively this is (-1, -2.5, 0) as -1.5 is added to vector3.y immediately
     private GameObject _selected_player;
 
     public GameObject current_player;
@@ -253,6 +254,9 @@ public class GameController : MonoBehaviour
             case PlayerClass.Rogue:
                 GameObject _instantiated_rogue = Instantiate(_rogue_add, location, Quaternion.identity);
                 break;
+            case PlayerClass.Painter:
+                GameObject _instantiated_painter = Instantiate(_painter_add, location, Quaternion.identity);
+                break;
         }
     }
 
@@ -282,12 +286,14 @@ public class GameController : MonoBehaviour
                 Time.timeScale = 0;
                 boss.transform.gameObject.SetActive(false);
                 CullClones();
-                _player_starting_position += new Vector3(1, 0, 0);
-                if (_player_starting_position.x == 3)
-                {
-                    _player_starting_position = new Vector3(-2, _player_starting_position.y - 1, 0);
-                }
+                _player_starting_position -= new Vector3(0, 1.5f, 0);
+                main_camera.GetComponent<MainCamera>().seconds_of_camera_shake = 0;
 
+                if (_player_starting_position.y == -7)
+                {
+                    _player_starting_position = new Vector3(_player_starting_position.x + 1, -2.5f, 0);
+                }
+                Debug.Log(_player_starting_position);
 
                 break;
             case (GameState.playing):

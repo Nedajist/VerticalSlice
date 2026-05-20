@@ -9818,6 +9818,7 @@ MonoBehaviour:
   _healer_add: {fileID: 6450899322734345284, guid: 36c4cca2b262bcb4385614a2e048d2aa, type: 3}
   _tank_add: {fileID: 2308839945440456617, guid: cbdbbbd3d35cf0b40a7d6e0af90fe8df, type: 3}
   _rogue_add: {fileID: 4943816995229160182, guid: 52859618726cb644ba862e7148e47554, type: 3}
+  _painter_add: {fileID: 471033112329048345, guid: 078a6eac76865ef4889529fb3cc9979c, type: 3}
   _infectious_projectile_bundle: {fileID: 8473234058073744903, guid: 34751ce111e4bf64eb14261c82ec41df, type: 3}
   boss_object: {fileID: 2048984343}
   main_camera: {fileID: 0}
@@ -12055,8 +12056,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _speed: 4
-  _health: 3000
-  _max_health: 3000
+  _health: 1500
+  _max_health: 1500
   _sprite: {fileID: 2048984344}
   _target_player: {fileID: 0}
   contact_damage: 50
