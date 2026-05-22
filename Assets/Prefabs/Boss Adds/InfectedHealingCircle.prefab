@@ -101,7 +101,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _lifespan: 5
   _sprite_renderer: {fileID: 1903953356677788456}
-  _healing_per_second: 8
+  _healing_per_second: 5
   _rb: {fileID: -947948272740828803}
   _speed: 3
 --- !u!58 &5174558010876095162

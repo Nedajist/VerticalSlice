@@ -106,7 +106,6 @@ MonoBehaviour:
   _health: 80
   _max_health: 80
   _sprite: {fileID: 1789929542441813357}
-  velocity_additive: {x: 0, y: 0}
   _target_player: {fileID: 0}
   contact_damage: 25
   _velocity_multiplicative: 1
@@ -119,6 +118,7 @@ MonoBehaviour:
   _target: {fileID: 0}
   _minimum_distance_from_characters: 3
   risen_class: 2
+  max_cast_distance: 5
 --- !u!114 &5305682489708926103
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -100,8 +100,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _speed: 0
-  _health: 100
-  _max_health: 100
+  _health: 150
+  _max_health: 150
   _sprite: {fileID: 6976260552116415390}
   _damage: 30
   _collider: {fileID: 1732280997253399415}

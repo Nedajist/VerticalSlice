@@ -50,7 +50,8 @@ public class Boss : Enemy
         ShakeHealthBar();
         if (_health <= 0)
         {
-            Destroy(gameObject);
+            gameObject.SetActive(false);
+            Debug.Log("BOSS DEFEATED");
         }
     }
 
@@ -160,6 +161,8 @@ public class Boss : Enemy
         _sprite.color = Color.white;
         CustomEvent.Trigger(transform.gameObject, "ReturnToPhase1");
     }
+
+    
 
     public IEnumerator ChargeToTarget(float duration) // longer the charge, the more the boss accelerates
     {

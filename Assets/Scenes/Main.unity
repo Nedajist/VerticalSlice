@@ -11628,6 +11628,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10e440278d0fc25438acaa0a2341e7e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  seconds_of_camera_shake: 0
 --- !u!1 &1942810575
 GameObject:
   m_ObjectHideFlags: 0
@@ -12056,8 +12057,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _speed: 4
-  _health: 1500
-  _max_health: 1500
+  _health: 1000
+  _max_health: 1000
   _sprite: {fileID: 2048984344}
   _target_player: {fileID: 0}
   contact_damage: 50

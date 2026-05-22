@@ -4,12 +4,34 @@ using UnityEngine;
 
 public class RisenHealer : RisenEntity
 {
-    private Boss _target_boss;
+    [SerializeField] float _max_cast_distance = 5f;
+    private GameObject _ability_target;
 
     protected override void Start()
     {
         base.Start();
-        _target_boss = GameObject.FindAnyObjectByType<Boss>();
+    }
+
+    private void AbilityTargetHealthiestEnemy() // Casts heal on the enemy (to the player) gameobject with the most health. Usually the boss. 
+    {
+        GameObject[] enemy_list = GameObject.FindGameObjectsWithTag("Enemy");
+        Enemy healthiest_enemy = null;
+        foreach (GameObject enemy_object in enemy_list)
+        {
+            Enemy enemy = enemy_object.GetComponent<Enemy>();
+            if (enemy == null) return;
+            if (healthiest_enemy == null) healthiest_enemy = enemy;
+            else
+            {
+                if (enemy.GetHealth() > healthiest_enemy.GetHealth())
+                {
+                    healthiest_enemy = enemy;
+                    continue;
+                }
+            }
+
+        }
+        _ability_target = healthiest_enemy.transform.gameObject;
     }
 
     private void FixedUpdate()
@@ -21,17 +43,17 @@ public class RisenHealer : RisenEntity
         if (_targeting_timer <= 0 || _target_player == null)
         {
             TargetFarthestPlayer();
+            AbilityTargetHealthiestEnemy();
             _targeting_timer = _targeting_cooldown;
         }
 
         if (_ability_timer <= 0)
         {
-            if (_target_boss == null)
-            {
-                return;
-            }
+            if (_ability_target == null) return;
 
-            transform.GetComponent<ClassAbility>().Ability1(_target_boss.transform.position);
+            if (Vector3.Distance(transform.position, _ability_target.transform.position) > _max_cast_distance) return;
+
+            transform.GetComponent<ClassAbility>().Ability1(_ability_target.transform.position);
             _ability_timer = _ability_cooldown;
         }
 
