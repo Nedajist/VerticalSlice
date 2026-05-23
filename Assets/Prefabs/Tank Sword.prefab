@@ -157,7 +157,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c6ec679c51765664289141d4077cfc35, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _angles_per_second: 240
+  _angles_per_second: 480
   _acceleration_angles_per_second: 240
   _radius: 1
   center: {fileID: 0}
