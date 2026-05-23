@@ -171,7 +171,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
@@ -813,7 +813,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 35.09912, y: -256.0818}
+  m_AnchoredPosition: {x: 35.09912, y: -256.08182}
   m_SizeDelta: {x: -149.8018, y: -522.8793}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &494312635
@@ -7089,7 +7089,7 @@ ParticleSystem:
     startColor:
       serializedVersion: 2
       minMaxState: 2
-      minColor: {r: 0.6981132, g: 0.6981132, b: 0.6981132, a: 0.15294118}
+      minColor: {r: 0.90943396, g: 0.90943396, b: 0.90943396, a: 0.15294118}
       maxColor: {r: 1, g: 1, b: 1, a: 0.79607844}
       maxGradient:
         serializedVersion: 2
@@ -8263,7 +8263,7 @@ ParticleSystem:
         m_NumAlphaKeys: 2
       minGradient:
         serializedVersion: 2
-        key0: {r: 0.4264151, g: 0.4264151, b: 0.4264151, a: 1}
+        key0: {r: 0.7132075, g: 0.7132075, b: 0.7132075, a: 1}
         key1: {r: 1, g: 1, b: 1, a: 0}
         key2: {r: 0, g: 0, b: 0, a: 0}
         key3: {r: 0, g: 0, b: 0, a: 0}
@@ -12364,7 +12364,7 @@ Transform:
   m_GameObject: {fileID: 1639560511}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.07, y: -0.13, z: 0}
+  m_LocalPosition: {x: -0, y: -0.36, z: 0}
   m_LocalScale: {x: 26, y: 21.199999, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -12527,7 +12527,7 @@ MonoBehaviour:
   m_RequiresOpaqueTextureOption: 2
   m_CameraType: 0
   m_Cameras: []
-  m_RendererIndex: -1
+  m_RendererIndex: 1
   m_VolumeLayerMask:
     serializedVersion: 2
     m_Bits: 1
