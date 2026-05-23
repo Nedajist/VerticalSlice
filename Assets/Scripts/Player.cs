@@ -139,6 +139,7 @@ public class Player : Ally
             if (collision.transform.CompareTag("Enemy"))
             {
                 Enemy enemy = collision.transform.GetComponent<Enemy>();
+                if (enemy == null) return; // boss ears are tagged as enemy but only has livingEntity script 
                 ReceiveDamage(enemy.contact_damage);
             }
         }

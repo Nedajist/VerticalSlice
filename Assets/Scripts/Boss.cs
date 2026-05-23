@@ -16,6 +16,8 @@ public class Boss : Enemy
     [SerializeField] GameObject _boss_disease_AOE;
     [SerializeField] GameObject _normal_sword_slash;
     [SerializeField] GameObject _wide_sword_slash;
+    [SerializeField] MouseEar _left_ear;
+    [SerializeField] MouseEar _right_ear;
 
 
     [SerializeField] float _degrees_per_second; // as pertaining to movement rotation. Might change during later phases. 
@@ -28,11 +30,14 @@ public class Boss : Enemy
 
     private float degree_change = 0; // how much the rat changes degrees every fixedupdate 
 
-    // Start is called before the first frame update
-
-    private void FixedUpdate()
+    protected override void Start()
     {
-        
+        _iframe_duration = -1; // boss doesn't have iframes
+    }
+
+    private void Awake()
+    {
+        SetColor();
     }
 
     public override void ReceiveDamage(float amount)
@@ -43,7 +48,7 @@ public class Boss : Enemy
         {
             return;
         }
-        _i_frames = _iframe_duration;
+        // _i_frames = _iframe_duration; boss doesn't have i frames
 
         _health -= amount;
         StartCoroutine(FlashColor(0.1f, 0.1f, Color.red));
@@ -55,11 +60,6 @@ public class Boss : Enemy
         }
     }
 
-    protected override void Start()
-    {
-        base.Start();
-        _iframe_duration = -1; // boss doesn't have iframes
-    }
 
     public void SummonSpiralProjectiles()
     {
@@ -158,7 +158,10 @@ public class Boss : Enemy
         transform.position = starting_position;
         transform.rotation = Quaternion.identity;
         _health = _max_health;
-        _sprite.color = Color.white;
+        _sprite.color = _original_color;
+        _left_ear.ResetMouseEar();
+        _right_ear.ResetMouseEar();
+
         CustomEvent.Trigger(transform.gameObject, "ReturnToPhase1");
     }
 

@@ -293,7 +293,6 @@ public class GameController : MonoBehaviour
                 {
                     _player_starting_position = new Vector3(_player_starting_position.x + 1, -2.5f, 0);
                 }
-                Debug.Log(_player_starting_position);
 
                 break;
             case (GameState.playing):

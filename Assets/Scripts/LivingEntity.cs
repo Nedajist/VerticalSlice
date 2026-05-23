@@ -14,8 +14,6 @@ public class LivingEntity : MonoBehaviour
     protected float _iframe_duration = 0.25f;
     protected float _i_frames = 0f;
 
-
-
     public Dictionary<VelocityAdditiveType, VelocityAdditive> velocity_additive_dict = new Dictionary<VelocityAdditiveType, VelocityAdditive>();
 
     protected Color _original_color;
@@ -27,7 +25,7 @@ public class LivingEntity : MonoBehaviour
 
     protected void SetColor()
     {
-        if (transform.GetComponent<Boss>() != null || transform.GetComponent<Ally>() != null || transform.GetComponent<RisenEntity>() != null || transform.GetComponent<PlaceableRectangle>() != null)
+        if (transform.GetComponent<Boss>() != null || transform.GetComponent<Ally>() != null || transform.GetComponent<RisenEntity>() != null || transform.GetComponent<PlaceableRectangle>() != null || transform.GetComponent<MouseEar>() != null)
         {
             _original_color = _sprite.color;
         }
@@ -87,7 +85,7 @@ public class LivingEntity : MonoBehaviour
         _speed = new_speed;
     }
 
-    protected IEnumerator FlashColor(float ease_in_duration, float ease_out_duration, Color _new_color)
+    protected virtual IEnumerator FlashColor(float ease_in_duration, float ease_out_duration, Color _new_color)
     {
         float _ease_in_timer = ease_in_duration;
         float _ease_out_timer = ease_out_duration;
