@@ -38,6 +38,9 @@ public class GameController : MonoBehaviour
 
 
     [SerializeField] GameObject _infectious_projectile_bundle;
+    [SerializeField] GameObject _bar_canvas_UI;
+    [SerializeField] GameObject _falling_rain;
+
     [SerializeField] public GameObject boss_object;
     [SerializeField] private bool _boss_level;
 
@@ -293,14 +296,19 @@ public class GameController : MonoBehaviour
         {
             case (GameState.selecting):
                 UI.ShowSelectionScreen();
-
                 Time.timeScale = 0;
-                if (_boss_level) boss.transform.gameObject.SetActive(false);
+
+                if (_boss_level)
+                {
+                    _bar_canvas_UI.SetActive(false);
+                    boss.transform.gameObject.SetActive(false);
+                }
                 else
                 {
                     SetSpawnerStates(false);
                 }
 
+                _falling_rain.SetActive(false);
                 CullClones();
                 _player_starting_position -= new Vector3(0, 1.5f, 0);
                 main_camera.GetComponent<MainCamera>().seconds_of_camera_shake = 0;
@@ -314,6 +322,7 @@ public class GameController : MonoBehaviour
             case (GameState.playing):
                 if (_boss_level)
                 {
+                    _bar_canvas_UI.SetActive(true);
                     boss.transform.gameObject.SetActive(true);
                     boss.ResetSelf();
                 }
@@ -322,6 +331,7 @@ public class GameController : MonoBehaviour
                     SetSpawnerStates(true);
                 }
 
+                _falling_rain.SetActive(true);
                 SummonAllClones();
                 current_player = Instantiate(_selected_player, transform.position, Quaternion.identity);
                 current_player.GetComponent<Player>().starting_position = _player_starting_position;

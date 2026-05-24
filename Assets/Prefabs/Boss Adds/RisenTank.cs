@@ -34,7 +34,7 @@ public class RisenTank : RisenEntity
         {
             GameObject _instantiated_death_square = Instantiate(_death_square, transform.position, Quaternion.identity);
             _instantiated_death_square.GetComponent<BossAOECircle>()._max_scale = transform.localScale.x;
-            Destroy(gameObject);
+            StartCoroutine(FadeAway(1f));
         }
 
     }

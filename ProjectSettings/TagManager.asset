@@ -9,6 +9,7 @@ TagManager:
   - AOE
   - UI
   - Obstacle
+  - Weapon
   layers:
   - Default
   - TransparentFX

@@ -175,6 +175,7 @@ public class Hook : Projectile
         }
         if ((_dualPull || _dualPush) && _hookedEntity != null)
         {
+            if (_hookedEntity.transform.GetComponent<LivingEntity>().velocity_additive_dict.ContainsKey(VelocityAdditiveType.hook) == false) return;
             _hookedEntity.transform.GetComponent<LivingEntity>().velocity_additive_dict[VelocityAdditiveType.hook].additive_total = Vector2.zero;
         }
     }

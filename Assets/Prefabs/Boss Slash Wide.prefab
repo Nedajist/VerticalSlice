@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 6015318982040593059}
   m_Layer: 0
   m_Name: Boss Slash Wide
-  m_TagString: Untagged
+  m_TagString: Weapon
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -99,6 +99,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _angles_per_second: 190
+  _acceleration_angles_per_second: 30
   _radius: 2
   center: {fileID: 0}
   _fired_by_boss: 1

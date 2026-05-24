@@ -34,6 +34,8 @@ public class Tank : ClassAbility
     public IEnumerator Charge(float duration)
     {
         _tank_trail.emitting = true;
+        Rigidbody2D rb = transform.GetComponent<Rigidbody2D>();
+        rb.excludeLayers = LayerMask.GetMask("Enemy", "Default", "Projectile", "Player");
         Ally own_self = transform.GetComponent<Ally>();
         float original_speed = own_self.GetSpeed();
 
@@ -43,6 +45,7 @@ public class Tank : ClassAbility
 
         own_self.SetSpeed(original_speed);
         _tank_trail.emitting = false;
+        rb.excludeLayers = LayerMask.GetMask();
         yield return null;
     }
 }

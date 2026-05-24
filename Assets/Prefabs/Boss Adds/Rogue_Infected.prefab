@@ -58,7 +58,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  - {fileID: -876546973899608171, guid: 2404af30df8598d4f8884ecf0f5576b7, type: 3}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -237,6 +237,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1071499148166211013, guid: 6616f86c926f76f4aae7068fdaf34c6c, type: 3}
       propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1154191044901648363, guid: 6616f86c926f76f4aae7068fdaf34c6c, type: 3}
+      propertyPath: m_Color.b
+      value: 0.18849795
+      objectReference: {fileID: 0}
+    - target: {fileID: 1154191044901648363, guid: 6616f86c926f76f4aae7068fdaf34c6c, type: 3}
+      propertyPath: m_Color.g
+      value: 0.5471698
+      objectReference: {fileID: 0}
+    - target: {fileID: 1154191044901648363, guid: 6616f86c926f76f4aae7068fdaf34c6c, type: 3}
+      propertyPath: m_Color.r
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3222602238922891801, guid: 6616f86c926f76f4aae7068fdaf34c6c, type: 3}
