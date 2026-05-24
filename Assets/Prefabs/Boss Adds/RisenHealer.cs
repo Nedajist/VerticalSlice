@@ -7,11 +7,6 @@ public class RisenHealer : RisenEntity
     [SerializeField] float _max_cast_distance = 5f;
     private GameObject _ability_target;
 
-    protected override void Start()
-    {
-        base.Start();
-    }
-
     private void AbilityTargetHealthiestEnemy() // Casts heal on the enemy (to the player) gameobject with the most health. Usually the boss. 
     {
         GameObject[] enemy_list = GameObject.FindGameObjectsWithTag("Enemy");
@@ -19,7 +14,7 @@ public class RisenHealer : RisenEntity
         foreach (GameObject enemy_object in enemy_list)
         {
             Enemy enemy = enemy_object.GetComponent<Enemy>();
-            if (enemy == null) return;
+            if (enemy == null) continue;
             if (healthiest_enemy == null) healthiest_enemy = enemy;
             else
             {
@@ -36,6 +31,7 @@ public class RisenHealer : RisenEntity
 
     private void FixedUpdate()
     {
+        if (_spawned_in == false) return;
         _i_frames -= Time.fixedDeltaTime;
         _targeting_timer -= Time.fixedDeltaTime;
         _ability_timer -= Time.fixedDeltaTime;
@@ -47,6 +43,8 @@ public class RisenHealer : RisenEntity
             _targeting_timer = _targeting_cooldown;
         }
 
+        MoveToTarget(); // moves to _target_player's position 
+
         if (_ability_timer <= 0)
         {
             if (_ability_target == null) return;
@@ -57,7 +55,6 @@ public class RisenHealer : RisenEntity
             _ability_timer = _ability_cooldown;
         }
 
-        MoveToTarget(); // moves to _target_player's position 
 
     }
 }

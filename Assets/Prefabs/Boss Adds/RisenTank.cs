@@ -9,6 +9,7 @@ public class RisenTank : RisenEntity
 
     private void FixedUpdate()
     {
+        if (_spawned_in == false) return;
         _i_frames -= Time.fixedDeltaTime;
         _targeting_timer -= Time.fixedDeltaTime;
 

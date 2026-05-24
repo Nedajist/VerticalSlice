@@ -80,7 +80,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
-  m_Color: {r: 0.12783901, g: 0.5018867, b: 0.19742933, a: 1}
+  m_Color: {r: 0.12783901, g: 0.5018867, b: 0.19742933, a: 0}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -118,7 +118,7 @@ MonoBehaviour:
   _target: {fileID: 0}
   _minimum_distance_from_characters: 3
   risen_class: 2
-  max_cast_distance: 5
+  _max_cast_distance: 5
 --- !u!114 &5305682489708926103
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -23,7 +23,7 @@ public class LivingEntity : MonoBehaviour
         SetColor();
     }
 
-    protected void SetColor()
+    protected virtual void SetColor()
     {
         if (transform.GetComponent<Boss>() != null || transform.GetComponent<Ally>() != null || transform.GetComponent<RisenEntity>() != null || transform.GetComponent<PlaceableRectangle>() != null || transform.GetComponent<MouseEar>() != null)
         {

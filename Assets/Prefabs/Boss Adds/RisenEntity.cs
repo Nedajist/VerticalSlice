@@ -15,6 +15,8 @@ public class RisenEntity : Enemy
 
     protected float _ability_timer;
     protected float _targeting_timer;
+    protected bool _spawned_in = false;
+    private float _windup_time = 2; // seconds between spawning and when this unit will be active; 
     private float _degree_change = 0; // how much the entity changes degrees every fixedupdate 
     private float _repulsion_factor = 2;
     private Vector2 _previous_avoidance_velocity = Vector2.zero;
@@ -28,7 +30,14 @@ public class RisenEntity : Enemy
         VelocityAdditive avoidance_additive = new VelocityAdditive();
         avoidance_additive.additive_max_magnitude = _repulsion_factor;
         velocity_additive_dict[VelocityAdditiveType.avoidance] = avoidance_additive;
+        StartCoroutine(SpawnIn(_windup_time));
     }
+
+    protected override void SetColor()
+    {
+        _original_color = new Color(_sprite.color.r, _sprite.color.g, _sprite.color.b, 1); // since the enemy starts off transparent 
+    }
+
 
     protected virtual void OnCollisionEnter2D(Collision2D collision)
     {
@@ -78,7 +87,29 @@ public class RisenEntity : Enemy
 
             
     }
+
+    private IEnumerator SpawnIn(float duration)
+    {
+        _rb.simulated = false;
+        transform.GetComponent<Collider2D>().enabled = false;
+        float spawn_in_timer = 0;
+        Color transparent_sprite = _sprite.color;
+        while (spawn_in_timer <= duration)
+        {
+            _sprite.color = Color.Lerp(_sprite.color, _original_color, spawn_in_timer / duration);
+            spawn_in_timer += Time.fixedDeltaTime;
+            yield return new WaitForFixedUpdate();
+        }
+        _rb.simulated = true;
+        transform.GetComponent<Collider2D>().enabled = true;
+        _spawned_in = true;
+        yield return null;
     }
+
+
+
+
+}
 
 
 

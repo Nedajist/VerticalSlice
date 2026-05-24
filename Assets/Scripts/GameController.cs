@@ -5,6 +5,7 @@ using TMPro;
 using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.Rendering;
 
 public enum GameState
 {
@@ -38,6 +39,7 @@ public class GameController : MonoBehaviour
 
     [SerializeField] GameObject _infectious_projectile_bundle;
     [SerializeField] public GameObject boss_object;
+    [SerializeField] private bool _boss_level;
 
     public static GameController instance;
     public Camera main_camera;
@@ -50,6 +52,7 @@ public class GameController : MonoBehaviour
 
     private Vector3 _player_starting_position = new Vector3(-1, -1, 0); // effectively this is (-1, -2.5, 0) as -1.5 is added to vector3.y immediately
     private GameObject _selected_player;
+    private EnemySpawnBundle[] _list_of_spawners;
 
     public GameObject current_player;
 
@@ -64,8 +67,13 @@ public class GameController : MonoBehaviour
         {
             Destroy(gameObject);
         }
-        boss = boss_object.GetComponent<Boss>();
-        UI = GameObject.FindObjectOfType<UIController>();
+
+        if (_boss_level) boss = boss_object.GetComponent<Boss>();
+        else
+        {
+            FindSpawners();
+        }
+            UI = GameObject.FindObjectOfType<UIController>();
         main_camera = GameObject.FindObjectOfType<Camera>();
 
         RefreshAllyList();
@@ -205,17 +213,20 @@ public class GameController : MonoBehaviour
     }
 
     void ResetProjectiles()
-    { 
-        GameObject[] projectiles = GameObject.FindGameObjectsWithTag("Projectile"); 
+    {
+        GameObject[] projectiles = GameObject.FindGameObjectsWithTag("Projectile");
         for (int i = 0; i < projectiles.Count(); i++)
         {
             Destroy(projectiles[i]);
         }
 
-        Projectile[] bossChildProjectiles = boss.transform.GetComponentsInChildren<Projectile>(); // deletes hooks attached to boss
-        foreach (Projectile projectile in bossChildProjectiles)
+        if (_boss_level)
         {
-            Destroy(projectile.transform.gameObject);
+            Projectile[] bossChildProjectiles = boss.transform.GetComponentsInChildren<Projectile>(); // deletes hooks attached to boss
+            foreach (Projectile projectile in bossChildProjectiles)
+            {
+                Destroy(projectile.transform.gameObject);
+            }
         }
 
     }
@@ -284,7 +295,12 @@ public class GameController : MonoBehaviour
                 UI.ShowSelectionScreen();
 
                 Time.timeScale = 0;
-                boss.transform.gameObject.SetActive(false);
+                if (_boss_level) boss.transform.gameObject.SetActive(false);
+                else
+                {
+                    SetSpawnerStates(false);
+                }
+
                 CullClones();
                 _player_starting_position -= new Vector3(0, 1.5f, 0);
                 main_camera.GetComponent<MainCamera>().seconds_of_camera_shake = 0;
@@ -296,9 +312,16 @@ public class GameController : MonoBehaviour
 
                 break;
             case (GameState.playing):
+                if (_boss_level)
+                {
+                    boss.transform.gameObject.SetActive(true);
+                    boss.ResetSelf();
+                }
+                else
+                {
+                    SetSpawnerStates(true);
+                }
 
-                boss.transform.gameObject.SetActive(true);
-                boss.ResetSelf();
                 SummonAllClones();
                 current_player = Instantiate(_selected_player, transform.position, Quaternion.identity);
                 current_player.GetComponent<Player>().starting_position = _player_starting_position;
@@ -342,6 +365,21 @@ public class GameController : MonoBehaviour
         TransitionGameState(GameState.playing);
     }
 
+    private void SetSpawnerStates(bool enabled)
+    {
+        foreach (EnemySpawnBundle spawner in _list_of_spawners)
+        {
+            spawner.transform.gameObject.SetActive(enabled);
+            if (enabled == false) spawner.ResetSelf();
+        }
+    }
 
-
+    private void FindSpawners()
+    {
+        _list_of_spawners = GameObject.FindObjectsOfType<EnemySpawnBundle>();
+        foreach (EnemySpawnBundle spawner in _list_of_spawners)
+        {
+            spawner.transform.gameObject.SetActive(false);
+        }
+    }
 }

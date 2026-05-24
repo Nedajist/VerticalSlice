@@ -80,7 +80,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 48e93eef0688c4a259cb0eddcd8661f7, type: 3}
-  m_Color: {r: 0.12941177, g: 0.5019608, b: 0.19607843, a: 1}
+  m_Color: {r: 0.12941177, g: 0.5019608, b: 0.19607843, a: 0}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -106,7 +106,6 @@ MonoBehaviour:
   _health: 150
   _max_health: 150
   _sprite: {fileID: 8511563717327968215}
-  velocity_additive: {x: 0, y: 0}
   _target_player: {fileID: 0}
   contact_damage: 30
   _velocity_multiplicative: 1
@@ -134,6 +133,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _tank_sword: {fileID: 7567351776729981318, guid: af03065f3b0b97c48a43fc438cc8231a, type: 3}
+  _tank_trail: {fileID: 0}
 --- !u!114 &4976357967044220775
 MonoBehaviour:
   m_ObjectHideFlags: 0
