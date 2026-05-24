@@ -59,7 +59,22 @@ By controlling the Boss's behavior, the machine also relates to the player and a
 
 
 ## Milestone 3 Devlog
-Milestone 3 Devlog goes here.
+1. 
+The screenshot is of my Flooring shader, located in Art Assets/Materials. It is attached to a large rectangular floor sprite in the boss battle scene, and it applies a shifting marble / watery texture to the floor's solid color.
+The shader is primarily built using a blend of simple noise and voronoise which add some texture to the floor. Voronoise creates noticeables lines in the floor while simple noise makes countless small adjustments to the darkness of the floor. I add sin(time) plus a constant to the scale of the simple noise and to the angle offset & cell density of the voronoise, slightly altering their noise textures. Because sin(time) constantly changes every frame, the noise patterns blended to form the texture change every frame. 
+Also, because sin(time) oscillates between the same range of values, both of the noises are shifting in repeatable patterns, creating a sort of ebb-and-flow of moving water. I add a sample texture 2D using MainTex, which stores the sprite's default texture, to the blended noise to ensure that the floor sprite is not entirely overriden by the noise texture. 
+To add a dash of extra color to the final texture, I've created a UV node modified by sin(time) such that it cycles between pure black and the standard red/green/yellow UV node texture. I blend the modified UV with the noise mixture to colorize the noise, and finally pass the result into the fragment color. 
+
+2. Since no playtester has been able to defeat the boss, I've applied significant nerfs to it to make the combat mechanic easier. The boss's health has been nerfed by 80%, its guaranteed-hit AOE spell does less damage, and it is now 100% defeatable. The boss now advances through phases quicker, since its 2nd and especially 1st phases have quite limited abilities. While the central mechanic of past player lives repeating themselves works as intended, some playtesters noted that enemies would behave differently between attempts, always targeting the most recent player character and thus completely avoiding attacks by past player incarnations. This reduced players' willingness to rely on their past/future characters, so I have
+altered the spawn mechanic to spawn players in vertical rows rather than horizontal columns. The boss, which begins by targeting the nearest player, now no longer targets the most recent player character but the oldest player character, meaning that past actions will now repeat themselves with greater accuracy. Playtesting also showed a significant drop-off in player character numbers during the boss's third phase due to a reinforcing loop sparked by its infectious projectiles (the large green ones). One player character would get infected, die, and spread its disease to more characters, which in turn would do the same. 
+I built the new player class whose mechanics directly counteract the disease mechanic. The player can now build and launch walls which destroy the infectious projectiles on contact, and the infection now deals less damage. The boss's summoning mechanic now gradually summons enemies rather than instantly dropping them down, which caused random, unfair collision damage to players. Now the player sees enemies gradually fade in to view and have ample time to prepare. 
+
+3. I've added a a main menu and a new level accessible by pressing "Waves" in the menu which pits the player against several dozen normal enemy NPCs rather than a single boss. The fifth player class, the architect (in the shape of an X) is here, and it can construct destructible walls and launch moving walls during battle. 
+For visual effects, I added trails to every projectile, raindrop and splash particles to every scene, a scanlines shader graph, 2 floor shader graphs for the boss and wave-clear stages, and 2 character shader graphs affecting the Boss and all enemies. Now the player can do battle against 5 base enemy classes + the boss.
+
+
+
+
 ## Milestone 4 Devlog
 Milestone 4 Devlog goes here.
 ## Final Devlog
