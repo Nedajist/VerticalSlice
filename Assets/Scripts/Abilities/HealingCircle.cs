@@ -11,6 +11,7 @@ public class HealingCircle : Circle
     private float _radius;
     private float _radius_multiplier = 2.5f;
     private float _starting_scale;
+    private float _deadzone = 0.5f;
 
     private LivingEntity _target;
 
@@ -49,7 +50,7 @@ public class HealingCircle : Circle
             Destroy(gameObject); 
         }
 
-        if (_target != null) 
+        if (_target != null && Vector3.Distance(_target.transform.position, transform.position) > _deadzone) 
         {
             _rb.velocity = (Vector2)(_target.transform.position - transform.position).normalized * _speed;
         }

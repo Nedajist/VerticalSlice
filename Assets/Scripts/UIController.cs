@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 
@@ -83,12 +84,17 @@ public class UIController : MonoBehaviour
 
     }
 
-    public void DisplayMageClassSymbol() 
+    public void DisplayMageClassSymbol() // displays the mage symbol in previous answers 
     {
         GameObject _instantiated_class_symbol = Instantiate(_mage_symbol, Vector3.zero, Quaternion.identity);
         _instantiated_class_symbol.transform.SetParent(_character_select_menu.transform);
         _instantiated_class_symbol.transform.localPosition = _current_class_symbol_position;
         abilityBarColor = new Color(0.055f, 0.702f, 0.949f, 1f); // mana blue
+    }
+
+    public void ReturnToMainMenu()
+    {
+        SceneManager.LoadScene(0);
     }
 
     public void DisplayHealerClassSymbol()
