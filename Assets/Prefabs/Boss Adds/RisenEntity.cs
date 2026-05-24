@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class RisenEntity : Enemy
 {
-    [SerializeField] Rigidbody2D _rb;
+    [SerializeField] protected Rigidbody2D _rb;
     [SerializeField] protected float _targeting_cooldown;
     [SerializeField] protected float _ability_cooldown;
     [SerializeField] protected Vector3 _starting_position = Vector3.zero;
