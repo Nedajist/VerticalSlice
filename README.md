@@ -59,7 +59,7 @@ By controlling the Boss's behavior, the machine also relates to the player and a
 
 
 ## Milestone 3 Devlog
-1. 
+1. <img width="952" height="536" alt="shadergraph" src="https://github.com/user-attachments/assets/b6a1b318-d4da-4f39-931c-20c67807e51b" />
 The screenshot is of my Flooring shader, located in Art Assets/Materials. It is attached to a large rectangular floor sprite in the boss battle scene, and it applies a shifting marble / watery texture to the floor's solid color.
 The shader is primarily built using a blend of simple noise and voronoise which add some texture to the floor. Voronoise creates noticeables lines in the floor while simple noise makes countless small adjustments to the darkness of the floor. I add sin(time) plus a constant to the scale of the simple noise and to the angle offset & cell density of the voronoise, slightly altering their noise textures. Because sin(time) constantly changes every frame, the noise patterns blended to form the texture change every frame. 
 Also, because sin(time) oscillates between the same range of values, both of the noises are shifting in repeatable patterns, creating a sort of ebb-and-flow of moving water. I add a sample texture 2D using MainTex, which stores the sprite's default texture, to the blended noise to ensure that the floor sprite is not entirely overriden by the noise texture. 
