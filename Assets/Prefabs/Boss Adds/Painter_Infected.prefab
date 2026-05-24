@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4463775077884818550}
   - component: {fileID: 5711830657679373904}
-  - component: {fileID: 5903962230912281425}
+  - component: {fileID: -8790859193269680826}
   - component: {fileID: 4092074027300261902}
   - component: {fileID: -4058366505315946165}
   - component: {fileID: 8988262598030619797}
@@ -90,7 +90,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &5903962230912281425
+--- !u!114 &-8790859193269680826
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -99,7 +99,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 471033112329048345}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ee3ffb5516ce3a148abe220567735226, type: 3}
+  m_Script: {fileID: 11500000, guid: 683af59d2d0a759438ad3e52abdbfa7d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _speed: 3
@@ -110,14 +110,14 @@ MonoBehaviour:
   contact_damage: 25
   _velocity_multiplicative: 1
   _rb: {fileID: 8988262598030619797}
-  _targeting_cooldown: 3
-  _ability_cooldown: 3
+  _targeting_cooldown: 4
+  _ability_cooldown: 4
   _starting_position: {x: 0, y: 0, z: 0}
-  _degrees_per_second: 40
+  _degrees_per_second: 30
   _upper_degree_bound: 80
   _target: {fileID: 0}
   _minimum_distance_from_characters: 3
-  risen_class: 0
+  risen_class: 4
 --- !u!114 &4092074027300261902
 MonoBehaviour:
   m_ObjectHideFlags: 0

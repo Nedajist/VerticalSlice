@@ -2,13 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RisenMage : RisenEntity
+public class RisenRogue : RisenEntity
 {
+    private bool _ability_switch = false; // decides whether or not rogue uses 1st or 2nd ability 
 
-    [SerializeField] private int _x_casts_to_vortex; // will cast vortex every X ability casts
-    [SerializeField] private float _vortex_cast_distance;
-
-    private int _ability_casts = 0;
 
     private void FixedUpdate()
     {
@@ -25,12 +22,9 @@ public class RisenMage : RisenEntity
 
         if (_ability_timer <= 0)
         {
-            _ability_casts += 1;
-            if (_ability_casts % _x_casts_to_vortex == 0 && Vector3.Distance(_target_player.transform.position, transform.position) < _vortex_cast_distance) {
-
-                transform.GetComponent<ClassAbility>().Ability2(_target_player.transform.position);
-            }
-            else transform.GetComponent<ClassAbility>().Ability1(_target_player.transform.position);
+            if (_ability_switch) transform.GetComponent<ClassAbility>().Ability1(_target_player.transform.position);
+            else transform.GetComponent<ClassAbility>().Ability2(_target_player.transform.position);
+            _ability_switch = !_ability_switch;
             _ability_timer = _ability_cooldown;
         }
 

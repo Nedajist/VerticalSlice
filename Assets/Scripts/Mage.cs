@@ -6,7 +6,6 @@ public class Mage : ClassAbility
 {
     [SerializeField] private GameObject _mage_projectile;
     [SerializeField] private GameObject _vortex_circle;
-
     public override void Ability1(Vector3 mouse_position)
     {
         Vector3 line_to_mouse = Vector3.Normalize(mouse_position - transform.position);

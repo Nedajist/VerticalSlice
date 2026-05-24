@@ -118,6 +118,8 @@ MonoBehaviour:
   _target: {fileID: 0}
   _minimum_distance_from_characters: 3
   risen_class: 0
+  _x_casts_to_vortex: 4
+  _vortex_cast_distance: 4
 --- !u!114 &2014933933321023234
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -131,7 +133,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _mage_projectile: {fileID: 2145519010166405205, guid: 7ec6906d548b8d447bfc87aff0f152a3, type: 3}
-  _vortex_circle: {fileID: 0}
+  _vortex_circle: {fileID: 2824291148003576153, guid: e2eb1987d4bc95848af72d40618f350b, type: 3}
 --- !u!114 &923605592546001782
 MonoBehaviour:
   m_ObjectHideFlags: 0

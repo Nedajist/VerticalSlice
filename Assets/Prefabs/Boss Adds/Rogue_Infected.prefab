@@ -10,8 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 3796636999730950913}
   - component: {fileID: 5020183732660274976}
-  - component: {fileID: 722533261655021334}
   - component: {fileID: 4637244381852500510}
+  - component: {fileID: 5765247734430140819}
   - component: {fileID: 712896096582099892}
   - component: {fileID: 1201490278188454771}
   - component: {fileID: 8967558721839231836}
@@ -90,34 +90,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &722533261655021334
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4943816995229160182}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ee3ffb5516ce3a148abe220567735226, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _speed: 4
-  _health: 100
-  _max_health: 100
-  _sprite: {fileID: 5020183732660274976}
-  _target_player: {fileID: 0}
-  contact_damage: 25
-  _velocity_multiplicative: 1
-  _rb: {fileID: 1201490278188454771}
-  _targeting_cooldown: 3
-  _ability_cooldown: 3
-  _starting_position: {x: 0, y: 0, z: 0}
-  _degrees_per_second: 40
-  _upper_degree_bound: 80
-  _target: {fileID: 0}
-  _minimum_distance_from_characters: 3
-  risen_class: 0
 --- !u!114 &4637244381852500510
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -135,6 +107,34 @@ MonoBehaviour:
   _rate_of_change: 25
   _infection_sign: {fileID: 0}
   _bar_canvas: {fileID: 7570003847621463091}
+--- !u!114 &5765247734430140819
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4943816995229160182}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b14caf890f9e1b54182cd8e71988daa3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _speed: 4.5
+  _health: 100
+  _max_health: 100
+  _sprite: {fileID: 5020183732660274976}
+  _target_player: {fileID: 0}
+  contact_damage: 25
+  _velocity_multiplicative: 1
+  _rb: {fileID: 1201490278188454771}
+  _targeting_cooldown: 3
+  _ability_cooldown: 3
+  _starting_position: {x: 0, y: 0, z: 0}
+  _degrees_per_second: 40
+  _upper_degree_bound: 80
+  _target: {fileID: 0}
+  _minimum_distance_from_characters: 3
+  risen_class: 3
 --- !u!114 &712896096582099892
 MonoBehaviour:
   m_ObjectHideFlags: 0
