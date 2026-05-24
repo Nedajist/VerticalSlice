@@ -83,4 +83,3 @@ Final Devlog goes here.
 - [Fireball Projectile](https://bdragon1727.itch.io/fire-pixel-bullet-16x16)
 - [Boss Healthbar Font](https://freefonts.co/fonts/fot-matisse-pro-eb)
 - [UI Font](https://font.download/font/fixedsys-excelsior-301)
-- [Rat](https://rurr.itch.io/rat)
