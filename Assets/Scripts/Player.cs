@@ -91,9 +91,7 @@ public class Player : Ally
             _mouse_click_data.mousePosition = _mouse_position;
             _mouse_click_data.inputFrame = _physics_frames;
             _list_of_inputs.Add(_mouse_click_data);
-
             HandleLeftMouseInput(_mouse_position);
-
         }
 
         if (_right_mouse_input == 1 && _previous_right_mouse_input != 1) // RMB clicked AND WAS NOT CLICKED LAST TURN. Abilities cannot be automatically activated by spamming mouse

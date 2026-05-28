@@ -7825,6 +7825,7 @@ MonoBehaviour:
   _infectious_projectile_bundle: {fileID: 8473234058073744903, guid: 34751ce111e4bf64eb14261c82ec41df, type: 3}
   _bar_canvas_UI: {fileID: 791709908}
   _falling_rain: {fileID: 2137350458}
+  crosshair: {fileID: 3507189855721818092, guid: 52792af8c459a5547b607fa38adfe13e, type: 3}
   boss_object: {fileID: 0}
   _boss_level: 0
   main_camera: {fileID: 0}

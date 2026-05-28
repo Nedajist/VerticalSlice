@@ -41,6 +41,7 @@ public class GameController : MonoBehaviour
     [SerializeField] GameObject _bar_canvas_UI;
     [SerializeField] GameObject _falling_rain;
 
+    [SerializeField] public GameObject crosshair;
     [SerializeField] public GameObject boss_object;
     [SerializeField] private bool _boss_level;
 
@@ -85,7 +86,9 @@ public class GameController : MonoBehaviour
 
     private void FixedUpdate()
     {
-
+        Vector3 mouse_position = main_camera.ScreenToWorldPoint(Input.mousePosition);
+        Vector3 true_position = new Vector3(mouse_position.x, mouse_position.y, 0);
+        crosshair.transform.position = true_position;
     }
 
     public void AddNewClone(Vector3 starting_position, List<InputData> list_of_inputs, PlayerClass player_class, float speed, float max_health, float ability_1_cooldown, float ability_2_cooldown)
@@ -296,7 +299,6 @@ public class GameController : MonoBehaviour
         {
             case (GameState.selecting):
                 UI.ShowSelectionScreen();
-                Time.timeScale = 0;
 
                 if (_boss_level)
                 {
@@ -340,7 +342,6 @@ public class GameController : MonoBehaviour
 
                 UI.HideSelectionScreen();
 
-                Time.timeScale = 1;
                 break;
         }
         current_gamestate = new_state;
