@@ -49,6 +49,7 @@ public class GameController : MonoBehaviour
     public Camera main_camera;
     public Boss boss;
     public UIController UI;
+    public MusicController music_controller;
     public List<Ally> ally_list = new List<Ally>();
 
     public List<CloneTemplate> past_incarnation_list = new List<CloneTemplate>(); // list containing the hp, health, class, etc of past incarnatinos of the player
@@ -77,8 +78,9 @@ public class GameController : MonoBehaviour
         {
             FindSpawners();
         }
-            UI = GameObject.FindObjectOfType<UIController>();
+        UI = GameObject.FindObjectOfType<UIController>();
         main_camera = GameObject.FindObjectOfType<Camera>();
+        music_controller = GameObject.FindObjectOfType<MusicController>();
 
         RefreshAllyList();
         TransitionGameState(GameState.selecting);
@@ -314,7 +316,7 @@ public class GameController : MonoBehaviour
                 CullClones();
                 _player_starting_position -= new Vector3(0, 1.5f, 0);
                 main_camera.GetComponent<MainCamera>().seconds_of_camera_shake = 0;
-
+                music_controller.ResetSelf(); 
                 if (_player_starting_position.y == -7)
                 {
                     _player_starting_position = new Vector3(_player_starting_position.x + 1, -2.5f, 0);
@@ -339,6 +341,7 @@ public class GameController : MonoBehaviour
                 current_player.GetComponent<Player>().starting_position = _player_starting_position;
                 main_camera.transform.SetParent(current_player.transform);
                 main_camera.transform.localPosition = new Vector3(0, 0, -1);
+                music_controller.PlayLevelMusic();
 
                 UI.HideSelectionScreen();
 
