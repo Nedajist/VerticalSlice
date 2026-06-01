@@ -25,6 +25,14 @@ public class UIController : MonoBehaviour
     [SerializeField] private GameObject _rogue_symbol;
     [SerializeField] private GameObject _painter_symbol;
 
+    [SerializeField] private AudioSource _UI_audio_manager;
+    [SerializeField] private AudioClip _return_SFX;
+    [SerializeField] private AudioClip _tank_selected_SFX;
+    [SerializeField] private AudioClip _mage_selected_SFX;
+    [SerializeField] private AudioClip _healer_selected_SFX;
+    [SerializeField] private AudioClip _rogue_selected_SFX;
+    [SerializeField] private AudioClip _painter_selected_SFX;
+
 
     private float _current_health;
     private float _past_character_count = 0;
@@ -84,26 +92,28 @@ public class UIController : MonoBehaviour
 
     }
 
+    public void ReturnToMainMenu()
+    {
+        StartCoroutine(PlayReturnSFXThenReturn(0.5f));
+    }
+
     public void DisplayMageClassSymbol() // displays the mage symbol in previous answers 
     {
         GameObject _instantiated_class_symbol = Instantiate(_mage_symbol, Vector3.zero, Quaternion.identity);
         _instantiated_class_symbol.transform.SetParent(_character_select_menu.transform);
         _instantiated_class_symbol.transform.localPosition = _current_class_symbol_position;
         abilityBarColor = new Color(0.055f, 0.702f, 0.949f, 1f); // mana blue
+        _UI_audio_manager.clip = _mage_selected_SFX;
+        _UI_audio_manager.Play();
     }
-
-    public void ReturnToMainMenu()
-    {
-        SceneManager.LoadScene(0);
-    }
-
     public void DisplayHealerClassSymbol()
     {
         GameObject _instantiated_class_symbol = Instantiate(_healer_symbol, Vector3.zero, Quaternion.identity);
         _instantiated_class_symbol.transform.SetParent(_character_select_menu.transform);
         _instantiated_class_symbol.transform.localPosition = _current_class_symbol_position;
         abilityBarColor = new Color(0.039f, 1f, 0.463f, 1f); // healer green
-
+        _UI_audio_manager.clip = _healer_selected_SFX;
+        _UI_audio_manager.Play();
     }
 
 
@@ -113,6 +123,8 @@ public class UIController : MonoBehaviour
         _instantiated_class_symbol.transform.SetParent(_character_select_menu.transform);
         _instantiated_class_symbol.transform.localPosition = _current_class_symbol_position;
         abilityBarColor = new Color(0.7f, 0.231f, 0.231f, 1f); // reddish brown
+        _UI_audio_manager.clip = _tank_selected_SFX;
+        _UI_audio_manager.Play();
     }
 
     public void DisplayRogueClassSymbol()
@@ -121,7 +133,8 @@ public class UIController : MonoBehaviour
         _instantiated_class_symbol.transform.SetParent(_character_select_menu.transform);
         _instantiated_class_symbol.transform.localPosition = _current_class_symbol_position;
         abilityBarColor = new Color(1f, 0.612f, 0.039f, 1f); // reddish brown
-
+        _UI_audio_manager.clip = _rogue_selected_SFX;
+        _UI_audio_manager.Play();
     }
 
     public void DisplayPainterClassSymbol()
@@ -130,7 +143,16 @@ public class UIController : MonoBehaviour
         _instantiated_class_symbol.transform.SetParent(_character_select_menu.transform);
         _instantiated_class_symbol.transform.localPosition = _current_class_symbol_position;
         abilityBarColor = new Color(0.247f, 0.145f, 0.722f, 1f); // reddish brown
+        _UI_audio_manager.clip = _painter_selected_SFX;
+        _UI_audio_manager.Play();
+    }
 
+    public IEnumerator PlayReturnSFXThenReturn(float wait_duration)
+    {
+        _UI_audio_manager.clip = _return_SFX;
+        _UI_audio_manager.Play();
+        yield return new WaitForSeconds(wait_duration);
+        SceneManager.LoadScene(0);
     }
 
 }

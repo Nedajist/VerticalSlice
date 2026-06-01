@@ -102,7 +102,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee3ffb5516ce3a148abe220567735226, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _speed: 4
+  _speed: 3
   _health: 80
   _max_health: 80
   _sprite: {fileID: 3996401278963506867}
@@ -132,6 +132,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0392506ab86448c4787ce780a8fa814a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  AbilitySFXPlayer: {fileID: 0}
+  Ability1SFX: {fileID: 0}
+  Ability2SFX: {fileID: 0}
   _mage_projectile: {fileID: 2145519010166405205, guid: 7ec6906d548b8d447bfc87aff0f152a3, type: 3}
   _vortex_circle: {fileID: 2824291148003576153, guid: e2eb1987d4bc95848af72d40618f350b, type: 3}
 --- !u!114 &923605592546001782
@@ -150,6 +153,7 @@ MonoBehaviour:
   _lazy_bar: {fileID: 6023988948137014132}
   _rate_of_change: 25
   _rate_of_growth: 25
+  _start_at_zero: 0
   _infection_sign: {fileID: 0}
   _bar_canvas: {fileID: 3973202627825841884}
 --- !u!50 &7557587598728034004

@@ -5,6 +5,9 @@ using UnityEngine.SceneManagement;
 
 public class MainMenuUI : MonoBehaviour
 {
+    [SerializeField] AudioSource UIAudioPlayer;
+    [SerializeField] AudioClip BossLevelSFX;
+    [SerializeField] AudioClip WavesLevelSFX;
 
     private void Start()
     {
@@ -13,11 +16,21 @@ public class MainMenuUI : MonoBehaviour
 
     public void TransitionToBossLevel()
     {
-        SceneManager.LoadScene(1);
+        StartCoroutine(PlaySFXThenTransitionLevels(BossLevelSFX, 1, 0.5f));
+
     }
 
     public void TransitionToSandboxLevel()
     {
-        SceneManager.LoadScene(2);
+        StartCoroutine(PlaySFXThenTransitionLevels(WavesLevelSFX, 2, 0.5f));
     }
+
+    public IEnumerator PlaySFXThenTransitionLevels(AudioClip SFX, int index, float wait_duration)
+    {
+        UIAudioPlayer.clip = SFX;
+        UIAudioPlayer.Play();
+        yield return new WaitForSeconds(wait_duration);
+        SceneManager.LoadScene(index);
+    }
+
 }

@@ -102,7 +102,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed21b12727b01544d8bd3eddcc6301cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _speed: 3
+  _speed: 2.5
   _health: 80
   _max_health: 80
   _sprite: {fileID: 1789929542441813357}
@@ -131,6 +131,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a4cc8473ff24612439394669df475161, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  AbilitySFXPlayer: {fileID: 0}
+  Ability1SFX: {fileID: 0}
+  Ability2SFX: {fileID: 0}
   _healer_circle: {fileID: 2824291148003576153, guid: a758271c2f0146a45ad0bae34ef31252, type: 3}
   _turret: {fileID: 0}
 --- !u!114 &3739101953333203321
@@ -149,6 +152,7 @@ MonoBehaviour:
   _lazy_bar: {fileID: 7346742180020833984}
   _rate_of_change: 25
   _rate_of_growth: 25
+  _start_at_zero: 0
   _infection_sign: {fileID: 0}
   _bar_canvas: {fileID: 94289322205088616}
 --- !u!50 &3498961432721847859

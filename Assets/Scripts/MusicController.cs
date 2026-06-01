@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -22,8 +23,8 @@ public class MusicController : MonoBehaviour
 
     public void PlayLevelMusic()
     {
-        _audio_player.clip = _tracklist[1];
-        _audio_player.Play();
+        StartCoroutine(FadeOutAndIn(2, 1)); // plays boss phase 1 music
+
     }
 
     public void PlayAtIndex(int index) // plays track at given index, slowly ramps up volume so transition is not harsh 

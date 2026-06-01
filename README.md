@@ -83,4 +83,5 @@ Final Devlog goes here.
 - [Boss Healthbar Font](https://freefonts.co/fonts/fot-matisse-pro-eb)
 - [UI Font](https://font.download/font/fixedsys-excelsior-301)
 - [Music](https://rayhimmel.itch.io/b-dsm5)
-- 
+- [Menu UI SFX](https://ambroggiomusic.itch.io/cute-interactions-sfx)
+- [Character select UI SFX](https://ateliermagicae.itch.io/be-not-afraid-uimenu-sfx)

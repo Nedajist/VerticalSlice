@@ -102,7 +102,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 753c58e1ec16534448854e55664d80e2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _speed: 4
+  _speed: 3.5
   _health: 150
   _max_health: 150
   _sprite: {fileID: 8511563717327968215}
@@ -132,6 +132,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c287642b0bf67e48b8f09354bc8966d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  AbilitySFXPlayer: {fileID: 0}
+  Ability1SFX: {fileID: 0}
+  Ability2SFX: {fileID: 0}
   _tank_sword: {fileID: 7567351776729981318, guid: af03065f3b0b97c48a43fc438cc8231a, type: 3}
   _tank_trail: {fileID: 0}
 --- !u!114 &4976357967044220775
@@ -150,6 +153,7 @@ MonoBehaviour:
   _lazy_bar: {fileID: 4472716484942618492}
   _rate_of_change: 25
   _rate_of_growth: 25
+  _start_at_zero: 0
   _infection_sign: {fileID: 0}
   _bar_canvas: {fileID: 6532580416340695764}
 --- !u!50 &619263289229688581

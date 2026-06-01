@@ -46,7 +46,6 @@ public class HealthBar : MonoBehaviour
     void Update()
     {
         _current_health = _living_entity.GetHealth();
-        Debug.Log(_health_bar.value);
         if (_health_bar.value < _current_health)
         {
             if (_health_bar.value + _rate_of_growth * Time.deltaTime > _current_health) _health_bar.value = _current_health; // prevents overshoot growths 
@@ -54,8 +53,6 @@ public class HealthBar : MonoBehaviour
         }
         else
         {
-            Debug.Log(_health_bar.value);
-            Debug.Log(_lazy_bar.value);
             _health_bar.value = _current_health; // if actual health is less than bar value, bar value instantly snaps to actual health 
         }
 
