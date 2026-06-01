@@ -107,7 +107,6 @@ MonoBehaviour:
   _health: 200
   _max_health: 200
   _sprite: {fileID: 8269770623301546924}
-  velocity_additive: {x: 0, y: 0}
   _rb: {fileID: 4887477272507860526}
   _class: 0
   _ability_1_cooldown: 1
@@ -151,6 +150,7 @@ MonoBehaviour:
   _health_bar: {fileID: 8209569566789956229}
   _lazy_bar: {fileID: 2556004059938220239}
   _rate_of_change: 25
+  _rate_of_growth: 25
   _infection_sign: {fileID: 0}
   _bar_canvas: {fileID: 5170946643959360871}
 --- !u!50 &4887477272507860526

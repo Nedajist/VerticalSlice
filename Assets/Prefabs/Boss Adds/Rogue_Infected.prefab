@@ -147,6 +147,7 @@ MonoBehaviour:
   _health_bar: {fileID: 3412078692048715259}
   _lazy_bar: {fileID: 9064799775176763313}
   _rate_of_change: 25
+  _rate_of_growth: 25
   _infection_sign: {fileID: 0}
   _bar_canvas: {fileID: 1834803342188175897}
 --- !u!50 &5950463028957040132

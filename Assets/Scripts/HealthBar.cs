@@ -8,10 +8,11 @@ public class HealthBar : MonoBehaviour
 {
     [SerializeField] private Slider _health_bar;
     [SerializeField] private Slider _lazy_bar;
-    [SerializeField] private float _rate_of_change;
+    [SerializeField] private float _rate_of_change; // rate of change for lazybar decrease
+    [SerializeField] private float _rate_of_growth = 100; // rate of change for healthbar increase, now reserved for boss 
+    [SerializeField] private bool _start_at_zero;
     [SerializeField] private Image _infection_sign;
     [SerializeField] private GameObject _bar_canvas;
-
 
     private LivingEntity _living_entity;
     private float _current_health;
@@ -27,10 +28,17 @@ public class HealthBar : MonoBehaviour
         _current_health = _living_entity.GetHealth();
 
         _health_bar.maxValue = _max_health;
-        _health_bar.value = _current_health;
-
         _lazy_bar.maxValue = _max_health;
-        _lazy_bar.value = _current_health;
+        if (_start_at_zero)
+        {
+            _health_bar.value = 0;
+            _lazy_bar.value = 0;
+        }
+        else
+        {
+            _health_bar.value = _max_health;
+            _lazy_bar.value = _current_health;
+        }
         _original_scale = _bar_canvas.transform.localScale;
     }
 
@@ -38,7 +46,19 @@ public class HealthBar : MonoBehaviour
     void Update()
     {
         _current_health = _living_entity.GetHealth();
-        _health_bar.value = _current_health;
+        Debug.Log(_health_bar.value);
+        if (_health_bar.value < _current_health)
+        {
+            if (_health_bar.value + _rate_of_growth * Time.deltaTime > _current_health) _health_bar.value = _current_health; // prevents overshoot growths 
+            else _health_bar.value += _rate_of_growth * Time.deltaTime;
+        }
+        else
+        {
+            Debug.Log(_health_bar.value);
+            Debug.Log(_lazy_bar.value);
+            _health_bar.value = _current_health; // if actual health is less than bar value, bar value instantly snaps to actual health 
+        }
+
         _bar_canvas.transform.rotation = Quaternion.identity;
         if (transform.GetComponent<Boss>() == null)
         {
@@ -58,6 +78,14 @@ public class HealthBar : MonoBehaviour
         {
             _lazy_bar.value = _health_bar.value;
         }
+    }
+
+    public void ReturnToZero()
+    {
+        _lazy_bar.value = 0;
+        _health_bar.value = 0;
+        Debug.Log("RETURN TO 0");
+        Debug.Log(_health_bar.value);
     }
 
     public IEnumerator TempSizeChange(float ease_in, float ease_out, float scaleIncrease)

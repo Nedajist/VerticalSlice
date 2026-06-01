@@ -161,7 +161,7 @@ public class Boss : Enemy
         _sprite.color = _original_color;
         _left_ear.ResetMouseEar();
         _right_ear.ResetMouseEar();
-
+        transform.GetComponent<HealthBar>().ReturnToZero();
         CustomEvent.Trigger(transform.gameObject, "ReturnToPhase1");
     }
 

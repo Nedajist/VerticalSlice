@@ -49,7 +49,7 @@ public class VortexCircle : Circle
         _lifespan -= Time.deltaTime;
 
         transform.eulerAngles = new Vector3(0, 0, _angle);
-        _sprite_renderer.color = new Color(_sprite_renderer.color.r, _sprite_renderer.color.g, _sprite_renderer.color.b, _lifespan / _max_lifespan); // circle becomes more transparent each frame
+        // _sprite_renderer.color = new Color(_sprite_renderer.color.r, _sprite_renderer.color.g, _sprite_renderer.color.b, _lifespan / _max_lifespan); // circle becomes more transparent each frame
 
         if (_lifespan <= 0)
         {
