@@ -85,3 +85,6 @@ Final Devlog goes here.
 - [Music](https://rayhimmel.itch.io/b-dsm5)
 - [Menu UI SFX](https://ambroggiomusic.itch.io/cute-interactions-sfx)
 - [Character select UI SFX](https://ateliermagicae.itch.io/be-not-afraid-uimenu-sfx)
+- [Boss, Cross, Hexagon, Circle Ability SFX](https://thesoundrack.itch.io/freemagicspellsfx)
+- [Triangle Ability SFX](https://timothyadan.itch.io/magic-attacks-bundle)
+- [Square Ability, Enemy SFX](https://slowdiger.itch.io/magic-and-monster-sfx)

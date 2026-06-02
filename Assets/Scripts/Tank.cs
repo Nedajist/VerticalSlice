@@ -9,6 +9,7 @@ public class Tank : ClassAbility
 
     public override void Ability1(Vector3 mouse_position)
     {
+        PlayAbility1SFX();
         Vector3 line_to_mouse = Vector3.Normalize(mouse_position - transform.position);
         float angle = Vector3.Angle(line_to_mouse, transform.right);
 
@@ -26,6 +27,7 @@ public class Tank : ClassAbility
     }
     public override void Ability2(Vector3 mouse_position)
     {
+        PlayAbility2SFX();
         StartCoroutine(Charge(1f));
     }
 

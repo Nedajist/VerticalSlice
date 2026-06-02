@@ -208,6 +208,7 @@ public class Ally : LivingEntity // the clone
         _health -= amount;
         ShakeHealthBar();
         StartCoroutine(FlashColor(0.08f, 0.08f, Color.red));
+        PlayDamageSFX();
         if (_health <= 0) // die
         {
             for (int i = 0; i < GameController.instance.ally_list.Count; i++)

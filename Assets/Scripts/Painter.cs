@@ -41,6 +41,7 @@ public class Painter : ClassAbility
 
     public override void Ability1(Vector3 mouse_position) // Rectangle draw
     {
+        PlayAbility1SFX();
         Vector3 line_to_mouse = Vector3.Normalize(mouse_position - transform.position);
         line_to_mouse *= 1.2f;
         line_to_mouse.z = 0;
@@ -51,6 +52,7 @@ public class Painter : ClassAbility
 
     public override void Ability2(Vector3 mouse_position) // Arrow draw
     {
+        PlayAbility2SFX();
         Vector3 spawn_position = new Vector3(mouse_position.x, mouse_position.y, 0);
 
         if (_current_rectangle != null) // player is currently placing rectangle

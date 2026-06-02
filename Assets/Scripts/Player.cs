@@ -157,13 +157,14 @@ public class Player : Ally
         ShakeHealthBar();
         ShakeCamera(0.15f);
         StartCoroutine(FlashColor(0.08f, 0.08f, Color.red));
-
+        PlayDamageSFX();
         if (_health <= 0) // die
         {
             //InputData _death_data = ScriptableObject.CreateInstance<InputData>();
             //_death_data.inputType = "Die";
             //_death_data.inputFrame = _physics_frames;
             //_list_of_inputs.Add(_death_data);
+            PlayDeathSFX();
             ResetSelf();
         }
     }

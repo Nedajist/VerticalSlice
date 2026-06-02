@@ -11,6 +11,7 @@ public class Rogue : ClassAbility
 
     public override void Ability1(Vector3 mouse_position)
     {
+        PlayAbility1SFX();
         Vector3 line_to_mouse = Vector3.Normalize(mouse_position - transform.position);
         line_to_mouse *= 1.3f;
         line_to_mouse.z = 0;

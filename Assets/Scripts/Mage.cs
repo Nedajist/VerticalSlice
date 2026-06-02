@@ -8,6 +8,7 @@ public class Mage : ClassAbility
     [SerializeField] private GameObject _vortex_circle;
     public override void Ability1(Vector3 mouse_position)
     {
+        PlayAbility1SFX();
         Vector3 line_to_mouse = Vector3.Normalize(mouse_position - transform.position);
         line_to_mouse *= 1.2f;
         line_to_mouse.z = 0;
@@ -16,6 +17,7 @@ public class Mage : ClassAbility
     }
     public override void Ability2(Vector3 mouse_position)
     {
+        PlayAbility2SFX();
         Vector3 spawn_position = new Vector3(mouse_position.x, mouse_position.y, 0);
         GameObject instantiated_vortex_circle = Instantiate(_vortex_circle, spawn_position, Quaternion.identity);
     }

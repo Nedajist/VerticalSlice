@@ -10,6 +10,9 @@ public class LivingEntity : MonoBehaviour
     [SerializeField] protected float _health = 100;
     [SerializeField] protected float _max_health = 100;
     [SerializeField] protected SpriteRenderer _sprite;
+    [SerializeField] protected AudioSource _audio_player;
+    [SerializeField] List<AudioClip> _damage_SFX_list;
+    [SerializeField] List<AudioClip> _death_SFX_list;
 
     protected float _iframe_duration = 0.25f;
     protected float _i_frames = 0f;
@@ -59,10 +62,11 @@ public class LivingEntity : MonoBehaviour
         _health -= amount;
         ShakeHealthBar();
         StartCoroutine(FlashColor(0.1f, 0.1f, Color.red));
-        if (_health<= 0)
+        if (_health <= 0)
         {
             StartCoroutine(FadeAway(1f));
         }
+        else PlayDamageSFX(); // and death SFX plays in FadeAway
     }
 
     public float GetHealth()
@@ -113,10 +117,11 @@ public class LivingEntity : MonoBehaviour
         transform.GetComponent<HealthBar>().StartCoroutine(transform.GetComponent<HealthBar>().TempSizeChange(0.15f, 0.3f, 0.3f));
     }
 
-    protected virtual IEnumerator FadeAway(float duration)
+    protected virtual IEnumerator FadeAway(float duration) // turns sprite red, moves alpha to 0, destroys gameobject
     {
         float timer = duration;
         transform.GetComponent<Rigidbody2D>().simulated = false; // disabled rigidbody
+        PlayDeathSFX();
         while (timer > 0)
         {
             timer -= Time.deltaTime;
@@ -126,6 +131,20 @@ public class LivingEntity : MonoBehaviour
         Destroy(gameObject);
     }
 
+    protected void PlayDamageSFX()
+    {
+        if (_damage_SFX_list.Count == 0) return;
+        AudioClip selected_clip = _damage_SFX_list[Random.Range(0, _damage_SFX_list.Count)];
+        _audio_player.clip = selected_clip;
+        _audio_player.Play();
+    }
 
+    protected void PlayDeathSFX()
+    {
+        if (_death_SFX_list.Count == 0) return;
+        AudioClip selected_clip = _death_SFX_list[Random.Range(0, _death_SFX_list.Count)];
+        _audio_player.clip = selected_clip;
+        _audio_player.Play();
+    }
 
 }

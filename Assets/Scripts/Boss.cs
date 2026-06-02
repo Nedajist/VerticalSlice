@@ -24,6 +24,15 @@ public class Boss : Enemy
     [SerializeField] float _upper_degree_bound; // also determines lower bound
 
     [SerializeField] Vector3 starting_position;
+    [SerializeField] AudioSource _boss_ability_audio_manager;
+    [SerializeField] AudioClip _basic_projectile_SFX;
+    [SerializeField] AudioClip _homing_projecitle_SFX;
+    [SerializeField] AudioClip _circle_projectile_SFX;
+    [SerializeField] AudioClip _infectious_projectile_SFX;
+    [SerializeField] AudioClip _basic_melee_SFX;
+    [SerializeField] AudioClip _circle_melee_SFX;
+    [SerializeField] AudioClip _mass_AOE_SFX;
+
 
     private float _target_x;
     private float _target_y;
@@ -53,9 +62,11 @@ public class Boss : Enemy
         _health -= amount;
         StartCoroutine(FlashColor(0.1f, 0.1f, Color.red));
         ShakeHealthBar();
+        PlayDamageSFX();
         if (_health <= 0)
         {
             gameObject.SetActive(false);
+            PlayDeathSFX();
             Debug.Log("BOSS DEFEATED");
         }
     }
@@ -63,29 +74,39 @@ public class Boss : Enemy
 
     public void SummonSpiralProjectiles()
     {
+        _boss_ability_audio_manager.clip = _circle_projectile_SFX;
+        _boss_ability_audio_manager.Play();
         GameObject instantiated_spiral_bundle = Instantiate(_spiral_projectile_bundle, transform.position, Quaternion.identity);
         instantiated_spiral_bundle.transform.SetParent(transform);
     }
 
     public void SummonHomingProjectiles()
     {
+        _boss_ability_audio_manager.clip = _homing_projecitle_SFX;
+        _boss_ability_audio_manager.Play();
         GameObject instantiated_homing_bundle = Instantiate(_homing_projectile_bundle, transform.position, Quaternion.identity);
         instantiated_homing_bundle.transform.SetParent(transform);
     }
 
     public void SummonInfectiousProjectiles()
     {
+        _boss_ability_audio_manager.clip = _infectious_projectile_SFX;
+        _boss_ability_audio_manager.Play();
         GameController.instance.SummonInfectiousProjectileBundle(transform.position);
     }
 
     public void SummonGatlingProjectiles()
     {
+        _boss_ability_audio_manager.clip = _basic_projectile_SFX;
+        _boss_ability_audio_manager.Play();
         GameObject instantiated_gatling_bundle = Instantiate(_gatling_projectile_bundle, transform.position, Quaternion.identity);
         instantiated_gatling_bundle.transform.SetParent(transform);
     }
 
     public void SummonNormalSlash()
     {
+        _boss_ability_audio_manager.clip = _basic_melee_SFX;
+        _boss_ability_audio_manager.Play();
         Quaternion starting_rotation = GetStartingQuaternion();
         GameObject _instantiated_tank_sword = Instantiate(_normal_sword_slash, transform.position, starting_rotation);
         _instantiated_tank_sword.GetComponent<RotatingSword>().center = transform.gameObject;
@@ -93,6 +114,8 @@ public class Boss : Enemy
 
     public void SummonWideSlash()
     {
+        _boss_ability_audio_manager.clip = _circle_melee_SFX;
+        _boss_ability_audio_manager.Play();
         Quaternion starting_rotation = GetStartingQuaternion();
         GameObject _instantiated_tank_sword = Instantiate(_wide_sword_slash, transform.position, starting_rotation);
         _instantiated_tank_sword.GetComponent<RotatingSword>().center = transform.gameObject;
@@ -191,6 +214,8 @@ public class Boss : Enemy
 
     public IEnumerator MassAOE(float interval_between_attacks)
     {
+        _boss_ability_audio_manager.clip = _mass_AOE_SFX;
+        _boss_ability_audio_manager.Play();
         float duration = interval_between_attacks;
         GameController.instance.RefreshAllyList();
 
