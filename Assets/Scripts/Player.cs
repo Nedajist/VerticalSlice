@@ -186,8 +186,21 @@ public class Player : Ally
 
     private void ResetSelf()
     {
+        StartCoroutine(FadeAway(2f));
+    }
+
+    protected override IEnumerator FadeAway(float duration)
+    {
+        float timer = duration;
+        transform.GetComponent<Rigidbody2D>().simulated = false; // disabled rigidbody
+        PlayDeathSFX();
+        while (timer > 0)
+        {
+            timer -= Time.deltaTime;
+            _sprite.color = Color.Lerp(_sprite.color, new Color(Color.red.r, Color.red.b, Color.red.g, timer / duration), timer / duration);
+            yield return new WaitForFixedUpdate();
+        }
         GameController.instance.AddNewClone(starting_position, _list_of_inputs, _class, _speed, _max_health, _ability_1_cooldown, _ability_2_cooldown);
-        Debug.Log(_class);
         GameController.instance.main_camera.transform.SetParent(GameController.instance.transform);
         GameController.instance.TransitionGameState(GameState.selecting);
         gameObject.SetActive(false);

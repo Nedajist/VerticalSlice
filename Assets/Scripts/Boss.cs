@@ -161,7 +161,6 @@ public class Boss : Enemy
 
     private void Move() // sets rigidbody velocity DIRECTLY towards target x and y 
     {
-        
         Vector2 _line_to_target = new Vector2(_target_x, _target_y) - (Vector2)transform.position;
         _line_to_target = _line_to_target.normalized;
         _rb.velocity = _line_to_target * _speed;
