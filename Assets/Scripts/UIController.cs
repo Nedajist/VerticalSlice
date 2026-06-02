@@ -34,7 +34,6 @@ public class UIController : MonoBehaviour
     [SerializeField] private AudioClip _painter_selected_SFX;
 
 
-    private float _current_health;
     private float _past_character_count = 0;
     private Vector3 _current_class_symbol_position = new Vector3(10, -45, 0);
 

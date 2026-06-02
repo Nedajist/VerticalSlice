@@ -42,6 +42,7 @@ public class GameController : MonoBehaviour
     [SerializeField] GameObject _falling_rain;
 
     [SerializeField] public GameObject crosshair;
+    [SerializeField] public AdditiveDistortion distortion_layer;
     [SerializeField] public GameObject boss_object;
     [SerializeField] private bool _boss_level;
 
@@ -341,6 +342,7 @@ public class GameController : MonoBehaviour
                 current_player.GetComponent<Player>().starting_position = _player_starting_position;
                 main_camera.transform.SetParent(current_player.transform);
                 main_camera.transform.localPosition = new Vector3(0, 0, -1);
+                distortion_layer.player = current_player;
                 music_controller.PlayLevelMusic();
 
                 UI.HideSelectionScreen();
