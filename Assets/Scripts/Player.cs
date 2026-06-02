@@ -158,8 +158,11 @@ public class Player : Ally
         ShakeCamera(0.15f);
         StartCoroutine(FlashColor(0.08f, 0.08f, Color.red));
         PlayDamageSFX();
-        if (Random.Range(0, 6) == 1) GameController.instance.distortion_layer.DistortColor();
-        if (Random.Range(0, 3) == 1) GameController.instance.distortion_layer.DistortPosition();
+        if (GameController.instance.player_attempts > 1) // after 1st death, screen and color begin to distort 
+        {
+            if (Random.Range(0, 6) == 1) GameController.instance.distortion_layer.DistortColor();
+            if (Random.Range(0, 3) == 1) GameController.instance.distortion_layer.DistortPosition();
+        }
 
         if (_health <= 0) // die
         {

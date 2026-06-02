@@ -9,7 +9,7 @@ using static UnityEditor.Experimental.GraphView.Port;
 public class AdditiveDistortion : MonoBehaviour
 {
     [SerializeField] List<SpriteRenderer> _list_of_distortion_sprites;
-    [SerializeField] List<Material> _list_of_distortion_materials;
+    private List<Material> _list_of_distortion_materials = new List<Material>();
 
     [HideInInspector] public GameObject player;
 
@@ -19,10 +19,11 @@ public class AdditiveDistortion : MonoBehaviour
     {
         foreach (SpriteRenderer sprite in _list_of_distortion_sprites)
         {
-            _list_of_distortion_materials.Add(sprite.material);
+            _list_of_distortion_materials.Add(sprite.material); // material list set here
         }
-        for (int i = 0; i < 4; i ++) _list_of_original_positions.Add(_list_of_distortion_sprites[i].transform.position);
-        
+        for (int i = 0; i < 4; i ++) _list_of_original_positions.Add(_list_of_distortion_sprites[i].transform.position); // original positions stored 
+
+        ResetSelf(); // Changes to materials PERSIST PERMANENTLY, reset every time program starts 
 
     }
 
@@ -34,19 +35,21 @@ public class AdditiveDistortion : MonoBehaviour
 
     public void DistortPosition()
     {
-        switch (Random.Range(0, 4))
+        switch (Random.Range(0, 5))
         {
             case 0:
                 StartCoroutine(DiagonalMove(0.05f, -0.05f)); // upward diagonal diagonal
                 break;
-
             case 1:
                 StartCoroutine(DiagonalMove(-0.05f, 0.05f)); // downward diagonal
                 break;
             case 2:
-                StartCoroutine(ApartThenTogether(0.05f, 0.05f)); // apart then together
+                StartCoroutine(FourSplit(0.05f, 0.05f)); // apart snaps together
                 break;
             case 3:
+                StartCoroutine(FourSplit(-0.05f, -0.05f)); // apart to together 
+                break;
+            case 4:
                 StartCoroutine(Syncopate(1f, 2f, 2f)); // syncopate 
                 break;
         }
@@ -54,7 +57,7 @@ public class AdditiveDistortion : MonoBehaviour
 
     private void Update()
     {
-        if (player != null) transform.position = player.transform.position;
+        if (player != null) transform.position = player.transform.position; // player is set by GameController on state transition 
         else transform.position = Vector3.zero;
     }
 
@@ -128,14 +131,14 @@ public class AdditiveDistortion : MonoBehaviour
 
     }
 
-    public IEnumerator ApartThenTogether(float starting_magnitude, float growth_rate) // distortion layers instantly part in 4 opposite diagonal directions. Then return to 0
+    public IEnumerator FourSplit(float starting_magnitude, float growth_rate) // distortion layers part in 4 opposite diagonal directions. Then return to 0
     {
         Vector2[] additive_list = { new Vector2(starting_magnitude, -starting_magnitude), new Vector2(-starting_magnitude, -starting_magnitude), new Vector2(starting_magnitude, starting_magnitude), new Vector2(-starting_magnitude, starting_magnitude) };
         Vector2[] growth_rate_list = { new Vector2(-growth_rate, growth_rate), new Vector2(growth_rate, growth_rate), new Vector2(-growth_rate, -growth_rate), new Vector2(growth_rate, -growth_rate) };
         
         foreach (SpriteRenderer sprite in _list_of_distortion_sprites) sprite.enabled = true;
 
-        while (additive_list[1].x < 0 && additive_list[1].y < 0)
+        while ( (additive_list[1].x < 0 && additive_list[1].y < 0 && starting_magnitude > 0) || (additive_list[1].x > 0 && additive_list[1].y > 0 && starting_magnitude < 0))
         {
             for (int i = 0; i < 4; i++)
             {
@@ -162,13 +165,12 @@ public class AdditiveDistortion : MonoBehaviour
 
         foreach (SpriteRenderer sprite in _list_of_distortion_sprites) sprite.enabled = true;
 
-
         while (timer > 0)
         {
             for (int i = 0; i < 4; i++)
             {
                 _list_of_distortion_materials[i].SetVector("_positional_additive", (Vector2)_list_of_distortion_materials[i].GetVector("_positional_additive") + direction_list[i] * movement_rate * Time.deltaTime);
-                _list_of_distortion_materials[i].SetFloat("_color_opacity", timer / duration);
+                _list_of_distortion_materials[i].SetFloat("_color_opacity", timer / duration); // slowly fades the co
                 _list_of_distortion_sprites[i].transform.position += (Vector3) direction_list[i] * movement_rate * Time.deltaTime;
             }
 
@@ -176,13 +178,19 @@ public class AdditiveDistortion : MonoBehaviour
             yield return new WaitForFixedUpdate();
         }
 
-
         foreach (Material distortion_material in _list_of_distortion_materials) distortion_material.SetVector("_positional_additive", new Vector2(0, 0));
-        foreach (Material distortion_material in _list_of_distortion_materials) distortion_material.SetFloat("_color_opacity", 1);
+        foreach (Material distortion_material in _list_of_distortion_materials) distortion_material.SetFloat("_color_opacity", 0);
 
         foreach (SpriteRenderer sprite in _list_of_distortion_sprites) sprite.enabled = false;
         for (int i = 0; i < 4; i++) _list_of_distortion_sprites[i].transform.position = _list_of_original_positions[i]; 
 
+    }
+
+    private void ResetSelf() // moves the quadrants back to their original positions. Removes any hue changes (so the quadrants look identical to the actual environment). Hides the quadrant sprites from view. 
+    {
+        foreach (SpriteRenderer sprite in _list_of_distortion_sprites) sprite.enabled = false;
+        foreach (Material distortion_material in _list_of_distortion_materials) distortion_material.SetFloat("_color_opacity", 0);
+        foreach (Material distortion_material in _list_of_distortion_materials) distortion_material.SetVector("_positional_additive", new Vector2(0, 0));
     }
 
 }

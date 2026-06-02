@@ -61,7 +61,7 @@ public class GameController : MonoBehaviour
     private EnemySpawnBundle[] _list_of_spawners;
 
     public GameObject current_player;
-
+    public int player_attempts = 0;
 
     private void Awake()
     {
@@ -344,6 +344,7 @@ public class GameController : MonoBehaviour
                 main_camera.transform.localPosition = new Vector3(0, 0, -1);
                 distortion_layer.player = current_player;
                 music_controller.PlayLevelMusic();
+                player_attempts += 1;
 
                 UI.HideSelectionScreen();
 

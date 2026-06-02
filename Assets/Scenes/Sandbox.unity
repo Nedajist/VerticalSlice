@@ -10308,6 +10308,17 @@ Transform:
   - {fileID: 691023924}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &370065511 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 895310107312443937, guid: ed6afcef9350f944aad0241e9f816690, type: 3}
+  m_PrefabInstance: {fileID: 1820793205}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f994790ff22482b4d812545d55579d67, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &461626163
 GameObject:
   m_ObjectHideFlags: 0
@@ -17712,7 +17723,7 @@ MonoBehaviour:
   _bar_canvas_UI: {fileID: 791709908}
   _falling_rain: {fileID: 2137350458}
   crosshair: {fileID: 3507189855721818092, guid: 52792af8c459a5547b607fa38adfe13e, type: 3}
-  distortion_layer: {fileID: 0}
+  distortion_layer: {fileID: 370065511}
   boss_object: {fileID: 0}
   _boss_level: 0
   main_camera: {fileID: 0}
