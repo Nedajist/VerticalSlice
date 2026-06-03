@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 4470064057448328497}
   - component: {fileID: 412695932615743684}
   - component: {fileID: -6857899574687156156}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Moving Rectangle
   m_TagString: Obstacle
   m_Icon: {fileID: 0}
@@ -104,7 +104,12 @@ MonoBehaviour:
   _health: 60
   _max_health: 60
   _sprite: {fileID: 7816888431566267949}
+  _audio_player: {fileID: 0}
+  _damage_SFX_list: []
+  _death_SFX_list: []
   _damage: 15
+  _thorns: 1
+  _cooldown_before_damage: 0.3
   _rb: {fileID: 4470064057448328497}
   _movement_speed: 0
   _max_speed: 7

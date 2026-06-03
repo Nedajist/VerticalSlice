@@ -210,7 +210,7 @@ GameObject:
   - component: {fileID: 81951832}
   - component: {fileID: 81951831}
   - component: {fileID: 81951830}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Respawning Wall (10)
   m_TagString: Permanent_Obstacle
   m_Icon: {fileID: 0}
@@ -5281,7 +5281,7 @@ GameObject:
   - component: {fileID: 200947471}
   - component: {fileID: 200947470}
   - component: {fileID: 200947469}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Respawning Wall (13)
   m_TagString: Permanent_Obstacle
   m_Icon: {fileID: 0}
@@ -5553,7 +5553,7 @@ GameObject:
   - component: {fileID: 306351975}
   - component: {fileID: 306351974}
   - component: {fileID: 306351973}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Respawning Wall (31)
   m_TagString: Permanent_Obstacle
   m_Icon: {fileID: 0}
@@ -10870,7 +10870,7 @@ GameObject:
   - component: {fileID: 365374449}
   - component: {fileID: 365374448}
   - component: {fileID: 365374447}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Respawning Wall (7)
   m_TagString: Permanent_Obstacle
   m_Icon: {fileID: 0}
@@ -11064,7 +11064,7 @@ GameObject:
   - component: {fileID: 457603553}
   - component: {fileID: 457603552}
   - component: {fileID: 457603551}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Respawning Wall (18)
   m_TagString: Permanent_Obstacle
   m_Icon: {fileID: 0}
@@ -11357,7 +11357,7 @@ GameObject:
   - component: {fileID: 466402338}
   - component: {fileID: 466402337}
   - component: {fileID: 466402336}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Respawning Wall (5)
   m_TagString: Permanent_Obstacle
   m_Icon: {fileID: 0}
@@ -11540,7 +11540,7 @@ GameObject:
   - component: {fileID: 479842198}
   - component: {fileID: 479842197}
   - component: {fileID: 479842196}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Respawning Wall (4)
   m_TagString: Permanent_Obstacle
   m_Icon: {fileID: 0}
@@ -12180,7 +12180,7 @@ GameObject:
   - component: {fileID: 655189729}
   - component: {fileID: 655189728}
   - component: {fileID: 655189727}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Respawning Wall (29)
   m_TagString: Permanent_Obstacle
   m_Icon: {fileID: 0}
@@ -18911,7 +18911,7 @@ GameObject:
   - component: {fileID: 720978013}
   - component: {fileID: 720978012}
   - component: {fileID: 720978011}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Respawning Wall (6)
   m_TagString: Permanent_Obstacle
   m_Icon: {fileID: 0}
@@ -19197,7 +19197,7 @@ GameObject:
   - component: {fileID: 814965448}
   - component: {fileID: 814965447}
   - component: {fileID: 814965446}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Respawning Wall (25)
   m_TagString: Permanent_Obstacle
   m_Icon: {fileID: 0}
@@ -19380,7 +19380,7 @@ GameObject:
   - component: {fileID: 815165989}
   - component: {fileID: 815165988}
   - component: {fileID: 815165987}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Respawning Wall (19)
   m_TagString: Permanent_Obstacle
   m_Icon: {fileID: 0}
@@ -19811,7 +19811,7 @@ GameObject:
   - component: {fileID: 977004385}
   - component: {fileID: 977004384}
   - component: {fileID: 977004383}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Respawning Wall (32)
   m_TagString: Permanent_Obstacle
   m_Icon: {fileID: 0}
@@ -20191,7 +20191,7 @@ GameObject:
   - component: {fileID: 1171187999}
   - component: {fileID: 1171187998}
   - component: {fileID: 1171187997}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Respawning Wall (21)
   m_TagString: Permanent_Obstacle
   m_Icon: {fileID: 0}
@@ -20374,7 +20374,7 @@ GameObject:
   - component: {fileID: 1180326787}
   - component: {fileID: 1180326786}
   - component: {fileID: 1180326785}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Respawning Wall (22)
   m_TagString: Permanent_Obstacle
   m_Icon: {fileID: 0}
@@ -20917,7 +20917,7 @@ GameObject:
   - component: {fileID: 1354130047}
   - component: {fileID: 1354130046}
   - component: {fileID: 1354130045}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Respawning Wall (9)
   m_TagString: Permanent_Obstacle
   m_Icon: {fileID: 0}
@@ -26276,7 +26276,7 @@ GameObject:
   - component: {fileID: 1431139410}
   - component: {fileID: 1431139409}
   - component: {fileID: 1431139408}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Respawning Wall (30)
   m_TagString: Permanent_Obstacle
   m_Icon: {fileID: 0}
@@ -26587,7 +26587,7 @@ GameObject:
   - component: {fileID: 1471272572}
   - component: {fileID: 1471272571}
   - component: {fileID: 1471272570}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Respawning Wall (15)
   m_TagString: Permanent_Obstacle
   m_Icon: {fileID: 0}
@@ -26985,7 +26985,7 @@ GameObject:
   - component: {fileID: 1480582109}
   - component: {fileID: 1480582108}
   - component: {fileID: 1480582107}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Respawning Wall (26)
   m_TagString: Permanent_Obstacle
   m_Icon: {fileID: 0}
@@ -27582,7 +27582,7 @@ GameObject:
   - component: {fileID: 1568806651}
   - component: {fileID: 1568806650}
   - component: {fileID: 1568806649}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Respawning Wall (16)
   m_TagString: Permanent_Obstacle
   m_Icon: {fileID: 0}
@@ -27765,7 +27765,7 @@ GameObject:
   - component: {fileID: 1572430737}
   - component: {fileID: 1572430736}
   - component: {fileID: 1572430735}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Respawning Wall (12)
   m_TagString: Permanent_Obstacle
   m_Icon: {fileID: 0}
@@ -27948,7 +27948,7 @@ GameObject:
   - component: {fileID: 1581057301}
   - component: {fileID: 1581057300}
   - component: {fileID: 1581057299}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Respawning Wall (14)
   m_TagString: Permanent_Obstacle
   m_Icon: {fileID: 0}
@@ -28482,7 +28482,7 @@ GameObject:
   - component: {fileID: 1779124662}
   - component: {fileID: 1779124661}
   - component: {fileID: 1779124660}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Respawning Wall (27)
   m_TagString: Permanent_Obstacle
   m_Icon: {fileID: 0}
@@ -28665,7 +28665,7 @@ GameObject:
   - component: {fileID: 1794500969}
   - component: {fileID: 1794500968}
   - component: {fileID: 1794500967}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Respawning Wall (23)
   m_TagString: Permanent_Obstacle
   m_Icon: {fileID: 0}
@@ -28848,7 +28848,7 @@ GameObject:
   - component: {fileID: 1808055490}
   - component: {fileID: 1808055489}
   - component: {fileID: 1808055488}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Respawning Wall (11)
   m_TagString: Permanent_Obstacle
   m_Icon: {fileID: 0}
@@ -29092,7 +29092,7 @@ GameObject:
   - component: {fileID: 1836352566}
   - component: {fileID: 1836352565}
   - component: {fileID: 1836352564}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Respawning Wall (20)
   m_TagString: Permanent_Obstacle
   m_Icon: {fileID: 0}
@@ -29275,7 +29275,7 @@ GameObject:
   - component: {fileID: 1855007277}
   - component: {fileID: 1855007276}
   - component: {fileID: 1855007275}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Respawning Wall (28)
   m_TagString: Permanent_Obstacle
   m_Icon: {fileID: 0}
@@ -29999,7 +29999,7 @@ GameObject:
   - component: {fileID: 2047084473}
   - component: {fileID: 2047084472}
   - component: {fileID: 2047084471}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Respawning Wall (24)
   m_TagString: Permanent_Obstacle
   m_Icon: {fileID: 0}
@@ -30182,7 +30182,7 @@ GameObject:
   - component: {fileID: 2080547783}
   - component: {fileID: 2080547782}
   - component: {fileID: 2080547781}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Respawning Wall (8)
   m_TagString: Permanent_Obstacle
   m_Icon: {fileID: 0}
@@ -30528,7 +30528,7 @@ GameObject:
   - component: {fileID: 2130444525}
   - component: {fileID: 2130444524}
   - component: {fileID: 2130444523}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Respawning Wall (17)
   m_TagString: Permanent_Obstacle
   m_Icon: {fileID: 0}

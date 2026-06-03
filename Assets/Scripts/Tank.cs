@@ -37,7 +37,7 @@ public class Tank : ClassAbility
     {
         _tank_trail.emitting = true;
         Rigidbody2D rb = transform.GetComponent<Rigidbody2D>();
-        rb.excludeLayers = LayerMask.GetMask("Enemy", "Projectile", "Player");
+        rb.excludeLayers = LayerMask.GetMask("Enemy", "Projectile", "Player", "Permanent_Obstacle");
         Ally own_self = transform.GetComponent<Ally>();
         float original_speed = own_self.GetSpeed();
 
