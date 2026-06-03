@@ -5124,7 +5124,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -876546973899608171, guid: 2b91681c7b3779e42beba04f6967518d, type: 3}
+  - {fileID: 2100000, guid: 4cf2df992d2d22d419bd69737eafd61d, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -5849,7 +5849,7 @@ MonoBehaviour:
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
   m_Interactable: 1
-  m_TargetGraphic: {fileID: 509541917}
+  m_TargetGraphic: {fileID: 1986421430}
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
@@ -6011,7 +6011,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -876546973899608171, guid: 2b91681c7b3779e42beba04f6967518d, type: 3}
+  - {fileID: 2100000, guid: 4cf2df992d2d22d419bd69737eafd61d, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

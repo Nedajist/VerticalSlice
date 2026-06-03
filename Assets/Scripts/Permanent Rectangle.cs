@@ -17,7 +17,7 @@ public class PermanentRectangle : Rectangle
         _damage_timer -= Time.fixedDeltaTime;
     }
 
-    public override void ReceiveDamage(float damage)
+    public override void ReceiveDamage(float damage, Vector3? location = null)
     {
         _health -= damage;
         if (damage > 0)

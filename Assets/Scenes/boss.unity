@@ -457,6 +457,7 @@ MonoBehaviour:
   _audio_player: {fileID: 0}
   _damage_SFX_list: []
   _death_SFX_list: []
+  _damage_particles: {fileID: 0}
   _damage: 50
   _thorns: 0
   _cooldown_before_damage: 1
@@ -640,6 +641,7 @@ MonoBehaviour:
   _audio_player: {fileID: 0}
   _damage_SFX_list: []
   _death_SFX_list: []
+  _damage_particles: {fileID: 0}
   _damage: 50
   _thorns: 0
   _cooldown_before_damage: 1
@@ -1406,6 +1408,7 @@ MonoBehaviour:
   _audio_player: {fileID: 0}
   _damage_SFX_list: []
   _death_SFX_list: []
+  _damage_particles: {fileID: 0}
   _damage: 50
   _thorns: 0
   _cooldown_before_damage: 1
@@ -1978,6 +1981,7 @@ MonoBehaviour:
   _audio_player: {fileID: 0}
   _damage_SFX_list: []
   _death_SFX_list: []
+  _damage_particles: {fileID: 0}
   _damage: 50
   _thorns: 0
   _cooldown_before_damage: 1
@@ -12012,7 +12016,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -876546973899608171, guid: 2b91681c7b3779e42beba04f6967518d, type: 3}
+  - {fileID: 2100000, guid: 4cf2df992d2d22d419bd69737eafd61d, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -12063,6 +12067,7 @@ MonoBehaviour:
   _audio_player: {fileID: 0}
   _damage_SFX_list: []
   _death_SFX_list: []
+  _damage_particles: {fileID: 6539963686954934863, guid: 5e35d35b83c130b4a8332591fb8e87cb, type: 3}
 --- !u!1 &1131024767
 GameObject:
   m_ObjectHideFlags: 0
@@ -18334,6 +18339,7 @@ MonoBehaviour:
   _audio_player: {fileID: 0}
   _damage_SFX_list: []
   _death_SFX_list: []
+  _damage_particles: {fileID: 0}
   _damage: 50
   _thorns: 0
   _cooldown_before_damage: 1
@@ -18601,6 +18607,7 @@ MonoBehaviour:
   _audio_player: {fileID: 0}
   _damage_SFX_list: []
   _death_SFX_list: []
+  _damage_particles: {fileID: 0}
   _damage: 50
   _thorns: 0
   _cooldown_before_damage: 1
@@ -19010,7 +19017,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -876546973899608171, guid: 2b91681c7b3779e42beba04f6967518d, type: 3}
+  - {fileID: 2100000, guid: 4cf2df992d2d22d419bd69737eafd61d, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -19061,6 +19068,7 @@ MonoBehaviour:
   _audio_player: {fileID: 0}
   _damage_SFX_list: []
   _death_SFX_list: []
+  _damage_particles: {fileID: 6539963686954934863, guid: 5e35d35b83c130b4a8332591fb8e87cb, type: 3}
 --- !u!1 &1810450109
 GameObject:
   m_ObjectHideFlags: 0
@@ -24878,6 +24886,7 @@ MonoBehaviour:
   _death_SFX_list:
   - {fileID: 8300000, guid: ff0d74104a9e9754ca2e8f72095ef0ca, type: 3}
   - {fileID: 8300000, guid: a76614ed6c183804d8d70d5c079baefe, type: 3}
+  _damage_particles: {fileID: 6539963686954934863, guid: 5e35d35b83c130b4a8332591fb8e87cb, type: 3}
   _target_player: {fileID: 0}
   contact_damage: 50
   _velocity_multiplicative: 1

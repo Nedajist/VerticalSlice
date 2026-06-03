@@ -27,14 +27,13 @@ public class RisenTank : RisenEntity
 
     }
 
-    public override void ReceiveDamage(float amount)
+    public override void ReceiveDamage(float amount, Vector3? location = null)
     {
-        _health -= amount;
+        base.ReceiveDamage(amount, location);
         if (_health <= 0)
         {
             GameObject _instantiated_death_square = Instantiate(_death_square, transform.position, Quaternion.identity);
             _instantiated_death_square.GetComponent<BossAOECircle>()._max_scale = transform.localScale.x;
-            StartCoroutine(FadeAway(1f));
         }
 
     }

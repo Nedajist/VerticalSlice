@@ -117,6 +117,7 @@ MonoBehaviour:
   _death_SFX_list:
   - {fileID: 8300000, guid: 90177f614976a7749b91c88ac24ed5b3, type: 3}
   - {fileID: 8300000, guid: a76614ed6c183804d8d70d5c079baefe, type: 3}
+  _damage_particles: {fileID: 6539963686954934863, guid: dc9c167a4f3a42740bd3f42c69f756dd, type: 3}
   _rb: {fileID: 3498961432721847859}
   _class: 2
   _ability_1_cooldown: 1

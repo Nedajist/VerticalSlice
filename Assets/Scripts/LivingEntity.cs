@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics.Tracing;
 using UnityEngine;
 
 
@@ -13,6 +14,7 @@ public class LivingEntity : MonoBehaviour
     [SerializeField] protected AudioSource _audio_player;
     [SerializeField] List<AudioClip> _damage_SFX_list;
     [SerializeField] List<AudioClip> _death_SFX_list;
+    [SerializeField] ParticleSystem _damage_particles;
 
     protected float _iframe_duration = 0.25f;
     protected float _i_frames = 0f;
@@ -51,7 +53,7 @@ public class LivingEntity : MonoBehaviour
         //Debug.Log("HEALED FOR " + amount);
     }
 
-    public virtual void ReceiveDamage(float amount)
+    public virtual void ReceiveDamage(float amount, Vector3? location = null) // Vector3 default value is null to account for damage instances that don't have a particular contact point 
     {
         if (_i_frames > 0)
         {
@@ -62,11 +64,24 @@ public class LivingEntity : MonoBehaviour
         _health -= amount;
         ShakeHealthBar();
         StartCoroutine(FlashColor(0.1f, 0.1f, Color.red));
+        Bleed(location);
+        
         if (_health <= 0)
         {
             StartCoroutine(FadeAway(1f));
         }
         else PlayDamageSFX(); // and death SFX plays in FadeAway
+    }
+
+    public void Bleed(Vector3? position)
+    {
+        Debug.Log(transform.name.ToString() + " is bleeding at " + position.ToString());
+        if (position == null) return;
+        if (_damage_particles == null) return;
+
+        Debug.Log("Bleed succcesssfull");
+        Vector3 spawn_position = (Vector3) position;
+        Instantiate(_damage_particles, spawn_position, Quaternion.identity, transform);
     }
 
     public float GetHealth()

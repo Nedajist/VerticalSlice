@@ -126,7 +126,7 @@ public class Player : Ally
             if (collision.transform.CompareTag("Projectile"))
             {
                 Projectile projectile = collision.transform.GetComponent<Projectile>();
-                ReceiveDamage(projectile.damage);
+                ReceiveDamage(projectile.damage, collision.contacts[0].point);
 
                 if (projectile.infectious == true)
                 {
@@ -138,14 +138,14 @@ public class Player : Ally
             {
                 Enemy enemy = collision.transform.GetComponent<Enemy>();
                 if (enemy == null) return; // boss ears are tagged as enemy but only has livingEntity script 
-                ReceiveDamage(enemy.contact_damage);
+                ReceiveDamage(enemy.contact_damage, collision.contacts[0].point);
             }
         }
 
 
     }
 
-    public override void ReceiveDamage(float amount)
+    public override void ReceiveDamage(float amount, Vector3? location = null)
     {
         if (_i_frames > 0) // if has iframes, doesn't take damage
         {
@@ -158,6 +158,7 @@ public class Player : Ally
         ShakeCamera(0.15f);
         StartCoroutine(FlashColor(0.08f, 0.08f, Color.red));
         PlayDamageSFX();
+        Bleed(location);
         if (GameController.instance.player_attempts > 1) // after 1st death, screen and color begin to distort 
         {
             if (Random.Range(0, 6) == 1) GameController.instance.distortion_layer.DistortColor();

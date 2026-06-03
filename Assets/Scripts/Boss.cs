@@ -49,7 +49,7 @@ public class Boss : Enemy
         SetColor();
     }
 
-    public override void ReceiveDamage(float amount)
+    public override void ReceiveDamage(float amount, Vector3? location = null)
     {
         if (transform.gameObject.activeSelf == false) return;
 
@@ -63,6 +63,8 @@ public class Boss : Enemy
         StartCoroutine(FlashColor(0.1f, 0.1f, Color.red));
         ShakeHealthBar();
         PlayDamageSFX();
+        Bleed(location);
+
         if (_health <= 0)
         {
             gameObject.SetActive(false);
@@ -170,7 +172,7 @@ public class Boss : Enemy
     {
         if (collision.transform.CompareTag("Projectile"))
         {
-            ReceiveDamage(collision.transform.GetComponent<Projectile>().damage);
+            ReceiveDamage(collision.transform.GetComponent<Projectile>().damage, collision.contacts[0].point);
         }
     }
 

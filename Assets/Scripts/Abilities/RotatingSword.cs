@@ -65,6 +65,7 @@ public class RotatingSword : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         LivingEntity target_entity = collision.GetComponent<LivingEntity>();
+        Vector3 point_of_contact = collision.ClosestPoint(transform.position);
 
         if (collision.GetComponent<Projectile>() != null && collision.GetComponent<Hook>() == null) // can destory all projectiles except for hooks 
         {
@@ -80,7 +81,7 @@ public class RotatingSword : MonoBehaviour
 
         else if (target_entity != null && target_entity.GetInstanceID() != center.GetComponent<LivingEntity>().GetInstanceID())
         {
-            collision.GetComponent<LivingEntity>().ReceiveDamage(_damage);
+            collision.GetComponent<LivingEntity>().ReceiveDamage(_damage, point_of_contact);
         }
 
 

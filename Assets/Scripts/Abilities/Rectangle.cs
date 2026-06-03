@@ -16,7 +16,7 @@ public class Rectangle : LivingEntity
         _iframe_duration = 0.5f;
     }
 
-    public override void ReceiveDamage(float damage)
+    public override void ReceiveDamage(float damage, Vector3? location = null)
     {
 
         //damage sfx

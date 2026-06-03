@@ -45,7 +45,7 @@ public class RisenEntity : Enemy
         {
             if (collision.transform.CompareTag("Projectile"))
             {
-                ReceiveDamage(collision.transform.GetComponent<Projectile>().damage);
+                ReceiveDamage(collision.transform.GetComponent<Projectile>().damage, collision.contacts[0].point);
             }
 
         }

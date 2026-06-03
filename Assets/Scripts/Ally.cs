@@ -179,7 +179,7 @@ public class Ally : LivingEntity // the clone
             if (collision.transform.CompareTag("Projectile"))
             {
                 Projectile projectile = collision.transform.GetComponent<Projectile>();
-                ReceiveDamage(projectile.damage);
+                ReceiveDamage(projectile.damage, collision.contacts[0].point);
 
                 if (projectile.infectious == true)
                 {
@@ -191,13 +191,13 @@ public class Ally : LivingEntity // the clone
             if (collision.transform.CompareTag("Enemy"))
             {
                 Enemy enemy = collision.transform.GetComponent<Enemy>();
-                ReceiveDamage(enemy.contact_damage);
+                ReceiveDamage(enemy.contact_damage, collision.contacts[0].point);
             }
 
         }
     }
 
-    public override void ReceiveDamage(float amount)
+    public override void ReceiveDamage(float amount, Vector3? location = null)
     {
         if (_i_frames > 0 || _dead == true)
         {
@@ -209,6 +209,8 @@ public class Ally : LivingEntity // the clone
         ShakeHealthBar();
         StartCoroutine(FlashColor(0.08f, 0.08f, Color.red));
         PlayDamageSFX();
+        Bleed(location);
+
         if (_health <= 0) // die
         {
             for (int i = 0; i < GameController.instance.ally_list.Count; i++)
