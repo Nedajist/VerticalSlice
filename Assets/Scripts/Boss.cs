@@ -218,29 +218,21 @@ public class Boss : Enemy
         float duration = interval_between_attacks;
         GameController.instance.RefreshAllyList();
 
-        for (int i = 0; i < GameController.instance.ally_list.Count; i++)
+        foreach (Ally target in GameController.instance.ally_list)
         {
-            if (i < GameController.instance.ally_list.Count == false) 
+            while (duration > 0)
             {
-                break;
-            }
-
-            duration -= Time.fixedDeltaTime;
-            if (duration > 0)
-            {
+                duration -= Time.fixedDeltaTime;
                 yield return new WaitForFixedUpdate();
             }
 
-            if (GameController.instance.ally_list[i] != null)
+            if (target != null)
             {
-                GameController.instance.RefreshAllyList();
                 duration = interval_between_attacks;
-                GameObject _instantiated_AOE_circle = Instantiate(_boss_disease_AOE, GameController.instance.ally_list[i].transform.position, Quaternion.identity);
+                GameObject _instantiated_AOE_circle = Instantiate(_boss_disease_AOE, target.transform.position, Quaternion.identity);
                 yield return new WaitForFixedUpdate();
             }
         }
-
-        yield return null;
 
     }
 

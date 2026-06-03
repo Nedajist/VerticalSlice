@@ -41,7 +41,7 @@ public class GameController : MonoBehaviour
     [SerializeField] GameObject _bar_canvas_UI;
     [SerializeField] GameObject _falling_rain;
 
-    [SerializeField] public GameObject crosshair;
+    [SerializeField] public GameObject _click_bubble;
     [SerializeField] public AdditiveDistortion distortion_layer;
     [SerializeField] public GameObject boss_object;
     [SerializeField] private bool _boss_level;
@@ -87,11 +87,15 @@ public class GameController : MonoBehaviour
         TransitionGameState(GameState.selecting);
     }
 
-    private void FixedUpdate()
+    private void Update()
     {
-        Vector3 mouse_position = main_camera.ScreenToWorldPoint(Input.mousePosition);
-        Vector3 true_position = new Vector3(mouse_position.x, mouse_position.y, 0);
-        crosshair.transform.position = true_position;
+        if (Input.GetKeyDown(KeyCode.Mouse0) || Input.GetKeyDown(KeyCode.Mouse1))
+        {
+            Vector3 mouse_position = main_camera.ScreenToWorldPoint(Input.mousePosition);
+            Vector3 true_position = new Vector3(mouse_position.x, mouse_position.y, 0);
+            GameObject instantiated_bubble = Instantiate(_click_bubble, true_position, Quaternion.identity);
+        }
+       
     }
 
     public void AddNewClone(Vector3 starting_position, List<InputData> list_of_inputs, PlayerClass player_class, float speed, float max_health, float ability_1_cooldown, float ability_2_cooldown)
@@ -270,7 +274,6 @@ public class GameController : MonoBehaviour
         GameObject[] Permanents = GameObject.FindGameObjectsWithTag("Permanent_Obstacle");
         for (int i = 0; i < Permanents.Count(); i++)
         {
-            Debug.Log("OBJECT FOUND");
             Permanents[i].GetComponent<PermanentRectangle>().ResetSelf();
         }
     }

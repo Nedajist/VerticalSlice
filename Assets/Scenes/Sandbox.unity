@@ -171,7 +171,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Material: {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  m_Material: {fileID: -876546973899608171, guid: cf6494e4d1ce60945841bf3fa2bae601, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
@@ -11282,7 +11282,7 @@ MonoBehaviour:
   - {fileID: 3726226174166467842, guid: 0373bfd8abb5cbf47905c8c31fccd192, type: 3}
   - {fileID: 3726226174166467842, guid: 0373bfd8abb5cbf47905c8c31fccd192, type: 3}
   second_to_spawn: 2
-  spawn_interval: 1
+  spawn_interval: 4
   spawn_randomization_factor: 2
 --- !u!1 &462687187
 GameObject:
@@ -19648,7 +19648,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
+  m_Material: {fileID: -876546973899608171, guid: b1a33e96d006c344cb9a870276947afe, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
@@ -19736,7 +19736,7 @@ MonoBehaviour:
   _infectious_projectile_bundle: {fileID: 8473234058073744903, guid: 34751ce111e4bf64eb14261c82ec41df, type: 3}
   _bar_canvas_UI: {fileID: 791709908}
   _falling_rain: {fileID: 2137350458}
-  crosshair: {fileID: 3507189855721818092, guid: 52792af8c459a5547b607fa38adfe13e, type: 3}
+  _click_bubble: {fileID: 0}
   distortion_layer: {fileID: 370065511}
   boss_object: {fileID: 0}
   _boss_level: 0
@@ -30513,7 +30513,7 @@ MonoBehaviour:
   - {fileID: 3726226174166467842, guid: 0373bfd8abb5cbf47905c8c31fccd192, type: 3}
   - {fileID: 3726226174166467842, guid: 0373bfd8abb5cbf47905c8c31fccd192, type: 3}
   second_to_spawn: 2
-  spawn_interval: 1
+  spawn_interval: 4
   spawn_randomization_factor: 2
 --- !u!1 &2130444521
 GameObject:
