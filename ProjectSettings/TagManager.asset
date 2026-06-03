@@ -10,6 +10,7 @@ TagManager:
   - UI
   - Obstacle
   - Weapon
+  - Permanent_Obstacle
   layers:
   - Default
   - TransparentFX

@@ -5101,6 +5101,9 @@ MonoBehaviour:
   _health: 200
   _max_health: 200
   _sprite: {fileID: 281189718}
+  _audio_player: {fileID: 0}
+  _damage_SFX_list: []
+  _death_SFX_list: []
 --- !u!212 &281189718
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -5687,7 +5690,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Waves
+  m_text: Freeform
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: c733da9ae486ff44f9839673cf952c26, type: 2}
   m_sharedMaterial: {fileID: 762866619686397338, guid: c733da9ae486ff44f9839673cf952c26, type: 2}
@@ -5750,7 +5753,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 49.992035, y: 0, z: -12.295044, w: 0}
+  m_margin: {x: 49.992035, y: 0, z: -157.39545, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -5947,6 +5950,9 @@ MonoBehaviour:
   _health: 200
   _max_health: 200
   _sprite: {fileID: 715151762}
+  _audio_player: {fileID: 0}
+  _damage_SFX_list: []
+  _death_SFX_list: []
 --- !u!58 &715151761
 CircleCollider2D:
   m_ObjectHideFlags: 0

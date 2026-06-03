@@ -198,10 +198,17 @@ public class GameController : MonoBehaviour
                 i--;
             }
         }
+
+    }
+
+    void ResetEverything()
+    {
+        CullClones();
         ResetEnemies();
         ResetProjectiles();
         ResetAOEs();
         ResetObstacles();
+        ResetPermanents();
     }
 
     void ResetEnemies() // also deletes all enemy projectiles 
@@ -255,6 +262,16 @@ public class GameController : MonoBehaviour
         for (int i = 0; i < AOEs.Count(); i++)
         {
             Destroy(AOEs[i]);
+        }
+    }
+
+    void ResetPermanents()
+    {
+        GameObject[] Permanents = GameObject.FindGameObjectsWithTag("Permanent_Obstacle");
+        for (int i = 0; i < Permanents.Count(); i++)
+        {
+            Debug.Log("OBJECT FOUND");
+            Permanents[i].GetComponent<PermanentRectangle>().ResetSelf();
         }
     }
 
@@ -314,7 +331,7 @@ public class GameController : MonoBehaviour
                 }
 
                 _falling_rain.SetActive(false);
-                CullClones();
+                ResetEverything();
                 _player_starting_position -= new Vector3(0, 1.5f, 0);
                 main_camera.GetComponent<MainCamera>().seconds_of_camera_shake = 0;
                 music_controller.ResetSelf(); 

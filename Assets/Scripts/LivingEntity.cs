@@ -28,7 +28,7 @@ public class LivingEntity : MonoBehaviour
 
     protected virtual void SetColor()
     {
-        if (transform.GetComponent<Boss>() != null || transform.GetComponent<Ally>() != null || transform.GetComponent<RisenEntity>() != null || transform.GetComponent<PlaceableRectangle>() != null || transform.GetComponent<MouseEar>() != null)
+        if (transform.GetComponent<SpriteRenderer>() != null)
         {
             _original_color = _sprite.color;
         }

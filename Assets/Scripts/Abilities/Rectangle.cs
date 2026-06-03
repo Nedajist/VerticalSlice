@@ -5,8 +5,8 @@ using UnityEngine;
 public class Rectangle : LivingEntity
 {
     [SerializeField] protected float _damage;
-
-    private float _cooldown_before_damage = 0.3f; // also counts as i frames
+    [SerializeField] protected bool _thorns = true;
+    [SerializeField] float _cooldown_before_damage = 0.3f; // also counts as i frames
     protected float _damage_timer;
 
     protected override void Start()
@@ -57,13 +57,13 @@ public class Rectangle : LivingEntity
 
         if (collision.transform.GetComponent<Ally>() != null)
         {
-            collision.transform.GetComponent<Ally>().ReceiveDamage(_damage);
+            if (_thorns) collision.transform.GetComponent<Ally>().ReceiveDamage(_damage);
             ReceiveDamage(_damage);
         }
 
         if (collision.transform.GetComponent<Enemy>() != null)
         {
-            collision.transform.GetComponent<Enemy>().ReceiveDamage(_damage);
+            if (_thorns) collision.transform.GetComponent<Enemy>().ReceiveDamage(_damage);
             ReceiveDamage(collision.transform.GetComponent<Enemy>().contact_damage);
         }
 
