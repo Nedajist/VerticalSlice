@@ -81,7 +81,7 @@ public class HealthBar : MonoBehaviour
     {
         _lazy_bar.value = 0;
         _health_bar.value = 0;
-        Debug.Log("RETURN TO 0");
+        // Debug.Log("RETURN TO 0");
         Debug.Log(_health_bar.value);
     }
 

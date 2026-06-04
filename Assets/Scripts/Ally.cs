@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 public enum PlayerClass
@@ -14,6 +15,8 @@ public class Ally : LivingEntity // the clone
     [SerializeField] protected PlayerClass _class;
     [SerializeField] protected float _ability_1_cooldown;
     [SerializeField] protected float _ability_2_cooldown;
+    [SerializeField] protected GameObject _ability_1_container; // leave these 2 values NULL for all clones. Only set them for the player. They shake when the player activates an ability. 
+    [SerializeField] protected GameObject _ability_2_container;
 
     [SerializeField] public Vector3 starting_position = Vector3.zero;
 
@@ -137,6 +140,7 @@ public class Ally : LivingEntity // the clone
         {
             _ability_1_timer = _ability_1_cooldown;
             ActivateAbility1(mouse_position);
+            if (_ability_1_container != null) StartCoroutine(ShakeAbilityBar(0.15f, 0.15f, 0.15f, _ability_1_container));
         }
     }
 
@@ -146,6 +150,7 @@ public class Ally : LivingEntity // the clone
         {
             _ability_2_timer = _ability_2_cooldown;
             ActivateAbility2(mouse_position);
+            if (_ability_2_container != null) StartCoroutine(ShakeAbilityBar(0.15f, 0.15f, 0.15f, _ability_2_container));
         }
 
     }
@@ -307,4 +312,28 @@ public class Ally : LivingEntity // the clone
     {
         return _ability_2_cooldown;
     }
+
+    public IEnumerator ShakeAbilityBar(float ease_in, float ease_out, float scaleIncrease, GameObject container)
+    {
+        Vector3 _original_scale = container.transform.localScale;
+        float duration = ease_in;
+        while (duration > 0)
+        {
+            duration -= Time.fixedDeltaTime;
+            container.transform.localScale = Vector3.Lerp(_original_scale, new Vector3(_original_scale.x + scaleIncrease, _original_scale.y + scaleIncrease, 0), 1 - duration / ease_in);
+            yield return new WaitForFixedUpdate();
+        }
+
+        duration = ease_out;
+        Vector3 newScale = container.transform.localScale;
+        while (duration > 0)
+        {
+            duration -= Time.fixedDeltaTime;
+            container.transform.localScale = Vector3.Lerp(newScale, _original_scale, 1 - duration / ease_out);
+            yield return new WaitForFixedUpdate();
+        }
+
+        yield return null;
+    }
+
 }

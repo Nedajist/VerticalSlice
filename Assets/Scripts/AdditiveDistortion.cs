@@ -37,19 +37,19 @@ public class AdditiveDistortion : MonoBehaviour
         switch (Random.Range(0, 5))
         {
             case 0:
-                StartCoroutine(DiagonalMove(0.05f, -0.05f)); // upward diagonal diagonal
+                StartCoroutine(DiagonalMove(0.03f, -0.03f)); // upward diagonal diagonal
                 break;
             case 1:
-                StartCoroutine(DiagonalMove(-0.05f, 0.05f)); // downward diagonal
+                StartCoroutine(DiagonalMove(-0.03f, 0.03f)); // downward diagonal
                 break;
             case 2:
-                StartCoroutine(FourSplit(0.05f, 0.05f)); // apart snaps together
+                StartCoroutine(FourSplit(0.04f, 0.04f)); // apart snaps together
                 break;
             case 3:
-                StartCoroutine(FourSplit(-0.05f, -0.05f)); // apart to together 
+                StartCoroutine(FourSplit(-0.04f, -0.04f)); // apart to together 
                 break;
             case 4:
-                StartCoroutine(Syncopate(1f, 2f, 2f)); // syncopate 
+                StartCoroutine(Syncopate(0.8f, 1.5f, 1.5f)); // syncopate 
                 break;
         }
     }

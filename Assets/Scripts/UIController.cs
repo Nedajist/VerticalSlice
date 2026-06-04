@@ -14,7 +14,8 @@ public class UIController : MonoBehaviour
     [SerializeField] private Slider _ability_2_bar;
     [SerializeField] private Image _ability_1_image;
     [SerializeField] private Image _ability_2_image;
-
+    [SerializeField] public GameObject ability_1_container;
+    [SerializeField] public GameObject ability_2_container;
 
     [SerializeField] private float _rate_of_bar_change;
     [SerializeField] private GameObject _character_select_menu;

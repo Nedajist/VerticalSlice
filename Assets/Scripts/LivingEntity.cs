@@ -75,11 +75,11 @@ public class LivingEntity : MonoBehaviour
 
     public void Bleed(Vector3? position)
     {
-        Debug.Log(transform.name.ToString() + " is bleeding at " + position.ToString());
+        //Debug.Log(transform.name.ToString() + " is bleeding at " + position.ToString());
         if (position == null) return;
         if (_damage_particles == null) return;
 
-        Debug.Log("Bleed succcesssfull");
+        //Debug.Log("Bleed succcesssfull");
         Vector3 spawn_position = (Vector3) position;
         Instantiate(_damage_particles, spawn_position, Quaternion.identity, transform);
     }

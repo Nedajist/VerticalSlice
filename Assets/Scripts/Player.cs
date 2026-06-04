@@ -46,7 +46,8 @@ public class Player : Ally
             ResetSelf();
         }
         //Debug.Log(velocity_additive);
-
+        _ability_1_container = GameController.instance.UI.ability_1_container;
+        _ability_2_container = GameController.instance.UI.ability_2_container;
     }
 
 
