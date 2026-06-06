@@ -43,6 +43,16 @@ public class MainMenuUI : MonoBehaviour
         StartCoroutine(PlaySFXThenTransitionLevels(WavesLevelSFX, 2, 0.5f));
     }
 
+    public void TransitionToMainMenu()
+    {
+        StartCoroutine(PlaySFXThenTransitionLevels(WavesLevelSFX, 0, 0.5f));
+    }
+
+    public void TransitionToNothing()
+    {
+        StartCoroutine(PlaySFXThenTransitionLevels(WavesLevelSFX, 4, 0.5f));
+    }
+
     public IEnumerator PlaySFXThenTransitionLevels(AudioClip SFX, int index, float wait_duration)
     {
         UIAudioPlayer.clip = SFX;

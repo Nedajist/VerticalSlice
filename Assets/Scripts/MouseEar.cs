@@ -44,4 +44,9 @@ public class MouseEar : LivingEntity
         gameObject.SetActive(false); // mouse ear can't be destroyed since it must respawn next fight 
 
     }
+
+    public void BossDied()
+    {
+        StartCoroutine(FadeAway(5));
+    }
 }

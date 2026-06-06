@@ -8,6 +8,7 @@ public class EnemySpawnBundle : MonoBehaviour
     [SerializeField] float second_to_spawn; // the second at which the spawner begins to activate
     [SerializeField] float spawn_interval = 1; // after spawning, the delay between each spawn
     [SerializeField] float spawn_randomization_factor = 3;
+    [SerializeField] bool infinite = false;
 
     private float _time = 0;
     private float _spawn_interval_timer = 0;
@@ -48,6 +49,11 @@ public class EnemySpawnBundle : MonoBehaviour
                 GameObject instantiated_spawn = Instantiate(_spawn_prefab_list[_spawn_index], spawn_position, Quaternion.identity);
                 _spawn_index += 1;
                 _spawn_interval_timer = spawn_interval;
+            }
+
+            if (_spawn_index >= _spawn_prefab_list.Count && infinite == true)
+            {
+                _spawn_index = 0;
             }
         }
 

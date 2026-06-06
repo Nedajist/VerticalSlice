@@ -14,4 +14,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/freeform.unity
     guid: 786945f9c18b4264d8e58a2deeb1bfb8
+  - enabled: 1
+    path: Assets/Scenes/victory.unity
+    guid: 5156a050ed451894396486b09e09dfcb
+  - enabled: 1
+    path: Assets/Scenes/nothingness.unity
+    guid: a0518201099c3454ca1ff2e2fe37055a
   m_configObjects: {}

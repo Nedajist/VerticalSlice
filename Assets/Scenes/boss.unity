@@ -24932,6 +24932,7 @@ MonoBehaviour:
   _boss_disease_AOE: {fileID: 6825694895562673788, guid: 3c56ebb12b0ab3442b6e0fa4dbebc55e, type: 3}
   _normal_sword_slash: {fileID: 4721629833262049022, guid: a9296b2a7bed6b34d84caa5075611269, type: 3}
   _wide_sword_slash: {fileID: 980023007204364952, guid: 73fd3ae7b317da84791e79e8c91d143a, type: 3}
+  _state_machine: {fileID: 2048984349}
   _left_ear: {fileID: 1758582040}
   _right_ear: {fileID: 1077643480}
   _degrees_per_second: 30

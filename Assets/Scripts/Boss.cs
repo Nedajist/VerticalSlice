@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using static UnityEngine.GraphicsBuffer;
 
 public class Boss : Enemy
@@ -16,6 +17,7 @@ public class Boss : Enemy
     [SerializeField] GameObject _boss_disease_AOE;
     [SerializeField] GameObject _normal_sword_slash;
     [SerializeField] GameObject _wide_sword_slash;
+    [SerializeField] StateMachine _state_machine;
     [SerializeField] MouseEar _left_ear;
     [SerializeField] MouseEar _right_ear;
 
@@ -32,6 +34,7 @@ public class Boss : Enemy
     [SerializeField] AudioClip _basic_melee_SFX;
     [SerializeField] AudioClip _circle_melee_SFX;
     [SerializeField] AudioClip _mass_AOE_SFX;
+    
 
 
     private float _target_x;
@@ -67,11 +70,50 @@ public class Boss : Enemy
 
         if (_health <= 0)
         {
-            gameObject.SetActive(false);
+            StopAllCoroutines();
             PlayDeathSFX();
+            _state_machine.enabled = false;
             Debug.Log("BOSS DEFEATED");
+            StartCoroutine(FadeAway(5, 0.8f, 0.7f));
+            if (_left_ear.enabled) _left_ear.BossDied();
+            if (_right_ear.enabled) _right_ear.BossDied();
         }
     }
+
+    protected IEnumerator FadeAway(float duration, float position_distortion_duration, float color_distortion_duration) // turns sprite red, moves alpha to 0, destroys gameobject
+    {
+        float timer = duration;
+        float position_distortion_timer = position_distortion_duration;
+        float color_distortion_timer = color_distortion_duration;
+
+        transform.GetComponent<Rigidbody2D>().simulated = false; // disabled rigidbody
+        PlayDeathSFX();
+        GameController.instance.distortion_layer.DistortPosition();
+        while (timer > 0)
+        {
+            timer -= Time.deltaTime;
+            position_distortion_timer -= Time.deltaTime;
+            color_distortion_duration -= Time.deltaTime;
+
+            if (position_distortion_timer <= 0)
+            {
+                GameController.instance.distortion_layer.DistortPosition();
+                position_distortion_timer = position_distortion_duration;
+            }
+
+            if (color_distortion_timer <= 0)
+            {
+                GameController.instance.distortion_layer.DistortColor();
+                color_distortion_timer = color_distortion_duration;
+            }
+
+            _sprite.color = Color.Lerp(_sprite.color, new Color(Color.red.r, Color.red.b, Color.red.g, timer / duration), timer / duration);
+            yield return new WaitForFixedUpdate();
+        }
+        Destroy(gameObject);
+        SceneManager.LoadScene(3);
+    }
+
 
 
     public void SummonSpiralProjectiles()
