@@ -43,6 +43,7 @@ public class GameController : MonoBehaviour
 
     [SerializeField] public GameObject _click_bubble;
     [SerializeField] public AdditiveDistortion distortion_layer;
+    [SerializeField] private GameObject boss_prefab;
     [SerializeField] public GameObject boss_object;
     [SerializeField] private bool _boss_level;
 
@@ -74,11 +75,15 @@ public class GameController : MonoBehaviour
             Destroy(gameObject);
         }
 
-        if (_boss_level) boss = boss_object.GetComponent<Boss>();
+        if (_boss_level)
+        {
+            
+        }
         else
         {
             FindSpawners();
         }
+
         UI = GameObject.FindObjectOfType<UIController>();
         main_camera = GameObject.FindObjectOfType<Camera>();
         music_controller = GameObject.FindObjectOfType<MusicController>();
@@ -159,6 +164,7 @@ public class GameController : MonoBehaviour
 
             Ally clone = instantiated_clone.GetComponent<Ally>();
             clone.GiveLife(clone_data.starting_position, clone_data.list_of_inputs);
+            clone.ResetInputs();
             clone.StartExecuting();
 
         }
@@ -205,7 +211,7 @@ public class GameController : MonoBehaviour
 
     }
 
-    void ResetEverything()
+    void ResetEverything() // (besides boss)
     {
         CullClones();
         ResetEnemies();
@@ -215,15 +221,14 @@ public class GameController : MonoBehaviour
         ResetPermanents();
     }
 
-    void ResetEnemies() // also deletes all enemy projectiles 
+    void ResetEnemies() // also deletes all enemy projectiles. Does not reset boss. 
     {
         GameObject[] enemyObjects = GameObject.FindGameObjectsWithTag("Enemy"); // TEMPORARY
         for (int i = 0; i < enemyObjects.Count(); i++)
         {
             if (enemyObjects[i].GetComponent<Boss>() != null)
             {
-                Boss boss = enemyObjects[i].GetComponent<Boss>();
-                boss.ResetSelf();
+                Destroy(enemyObjects[i]); // boss is destroyed and re-instantiated each attempt 
             }
             else
             {
@@ -238,15 +243,6 @@ public class GameController : MonoBehaviour
         for (int i = 0; i < projectiles.Count(); i++)
         {
             Destroy(projectiles[i]);
-        }
-
-        if (_boss_level)
-        {
-            Projectile[] bossChildProjectiles = boss.transform.GetComponentsInChildren<Projectile>(); // deletes hooks attached to boss
-            foreach (Projectile projectile in bossChildProjectiles)
-            {
-                Destroy(projectile.transform.gameObject);
-            }
         }
 
     }
@@ -278,8 +274,22 @@ public class GameController : MonoBehaviour
         }
     }
 
+    void RegenerateBoss()
+    {
+        boss_object = Instantiate(boss_prefab, boss_prefab.GetComponent<Boss>().starting_position, Quaternion.identity);
+        boss = boss_object.GetComponent<Boss>();
+        HealthBar boss_health_bar = boss_object.GetComponent<HealthBar>();
+
+        boss_health_bar.SetHealthBar(UI.boss_health_bar);
+        boss_health_bar.SetLazyBar(UI.boss_lazy_bar);
+        boss_health_bar.SetBarCanvas(UI.boss_bar_container);
+
+        boss.transform.gameObject.SetActive(true);
+    }
+
     public void SummonRisen(Vector3 location, PlayerClass risenclass)
     {
+
         switch (risenclass)
         {
             case PlayerClass.Tank:
@@ -298,7 +308,6 @@ public class GameController : MonoBehaviour
                 GameObject _instantiated_painter = Instantiate(_painter_add, location, Quaternion.identity);
                 break;
         }
-    }
 
     public void SummonInfectiousProjectileBundle(Vector3 location)
     {
@@ -326,7 +335,6 @@ public class GameController : MonoBehaviour
                 if (_boss_level)
                 {
                     _bar_canvas_UI.SetActive(false);
-                    boss.transform.gameObject.SetActive(false);
                 }
                 else
                 {
@@ -348,8 +356,7 @@ public class GameController : MonoBehaviour
                 if (_boss_level)
                 {
                     _bar_canvas_UI.SetActive(true);
-                    boss.transform.gameObject.SetActive(true);
-                    boss.ResetSelf();
+                    RegenerateBoss();
                 }
                 else
                 {

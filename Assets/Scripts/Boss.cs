@@ -25,7 +25,7 @@ public class Boss : Enemy
     [SerializeField] float _degrees_per_second; // as pertaining to movement rotation. Might change during later phases. 
     [SerializeField] float _upper_degree_bound; // also determines lower bound
 
-    [SerializeField] Vector3 starting_position;
+    [SerializeField] public Vector3 starting_position;
     [SerializeField] AudioSource _boss_ability_audio_manager;
     [SerializeField] AudioClip _basic_projectile_SFX;
     [SerializeField] AudioClip _homing_projecitle_SFX;
@@ -39,7 +39,7 @@ public class Boss : Enemy
 
     private float _target_x;
     private float _target_y;
-
+    private float _boss_frames = 0;
     private float degree_change = 0; // how much the rat changes degrees every fixedupdate 
 
     protected override void Start()
@@ -50,6 +50,12 @@ public class Boss : Enemy
     private void Awake()
     {
         SetColor();
+    }
+
+    private void FixedUpdate()
+    {
+        _boss_frames += 1;
+        //Debug.Log("On boss frame: "+ _boss_frames + " boss is at position: " + transform.position);
     }
 
     public override void ReceiveDamage(float amount, Vector3? location = null)
@@ -181,6 +187,7 @@ public class Boss : Enemy
 
     public void MoveTowardsTargetPlayer() // beelines player. Best for melee.
     {
+        //Debug.Log("On boss movement frame: " + _boss_frames + "boss moved to target at " + new Vector2(_target_x, _target_y));
         _target_x = _target_player.transform.position.x;
         _target_y = _target_player.transform.position.y;
         Move();
@@ -189,11 +196,11 @@ public class Boss : Enemy
 
     public void SlitherTowardsTargetPlayer() // Kinda rotates around player but also zigzaggy. Best for ranged. 
     {
+        //Debug.Log("On boss movement frame: " + _boss_frames + " boss slithered to target at " + new Vector2(_target_x, _target_y));
         _target_x = _target_player.transform.position.x;
         _target_y = _target_player.transform.position.y;
         Move();
         degree_change += _degrees_per_second * Time.fixedDeltaTime;
-
         if (degree_change > _upper_degree_bound || degree_change < -_upper_degree_bound)
         {
             _degrees_per_second = -_degrees_per_second;
@@ -217,20 +224,6 @@ public class Boss : Enemy
             ReceiveDamage(collision.transform.GetComponent<Projectile>().damage, collision.contacts[0].point);
         }
     }
-
-    public void ResetSelf()
-    {
-        StopAllCoroutines();
-        transform.position = starting_position;
-        transform.rotation = Quaternion.identity;
-        _health = _max_health;
-        _sprite.color = _original_color;
-        _left_ear.ResetMouseEar();
-        _right_ear.ResetMouseEar();
-        transform.GetComponent<HealthBar>().ReturnToZero();
-        CustomEvent.Trigger(transform.gameObject, "ReturnToPhase1");
-    }
-
     
 
     public IEnumerator ChargeToTarget(float duration) // longer the charge, the more the boss accelerates

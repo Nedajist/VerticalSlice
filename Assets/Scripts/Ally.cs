@@ -32,7 +32,7 @@ public class Ally : LivingEntity // the clone
     protected float _ability_1_timer = 0;
     protected float _ability_2_timer = 0;
 
-    protected int _physics_frames;
+    protected int _physics_frames = 0;
     protected bool _executing = false;
     protected float _infection_damage = 35;
 
@@ -44,7 +44,6 @@ public class Ally : LivingEntity // the clone
     protected override void Start()
     {
         transform.position = starting_position;
-        _physics_frames = 0;
         SetColor();
     }
 
@@ -56,10 +55,12 @@ public class Ally : LivingEntity // the clone
 
     protected virtual void FixedUpdate()
     {
+        _physics_frames += 1;
+        //Debug.Log("ALLY PHYSICS FRAMES: " + _physics_frames + " ALLY POSITION: " + transform.position);
         _i_frames -= Time.fixedDeltaTime;
         _ability_1_timer -= Time.fixedDeltaTime;
         _ability_2_timer -= Time.fixedDeltaTime;
-        _physics_frames += 1;
+
         if (_executing) // calls _execute() once every physics frame, so 0-1 inputs are executed each second. 
         {
             Execute();
@@ -263,7 +264,6 @@ public class Ally : LivingEntity // the clone
     public void GiveLife(Vector3 start_position, List<InputData> list_of_inputs)
     {
         starting_position = start_position;
-        _physics_frames = 0;
 
         for (int i = 0; i < list_of_inputs.Count; i++) // true copies mutable values 
         {
@@ -280,8 +280,9 @@ public class Ally : LivingEntity // the clone
         _i_frames += seconds_of_iframes;
     }
 
-    private void ResetInputs()
+    public void ResetInputs()
     {
+        Debug.Log("Ally reset inputs, physics frames set to 0");
         for (int i = 0; i < _list_of_unchanging_inputs.Count; i++)
         {
             InputData new_input_data = ScriptableObject.CreateInstance<InputData>();

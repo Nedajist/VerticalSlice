@@ -54,6 +54,7 @@ public class Player : Ally
     protected override void FixedUpdate()
     {
         _physics_frames += 1;
+        //Debug.Log("PLAYER PHYSICS FRAMES: " + _physics_frames + " PLAYER POSITION: " + transform.position);
         _ability_1_timer -= Time.fixedDeltaTime;
         _ability_2_timer -= Time.fixedDeltaTime;
         _i_frames -= Time.fixedDeltaTime;

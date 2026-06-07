@@ -8,8 +8,9 @@ using UnityEngine.UI;
 public class UIController : MonoBehaviour
 {
 
-    [SerializeField] private Slider _health_bar;
-    [SerializeField] private Slider _lazy_bar;
+    [SerializeField] public Slider boss_health_bar;
+    [SerializeField] public Slider boss_lazy_bar;
+    [SerializeField] public GameObject boss_bar_container;
     [SerializeField] private Slider _ability_1_bar;
     [SerializeField] private Slider _ability_2_bar;
     [SerializeField] private Image _ability_1_image;

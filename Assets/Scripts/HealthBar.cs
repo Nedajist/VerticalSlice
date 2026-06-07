@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -82,7 +83,6 @@ public class HealthBar : MonoBehaviour
         _lazy_bar.value = 0;
         _health_bar.value = 0;
         // Debug.Log("RETURN TO 0");
-        Debug.Log(_health_bar.value);
     }
 
     public IEnumerator TempSizeChange(float ease_in, float ease_out, float scaleIncrease)
@@ -107,5 +107,22 @@ public class HealthBar : MonoBehaviour
         yield return null;
     }
 
+    public void SetLazyBar(Slider bar)
+    {
+        _lazy_bar = bar;
+    }
+
+    public void SetHealthBar(Slider bar)
+    {
+        _health_bar = bar;
+        Debug.Log(bar);
+        Debug.Log(_health_bar);
+        Debug.Log(transform.name);
+    }
+
+    public void SetBarCanvas(GameObject canvas)
+    {
+        _bar_canvas = canvas;
+    }
 
 }

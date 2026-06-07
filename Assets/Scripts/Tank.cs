@@ -19,6 +19,7 @@ public class Tank : ClassAbility
         }
 
         Quaternion starting_rotation = Quaternion.Euler(0, 0, angle - _tank_sword.GetComponent<RotatingSword>().target_angles_traveled/2); // starts tank sword at an angle such that the mouse position is the halfway point of the arc 
+        //Debug.Log("Tank sword instantiated with line_to_mouse of " + line_to_mouse + "and starting rotation of " + starting_rotation);
 
 
         GameObject _instantiated_tank_sword = Instantiate(_tank_sword, transform.position, starting_rotation);
