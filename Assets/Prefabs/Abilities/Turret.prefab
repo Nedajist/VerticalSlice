@@ -103,8 +103,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _speed: 0
-  _health: 100
-  _max_health: 100
+  _health: 60
+  _max_health: 60
   _sprite: {fileID: 7592230877941471963}
   _audio_player: {fileID: 4301095949287305154}
   _damage_SFX_list:
@@ -114,10 +114,13 @@ MonoBehaviour:
   _death_SFX_list:
   - {fileID: 8300000, guid: ff0d74104a9e9754ca2e8f72095ef0ca, type: 3}
   - {fileID: 8300000, guid: a76614ed6c183804d8d70d5c079baefe, type: 3}
+  _damage_particles: {fileID: 0}
   _rb: {fileID: 8919697493396893754}
   _class: 0
   _ability_1_cooldown: -99
   _ability_2_cooldown: -99
+  _ability_1_container: {fileID: 0}
+  _ability_2_container: {fileID: 0}
   starting_position: {x: 0, y: 0, z: 0}
   is_clone: 0
   seconds_of_infection: 0

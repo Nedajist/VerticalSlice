@@ -84,12 +84,12 @@ public class Ally : LivingEntity // the clone
 
             if (current_input.inputFrame != _physics_frames && current_input.startedExecution == false) // if the selected input does not happen this frame / is not a previous input which stretches on to this frame, ends the loop
             {
-                //Debug.Log("RETURNED. CURRENT FRAME: " + _physics_frames + ". INPUT FRAME: " + current_input.inputFrame + "STARTED EXECUTION: " + current_input.startedExecution);
-                return;
+                //Debug.Log("BROKEN. CURRENT FRAME: " + _physics_frames + ". INPUT FRAME: " + current_input.inputFrame + "STARTED EXECUTION: " + current_input.startedExecution);
+                break;
             }
 
             current_input.startedExecution = true; // tells the scriptableobject that it has started execution
-            //Debug.Log("STARTED EXECUTION. CURRENT FRAME: " + _physics_frames + "INPUT FRAME:" + current_input.inputFrame);
+            //Debug.Log("STARTED EXECUTION. CURRENT FRAME: " + _physics_frames + " INPUT FRAME: " + current_input.inputFrame + " HELD FRAMES: " + current_input.heldFrames);
 
             switch (current_input.inputType) // element i of input list matches current frame, input will be executed
             {
@@ -105,11 +105,6 @@ public class Ally : LivingEntity // the clone
                     break;
             }
 
-            if (moved_this_frame == false)
-            {
-                FreezeVelocity(); // resets velocity if not executing movement input this turn to preserve determinism
-            }
-
             current_input.heldFrames -= 1; // subtracts 1 from its lifespan 
             if (current_input.heldFrames <= 0)
             {
@@ -118,6 +113,11 @@ public class Ally : LivingEntity // the clone
             }
             //Debug.Log(_list_of_inputs.Count + "inputs remaining!");
             //Debug.Log("current input: "+ current_input.inputType + "heldframes remaining: "+ current_input.heldFrames);
+        }
+
+        if (moved_this_frame == false)
+        {
+            FreezeVelocity(); // resets velocity if not executing movement input this turn to preserve determinism
         }
 
         if (_list_of_inputs.Count == 0)
