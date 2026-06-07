@@ -308,7 +308,7 @@ public class GameController : MonoBehaviour
                 GameObject _instantiated_painter = Instantiate(_painter_add, location, Quaternion.identity);
                 break;
         }
-
+    }
     public void SummonInfectiousProjectileBundle(Vector3 location)
     {
         GameObject _instantiated_infectious_projectile_bundle = Instantiate(_infectious_projectile_bundle, location, Quaternion.identity);
