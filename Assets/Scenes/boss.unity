@@ -11777,7 +11777,7 @@ MonoBehaviour:
   main_camera: {fileID: 0}
   boss: {fileID: 0}
   UI: {fileID: 0}
-  music_controller: {fileID: 0}
+  music_controller: {fileID: 1813691244}
   ally_list: []
   past_incarnation_list: []
   current_gamestate: 0
