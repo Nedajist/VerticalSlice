@@ -108,8 +108,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _speed: 4
-  _health: 1100
-  _max_health: 1100
+  _health: 1300
+  _max_health: 1300
   _sprite: {fileID: 7739546304177175896}
   _audio_player: {fileID: 3706449726420412013}
   _damage_SFX_list:
@@ -268,11 +268,10 @@ MonoBehaviour:
       Index","value":{"$content":0,"$type":"System.Int32"},"typeHandle":{"Identification":"System.Int32,
       mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089","$version":"A"},"$version":"A"},{"name":"Target
       Index","value":{"$content":0,"$type":"System.Int32"},"typeHandle":{"Identification":"System.Int32,
-      mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089","$version":"A"},"$version":"A"},{"name":"MusicController","value":{"$content":1,"$type":"UnityEngine.Object"},"typeHandle":{"Identification":"MusicController,
+      mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089","$version":"A"},"$version":"A"},{"name":"MusicController","value":null,"typeHandle":{"Identification":"MusicController,
       Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null","$version":"A"},"$version":"A"}],"$version":"A"},"$version":"A"}}'
     _objectReferences:
     - {fileID: 4204202113991004609}
-    - {fileID: 0}
 --- !u!114 &8759983887125551331
 MonoBehaviour:
   m_ObjectHideFlags: 0

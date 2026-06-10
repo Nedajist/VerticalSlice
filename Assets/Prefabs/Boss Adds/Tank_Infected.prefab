@@ -106,8 +106,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _speed: 3.5
-  _health: 150
-  _max_health: 150
+  _health: 125
+  _max_health: 125
   _sprite: {fileID: 8511563717327968215}
   _audio_player: {fileID: 5850145576458013532}
   _damage_SFX_list:
